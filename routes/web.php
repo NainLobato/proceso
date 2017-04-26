@@ -19,3 +19,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('catEtnias', 'CatEtniaController');
+
+Route::resource('catEdoCivils', 'CatEdoCivilController');
+
+Route::resource('catEdoCivils', 'CatEdoCivilController');
