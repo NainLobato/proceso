@@ -26,3 +26,7 @@ Route::resource('personas', 'PersonaController');
 Route::resource('catEscolaridads', 'catEscolaridadController');
 
 Route::resource('catReligions', 'CatReligionController');
+
+Route::resource('catEtnias', 'CatEtniaController');
+
+Route::resource('catEdoCivils', 'CatEdoCivilController');
