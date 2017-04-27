@@ -46,8 +46,8 @@ class PersonaController extends AppBaseController
         $catEtnia=array();
         $catReligion = array();
         $catNacionalidad = array();
-        $idEscolaridad = array();
-        return view('personas.create',array('idEtnia'=>$catEtnia,'idReligion'=>$catReligion,'idNacionalidad'=>$catNacionalidad,'idEscolaridad'=>$idEscolaridad));
+        $catEscolaridad = array();
+        return view('personas.create',array('catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad));
     }
 
     /**
