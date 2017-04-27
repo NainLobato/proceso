@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('catEscolaridads', 'catEscolaridadController');
+Route::resource('personas', 'PersonaController');
 
 Route::resource('catEscolaridads', 'catEscolaridadController');
 

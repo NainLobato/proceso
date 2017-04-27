@@ -21,7 +21,7 @@ class catEscolaridad extends Model
 
 
     public $fillable = [
-        'religion'
+        'escolaridad'
     ];
 
     /**
@@ -30,7 +30,7 @@ class catEscolaridad extends Model
      * @var array
      */
     protected $casts = [
-        'religion' => 'string'
+        'escolaridad' => 'string'
     ];
 
     /**
@@ -39,7 +39,7 @@ class catEscolaridad extends Model
      * @var array
      */
     public static $rules = [
-        'religion' => 'required'
+        'escolaridad' => 'required'
     ];
 
     

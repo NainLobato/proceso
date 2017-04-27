@@ -1,7 +1,7 @@
 <!-- Religion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('religion', 'Religion:') !!}
-    {!! Form::text('religion', null, ['class' => 'form-control']) !!}
+    {!! Form::label('escolaridad', 'Escolaridad:') !!}
+    {!! Form::text('escolaridad', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

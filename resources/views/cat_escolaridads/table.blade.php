@@ -1,12 +1,12 @@
 <table class="table table-responsive" id="catEscolaridads-table">
     <thead>
-        <th>Religion</th>
+        <th>Escolaridad</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($catEscolaridads as $catEscolaridad)
         <tr>
-            <td>{!! $catEscolaridad->religion !!}</td>
+            <td>{!! $catEscolaridad->escolaridad !!}</td>
             <td>
                 {!! Form::open(['route' => ['catEscolaridads.destroy', $catEscolaridad->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

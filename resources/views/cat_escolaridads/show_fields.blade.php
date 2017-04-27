@@ -6,8 +6,8 @@
 
 <!-- Religion Field -->
 <div class="form-group">
-    {!! Form::label('religion', 'Religion:') !!}
-    <p>{!! $catEscolaridad->religion !!}</p>
+    {!! Form::label('escolaridad', 'Escolaridad:') !!}
+    <p>{!! $catEscolaridad->escolaridad !!}</p>
 </div>
 
 <!-- Created At Field -->
