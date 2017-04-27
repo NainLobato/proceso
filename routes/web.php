@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('catEtnias', 'CatEtniaController');
 
+Route::resource('personas', 'PersonaController');
+
 Route::resource('catEdoCivils', 'CatEdoCivilController');
 
 Route::resource('catEdoCivils', 'CatEdoCivilController');
