@@ -13,7 +13,7 @@ class CreatePersonasTable extends Migration
      */
     public function up()
     {
-        Schema::create('personas', function (Blueprint $table) {
+       /* Schema::create('personas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 256);
             $table->string('paterno', 256);
@@ -29,7 +29,7 @@ class CreatePersonasTable extends Migration
             $table->string('rfc', 13);
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
     }
 
     /**
