@@ -21,3 +21,7 @@
     <a href="{!! route('catNacionalidads.index') !!}"><i class="fa fa-edit"></i><span>CatNacionalidads</span></a>
 </li>
 
+<li class="{{ Request::is('catJuzgadoFeds*') ? 'active' : '' }}">
+    <a href="{!! route('catJuzgadoFeds.index') !!}"><i class="fa fa-edit"></i><span>CatJuzgadoFeds</span></a>
+</li>
+
