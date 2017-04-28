@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use DB;
+use Yajra\Datatables\Datatables;
+use App\Models\CatEdoCivil;
+use App\Models\CatReligion;
+use App\Models\CatEscolaridad;
+use App\Models\CatEtnia;
+use App\Models\CatNacionalidad;
+
+
 
 class PersonaController extends AppBaseController
 {
@@ -43,11 +52,12 @@ class PersonaController extends AppBaseController
      */
     public function create()
     {
-        $catEtnia=array();
-        $catReligion = array();
-        $catNacionalidad = array();
-        $catEscolaridad = array();
-        return view('personas.create',array('catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad));
+        $catEtnia=CatEtnia::pluck('etnia','id');
+        $catEdoCivil=CatEdoCivil::pluck('estadoCivil','id');
+        $catReligion = CatReligion::pluck('religion','id');
+        $catNacionalidad = CatNacionalidad::pluck('nacionalidad','id');
+        $catEscolaridad = CatEscolaridad::pluck('escolaridad','id');
+        return view('personas.create',array('catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad,'catEdoCivil'=>$catEdoCivil));
     }
 
     /**
@@ -105,7 +115,20 @@ class PersonaController extends AppBaseController
             return redirect(route('personas.index'));
         }
 
-        return view('personas.edit')->with('persona', $persona);
+        $catEtnia=CatEtnia::pluck('etnia','id');
+        $catEdoCivil=CatEdoCivil::pluck('estadoCivil','id');
+        $catReligion = CatReligion::pluck('religion','id');
+        $catNacionalidad = CatNacionalidad::pluck('nacionalidad','id');
+        $catEscolaridad = CatEscolaridad::pluck('escolaridad','id');
+  /*      
+        $selectedEtnia=$persona->etnias()->get();
+        $selectedEdoCivil=$persona->estadoCivil()->get();
+        $selectedReligion = $persona->religion()->get();
+        $selectedNacionalidad = $persona->nacionalidad()->get();
+        $selectedEscolaridad = $persona->escolaridad()->get();
+*/        
+
+        return view('personas.edit',array('persona'=> $persona,'catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad,'catEdoCivil'=>$catEdoCivil));
     }
 
     /**

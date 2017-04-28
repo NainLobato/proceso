@@ -6,13 +6,13 @@
 
 <!-- Paterno Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('paterno', 'Paterno:') !!}
+    {!! Form::label('paterno', 'Primer Apellido:') !!}
     {!! Form::text('paterno', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Materno Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('materno', 'Materno:') !!}
+    {!! Form::label('materno', 'Segundo Apellido:') !!}
     {!! Form::text('materno', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -24,20 +24,26 @@
 
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
+    {!! Form::label('FechaNacimiento', 'Fecha De Nacimiento:') !!}
     {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Materno Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('sexo', 'Sexo:') !!}
+    {!! Form::select('sexo', array('NO ESPECIFICADO'=>'NO ESPECIFICADO','MASCULINO'=>'MASCULINO','FEMENINO'=>'FEMENINO'), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Idetnia Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idEtnia', 'Idetnia:') !!}
-    {!! Form::select('idEtnia', $idEtnia, null, ['class' => 'form-control']) !!}
+    {!! Form::label('Etnia', 'Etnia:') !!}
+    {!! Form::select('idEtnia', $catEtnia, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Idescolaridad Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idEscolaridad', 'Idescolaridad:') !!}
-    {!! Form::select('idEscolaridad', $idEscolaridad, null, ['class' => 'form-control']) !!}
+    {!! Form::label('Escolaridad', 'Escolaridad:') !!}
+    {!! Form::select('idEscolaridad', $catEscolaridad, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Padre Field -->
@@ -46,10 +52,28 @@
     {!! Form::text('padre', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Madre Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('madre', 'Madre:') !!}
+    {!! Form::text('madre', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Idreligion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idReligion', 'Idreligion:') !!}
-    {!! Form::select('idReligion', $idReligion, null, ['class' => 'form-control']) !!}
+    {!! Form::label('idReligion', 'Religion:') !!}
+    {!! Form::select('idReligion', $catReligion, null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- IdNacionalidad Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idNacionalidad', 'Nacionalidad:') !!}
+    {!! Form::select('idNacionalidad', $catNacionalidad, null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- IdEstadoCivil Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('idEstadoCivil', 'Estado Civil:') !!}
+    {!! Form::select('idEstadoCivil', $catEdoCivil, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ine Field -->
@@ -63,7 +87,11 @@
     {!! Form::label('rfc', 'Rfc:') !!}
     {!! Form::text('rfc', null, ['class' => 'form-control']) !!}
 </div>
-
+<!-- Rfc Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('curp', 'CURP:') !!}
+    {!! Form::text('curp', null, ['class' => 'form-control']) !!}
+</div>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

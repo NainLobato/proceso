@@ -13,12 +13,12 @@ class CreatecatEscolaridadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_escolaridads', function (Blueprint $table) {
+     /*   Schema::create('cat_escolaridads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('escolaridad', 255);
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
     }
 
     /**

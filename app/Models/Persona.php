@@ -32,7 +32,11 @@ class Persona extends Model
         'padre',
         'idReligion',
         'ine',
-        'rfc'
+        'rfc',
+        'idNacionalidad',
+        'madre',
+        'curp',
+        'idEstadoCivil'
     ];
 
     /**
@@ -52,7 +56,11 @@ class Persona extends Model
         'padre' => 'string',
         'idReligion' => 'integer',
         'ine' => 'string',
-        'rfc' => 'string'
+        'rfc' => 'string',
+        'idNacionalidad',
+        'madre',
+        'curp',
+        'idEstadoCivil'
     ];
 
     /**
@@ -63,10 +71,25 @@ class Persona extends Model
     public static $rules = [
         'nombre' => 'required',
         'paterno' => 'required',
-        'idEscolaridad' => 'idEstadoCivil integer select',
-        'padre' => 'madre string,256 text',
-        'ine' => 'curp string,256 text'
     ];
 
+     public function religion()
+    {
+        return $this->hasOne('App\Models\CatReligion', "id","idReligion");
+    }
     
+     public function nacionalidad()
+    {
+        return $this->hasOne('App\Models\CatNacionalidad', "id","idNacionalidad");
+    }
+
+    public function etnia()
+    {
+        return $this->hasOne('App\Models\CatEtnia', "id","idEtnia");
+    }
+
+     public function estadoCivil()
+    {
+        return $this->hasOne('App\Models\CatEstadoCivil', "id","idEstadoCivil");
+    }
 }

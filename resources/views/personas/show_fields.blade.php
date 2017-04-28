@@ -58,12 +58,28 @@
     <p>{!! $persona->padre !!}</p>
 </div>
 
+<!-- Padre Field -->
+<div class="form-group">
+    {!! Form::label('madre', 'Madre:') !!}
+    <p>{!! $persona->madre !!}</p>
+</div>
+
 <!-- Idreligion Field -->
 <div class="form-group">
     {!! Form::label('idReligion', 'Idreligion:') !!}
     <p>{!! $persona->idReligion !!}</p>
 </div>
 
+<!-- Idreligion Field -->
+<div class="form-group">
+    {!! Form::label('idNacionalidad', 'Nacionalidad:') !!}
+    <p>{!! $persona->idNacionalidad !!}</p>
+</div>
+<!-- Idreligion Field -->
+<div class="form-group">
+    {!! Form::label('idEstadoCivil', 'Estado Civil:') !!}
+    <p>{!! $persona->idEstadoCivil !!}</p>
+</div>
 <!-- Ine Field -->
 <div class="form-group">
     {!! Form::label('ine', 'Ine:') !!}
