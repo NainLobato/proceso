@@ -34,3 +34,7 @@ Route::resource('catEdoCivils', 'CatEdoCivilController');
 Route::resource('catNacionalidads', 'CatNacionalidadController');
 
 Route::resource('catJuzgadoFeds', 'CatJuzgadoFedController');
+
+Route::resource('catMedidas', 'CatMedidaController');
+
+Route::resource('catTipoMedidas', 'CatTipoMedidaController');

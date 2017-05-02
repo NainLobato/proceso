@@ -25,3 +25,11 @@
     <a href="{!! route('catJuzgadoFeds.index') !!}"><i class="fa fa-edit"></i><span>CatJuzgadoFeds</span></a>
 </li>
 
+<li class="{{ Request::is('catMedidas*') ? 'active' : '' }}">
+    <a href="{!! route('catMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatMedidas</span></a>
+</li>
+
+<li class="{{ Request::is('catTipoMedidas*') ? 'active' : '' }}">
+    <a href="{!! route('catTipoMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatTipoMedidas</span></a>
+</li>
+
