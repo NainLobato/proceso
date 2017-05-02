@@ -42,3 +42,8 @@ Route::resource('catJuzgados', 'CatJuzgadoController');
 Route::resource('catTipoMandos', 'CatTipoMandoController');
 
 Route::resource('catEtapas', 'CatEtapaController');
+
+
+Route::resource('catMedidas', 'CatMedidaController');
+
+Route::resource('catTipoMedidas', 'CatTipoMedidaController');

@@ -41,3 +41,9 @@
     <a href="{!! route('catEtapas.index') !!}"><i class="fa fa-edit"></i><span>CatEtapas</span></a>
 </li>
 
+<li class="{{ Request::is('catMedidas*') ? 'active' : '' }}">
+    <a href="{!! route('catMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatMedidas</span></a>
+</li>
+
+<li class="{{ Request::is('catTipoMedidas*') ? 'active' : '' }}">
+    <a href="{!! route('catTipoMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatTipoMedidas</span></a>
