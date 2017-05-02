@@ -36,3 +36,16 @@ Route::resource('catNacionalidads', 'CatNacionalidadController');
 Route::resource('catJuzgadoFeds', 'CatJuzgadoFedController');
 
 Route::resource('mandamientos', 'MandamientoController');
+
+Route::resource('catDelitos', 'CatDelitoController');
+
+Route::resource('catJuzgados', 'CatJuzgadoController');
+
+Route::resource('catTipoMandos', 'CatTipoMandoController');
+
+Route::resource('catEtapas', 'CatEtapaController');
+
+
+Route::resource('catMedidas', 'CatMedidaController');
+
+Route::resource('catTipoMedidas', 'CatTipoMedidaController');

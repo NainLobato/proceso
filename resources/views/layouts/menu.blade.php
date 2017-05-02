@@ -45,3 +45,25 @@
     <a href="{!! route('mandamientos.index') !!}"><i class="fa fa-edit"></i><span>Mandamientos</span></a>
 </li>
 
+<li class="{{ Request::is('catDelitos*') ? 'active' : '' }}">
+    <a href="{!! route('catDelitos.index') !!}"><i class="fa fa-edit"></i><span>CatDelitos</span></a>
+</li>
+
+<li class="{{ Request::is('catJuzgados*') ? 'active' : '' }}">
+    <a href="{!! route('catJuzgados.index') !!}"><i class="fa fa-edit"></i><span>CatJuzgados</span></a>
+</li>
+
+<li class="{{ Request::is('catTipoMandos*') ? 'active' : '' }}">
+    <a href="{!! route('catTipoMandos.index') !!}"><i class="fa fa-edit"></i><span>CatTipoMandos</span></a>
+</li>
+
+<li class="{{ Request::is('catEtapas*') ? 'active' : '' }}">
+    <a href="{!! route('catEtapas.index') !!}"><i class="fa fa-edit"></i><span>CatEtapas</span></a>
+</li>
+
+<li class="{{ Request::is('catMedidas*') ? 'active' : '' }}">
+    <a href="{!! route('catMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatMedidas</span></a>
+</li>
+
+<li class="{{ Request::is('catTipoMedidas*') ? 'active' : '' }}">
+    <a href="{!! route('catTipoMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatTipoMedidas</span></a>
