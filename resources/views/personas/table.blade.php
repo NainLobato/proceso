@@ -6,10 +6,10 @@
         <th>Alias</th>
         <th>Fechanacimiento</th>
         <th>Sexo</th>
-        <th>Idetnia</th>
-        <th>Idescolaridad</th>
+        <th>Etnia</th>
+        <th>Escolaridad</th>
         <th>Padre</th>
-        <th>Idreligion</th>
+        <th>Religion</th>
         <th>Ine</th>
         <th>Rfc</th>
         <th colspan="3">Action</th>
@@ -23,10 +23,10 @@
             <td>{!! $persona->alias !!}</td>
             <td>{!! $persona->fechaNacimiento !!}</td>
             <td>{!! $persona->sexo !!}</td>
-            <td>{!! $persona->idEtnia !!}</td>
-            <td>{!! $persona->idEscolaridad !!}</td>
+            <td>{!! $persona->etnia()->get()[0]->etnia !!}</td>
+            <td>{!! $persona->escolaridad()->get()[0]->escolaridad !!}</td>
             <td>{!! $persona->padre !!}</td>
-            <td>{!! $persona->idReligion !!}</td>
+            <td>{!! $persona->religion()->get()[0]->religion!!}</td>
             <td>{!! $persona->ine !!}</td>
             <td>{!! $persona->rfc !!}</td>
             <td>

@@ -92,4 +92,9 @@ class Persona extends Model
     {
         return $this->hasOne('App\Models\CatEstadoCivil', "id","idEstadoCivil");
     }
+
+    public function escolaridad()
+    {
+        return $this->hasOne('App\Models\CatEscolaridad', "id","idEscolaridad");
+    }
 }
