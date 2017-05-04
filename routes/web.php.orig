@@ -35,6 +35,7 @@ Route::resource('catNacionalidads', 'CatNacionalidadController');
 
 Route::resource('catJuzgadoFeds', 'CatJuzgadoFedController');
 
+<<<<<<< HEAD
 Route::resource('catDelitos', 'CatDelitoController');
 
 Route::resource('catJuzgados', 'CatJuzgadoController');
@@ -42,22 +43,8 @@ Route::resource('catJuzgados', 'CatJuzgadoController');
 Route::resource('catTipoMandos', 'CatTipoMandoController');
 
 Route::resource('catEtapas', 'CatEtapaController');
-
-
+=======
 Route::resource('catMedidas', 'CatMedidaController');
 
 Route::resource('catTipoMedidas', 'CatTipoMedidaController');
-
-Route::resource('catTipoAmparos', 'CatTipoAmparoController');
-
-Route::resource('catResolucionAmparos', 'CatResolucionAmparoController');
-
-Route::resource('catAudiencias', 'CatAudienciaController');
-
-Route::resource('catResolucionInvestigacions', 'CatResolucionInvestigacionController');
-
-Route::resource('catSentencias', 'CatSentenciaController');
-
-Route::resource('catMedidaCautelars', 'CatMedidaCautelarController');
-
-Route::resource('catMedidaProteccions', 'CatMedidaProteccionController');
+>>>>>>> d2129848815f431573c9701a228ce9b8fed39b6b
