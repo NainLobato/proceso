@@ -102,3 +102,7 @@
     <a href="{!! route('catFiscals.index') !!}"><i class="fa fa-edit"></i><span>CatFiscals</span></a>
 </li>
 
+<li class="{{ Request::is('catFiscals*') ? 'active' : '' }}">
+    <a href="{!! route('catFiscals.index') !!}"><i class="fa fa-edit"></i><span>CatFiscals</span></a>
+</li>
+

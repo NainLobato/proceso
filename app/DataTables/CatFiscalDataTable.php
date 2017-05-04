@@ -72,8 +72,12 @@ class CatFiscalDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'fiscal' => ['name' => 'fiscal', 'data' => 'fiscal'],
+            'username' => ['name' => 'username', 'data' => 'username'],
+            'password' => ['name' => 'password', 'data' => 'password'],
+            'name' => ['name' => 'name', 'data' => 'name'],
             'idUnidad' => ['name' => 'idUnidad', 'data' => 'idUnidad'],
+            'correo' => ['name' => 'correo', 'data' => 'correo'],
+            'level' => ['name' => 'level', 'data' => 'level'],
             'nombramiento' => ['name' => 'nombramiento', 'data' => 'nombramiento']
         ];
     }

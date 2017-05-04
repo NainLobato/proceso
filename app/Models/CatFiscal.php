@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class CatFiscal
  * @package App\Models
- * @version May 4, 2017, 6:22 pm UTC
+ * @version May 4, 2017, 7:48 pm UTC
  */
 class CatFiscal extends Model
 {
@@ -21,8 +21,12 @@ class CatFiscal extends Model
 
 
     public $fillable = [
-        'fiscal',
+        'username',
+        'password',
+        'name',
         'idUnidad',
+        'correo',
+        'level',
         'nombramiento'
     ];
 
@@ -32,8 +36,12 @@ class CatFiscal extends Model
      * @var array
      */
     protected $casts = [
-        'fiscal' => 'string',
+        'username' => 'string',
+        'password' => 'string',
+        'name' => 'string',
         'idUnidad' => 'integer',
+        'correo' => 'string',
+        'level' => 'integer',
         'nombramiento' => 'string'
     ];
 
@@ -43,8 +51,12 @@ class CatFiscal extends Model
      * @var array
      */
     public static $rules = [
-        'fiscal' => 'required',
+        'username' => 'required',
+        'password' => 'required',
+        'name' => 'required',
         'idUnidad' => 'required',
+        'correo' => 'required',
+        'level' => 'required',
         'nombramiento' => 'required'
     ];
 

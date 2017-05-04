@@ -11,8 +11,12 @@ class CatFiscalRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'fiscal',
+        'username',
+        'password',
+        'name',
         'idUnidad',
+        'correo',
+        'level',
         'nombramiento'
     ];
 

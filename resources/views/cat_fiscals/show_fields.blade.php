@@ -4,16 +4,40 @@
     <p>{!! $catFiscal->id !!}</p>
 </div>
 
-<!-- Fiscal Field -->
+<!-- Username Field -->
 <div class="form-group">
-    {!! Form::label('fiscal', 'Fiscal:') !!}
-    <p>{!! $catFiscal->fiscal !!}</p>
+    {!! Form::label('username', 'Username:') !!}
+    <p>{!! $catFiscal->username !!}</p>
+</div>
+
+<!-- Password Field -->
+<div class="form-group">
+    {!! Form::label('password', 'Password:') !!}
+    <p>{!! $catFiscal->password !!}</p>
+</div>
+
+<!-- Name Field -->
+<div class="form-group">
+    {!! Form::label('name', 'Name:') !!}
+    <p>{!! $catFiscal->name !!}</p>
 </div>
 
 <!-- Idunidad Field -->
 <div class="form-group">
     {!! Form::label('idUnidad', 'Idunidad:') !!}
     <p>{!! $catFiscal->idUnidad !!}</p>
+</div>
+
+<!-- Correo Field -->
+<div class="form-group">
+    {!! Form::label('correo', 'Correo:') !!}
+    <p>{!! $catFiscal->correo !!}</p>
+</div>
+
+<!-- Level Field -->
+<div class="form-group">
+    {!! Form::label('level', 'Level:') !!}
+    <p>{!! $catFiscal->level !!}</p>
 </div>
 
 <!-- Nombramiento Field -->
