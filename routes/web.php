@@ -63,3 +63,7 @@ Route::resource('catSentencias', 'CatSentenciaController');
 Route::resource('catMedidaCautelars', 'CatMedidaCautelarController');
 
 Route::resource('catMedidaProteccions', 'CatMedidaProteccionController');
+
+Route::resource('catJuezs', 'CatJuezController');
+
+Route::resource('catFiscals', 'CatFiscalController');

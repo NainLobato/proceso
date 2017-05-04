@@ -94,3 +94,11 @@
     <a href="{!! route('catMedidaProteccions.index') !!}"><i class="fa fa-edit"></i><span>CatMedidaProteccions</span></a>
 </li>
 
+<li class="{{ Request::is('catJuezs*') ? 'active' : '' }}">
+    <a href="{!! route('catJuezs.index') !!}"><i class="fa fa-edit"></i><span>CatJuezs</span></a>
+</li>
+
+<li class="{{ Request::is('catFiscals*') ? 'active' : '' }}">
+    <a href="{!! route('catFiscals.index') !!}"><i class="fa fa-edit"></i><span>CatFiscals</span></a>
+</li>
+
