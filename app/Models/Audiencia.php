@@ -62,5 +62,24 @@ class Audiencia extends Model
         'idImputado' => 'required'
     ];
 
+    public function fiscal(){
+        return $this->hasOne('App\Models\CatFiscal', "id","idFiscal");
+
+
+    }
     
+    public function juez(){
+        return $this->hasOne('App\Models\CatJuez', "id","idJuez");
+    }
+    public function etapa(){
+        return $this->hasOne('App\Models\CatEtapa', "id","idEtapa");    
+    }
+    public function proceso(){
+                return $this->hasOne('App\Models\Proceso', "id","idProceso");    
+    }
+    public function imputado(){
+        return $this->hasOne('App\Models\Imputado', "id","idImputado");    
+
+            
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCatFiscalsTable extends Migration
+class CreateImputadosTable extends Migration
 {
 
     /**
@@ -13,11 +13,13 @@ class CreateCatFiscalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_fiscals', function (Blueprint $table) {
+        Schema::create('imputados', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fiscal', 256);
-            $table->integer('idUnidad');
-            $table->string('nombramiento', 256);
+            $table->integer('idPersona');
+            $table->integer('idProceso');
+            $table->integer('idDireccion');
+            $table->boolean('esDetenido');
+            $table->datetime('fechaDetencion');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +32,6 @@ class CreateCatFiscalsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cat_fiscals');
+        Schema::drop('imputados');
     }
 }

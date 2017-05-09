@@ -120,3 +120,19 @@
     <a href="{!! route('unidads.index') !!}"><i class="fa fa-edit"></i><span>Unidads</span></a>
 </li>
 
+<li class="{{ Request::is('imputados*') ? 'active' : '' }}">
+    <a href="{!! route('imputados.index') !!}"><i class="fa fa-edit"></i><span>Imputados</span></a>
+</li>
+
+<li class="{{ Request::is('catTipoLugars*') ? 'active' : '' }}">
+    <a href="{!! route('catTipoLugars.index') !!}"><i class="fa fa-edit"></i><span>CatTipoLugars</span></a>
+</li>
+
+<li class="{{ Request::is('direccions*') ? 'active' : '' }}">
+    <a href="{!! route('direccions.index') !!}"><i class="fa fa-edit"></i><span>Direccions</span></a>
+</li>
+
+<li class="{{ Request::is('procesos*') ? 'active' : '' }}">
+    <a href="{!! route('procesos.index') !!}"><i class="fa fa-edit"></i><span>Procesos</span></a>
+</li>
+

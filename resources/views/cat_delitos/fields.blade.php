@@ -7,7 +7,7 @@
 <!-- Idagrupacion Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idAgrupacion', 'Idagrupacion:') !!}
-    {!! Form::select('idAgrupacion', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('idAgrupacion', array(1=>1), null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ndelnum Field -->
