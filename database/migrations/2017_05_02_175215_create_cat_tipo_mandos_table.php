@@ -13,12 +13,12 @@ class CreateCatTipoMandosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_tipo_mandos', function (Blueprint $table) {
+     /*   Schema::create('cat_tipo_mandos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mandamiento', 256);
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
     }
 
     /**

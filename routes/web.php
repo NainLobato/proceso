@@ -69,3 +69,7 @@ Route::resource('catJuezs', 'CatJuezController');
 Route::resource('catFiscals', 'CatFiscalController');
 
 Route::resource('catFiscals', 'CatFiscalController');
+
+Route::resource('audiencias', 'AudienciaController');
+
+Route::resource('unidads', 'UnidadController');

@@ -13,12 +13,12 @@ class CreateCatResolucionInvestigacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_resolucion_investigacions', function (Blueprint $table) {
+       /* Schema::create('cat_resolucion_investigacions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ResolucionInvestigacion', 256);
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
     }
 
     /**

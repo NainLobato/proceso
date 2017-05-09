@@ -13,12 +13,12 @@ class CreateCatTipoAmparosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_tipo_amparos', function (Blueprint $table) {
+    /*    Schema::create('cat_tipo_amparos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipoAmparo', 256);
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
     }
 
     /**

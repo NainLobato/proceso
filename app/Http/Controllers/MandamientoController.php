@@ -10,7 +10,8 @@ use App\Repositories\MandamientoRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
-use App\Models\CatEtnia;
+use App\Models\CatTipoMando;
+use App\Models\Audiencia;
 
 class MandamientoController extends AppBaseController
 {
@@ -40,8 +41,8 @@ class MandamientoController extends AppBaseController
      */
     public function create()
     {
-        $catTipoMandamiento=CatEtnia::pluck('etnia','id');
-        $audiencias=CatEtnia::pluck('etnia','id');
+        $catTipoMandamiento=CatTipoMando::pluck('mandamiento','id');
+        $audiencias=Audiencia::pluck('audiencia','id');
         return view('mandamientos.create',array('catTipoMandamiento'=>$catTipoMandamiento, 'audiencias'=>$audiencias));
     }
 

@@ -57,5 +57,9 @@ class Mandamiento extends Model
         'fechaOficio' => 'required'
     ];
 
+    public function tipoMandamiento()
+    {
+        return $this->hasOne('App\Models\CatTipoMando', "id","idTipoMandamiento");
+    }
     
 }

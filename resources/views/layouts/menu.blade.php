@@ -13,20 +13,84 @@
         <li class="{{ Request::is('catEtnias*') ? 'active' : '' }}">
 			<a href="{!! route('catEtnias.index') !!}"><i class="fa fa-edit"></i><span>Etnias</span></a>
 		</li>
-		<li class="{{ Request::is('catEdoCivils*') ? 'active' : '' }}">
+		
+        <li class="{{ Request::is('catEdoCivils*') ? 'active' : '' }}">
 		    <a href="{!! route('catEdoCivils.index') !!}"><i class="fa fa-edit"></i><span>Estado Civil</span></a>
 		</li>
-		<li class="{{ Request::is('catEscolaridads*') ? 'active' : '' }}">
+		
+        <li class="{{ Request::is('catEscolaridads*') ? 'active' : '' }}">
 		    <a href="{!! route('catEscolaridads.index') !!}"><i class="fa fa-edit"></i><span>Escolaridad</span></a>
 		</li>
+
 		<li class="{{ Request::is('catReligions*') ? 'active' : '' }}">
 		    <a href="{!! route('catReligions.index') !!}"><i class="fa fa-edit"></i><span>Religion</span></a>
 		<li class="{{ Request::is('catNacionalidads*') ? 'active' : '' }}">
 		    <a href="{!! route('catNacionalidads.index') !!}"><i class="fa fa-edit"></i><span>Nacionalidad</span></a>
 		</li>
-		<li class="{{ Request::is('catJuzgadoFeds*') ? 'active' : '' }}">
+		
+        <li class="{{ Request::is('catJuzgadoFeds*') ? 'active' : '' }}">
 		    <a href="{!! route('catJuzgadoFeds.index') !!}"><i class="fa fa-edit"></i><span>Juzgado</span></a>
 		</li>
+
+        <li class="{{ Request::is('catDelitos*') ? 'active' : '' }}">
+            <a href="{!! route('catDelitos.index') !!}"><i class="fa fa-edit"></i><span>Delitos</span></a>
+        </li>
+
+        <li class="{{ Request::is('catJuzgados*') ? 'active' : '' }}">
+            <a href="{!! route('catJuzgados.index') !!}"><i class="fa fa-edit"></i><span>CatJuzgados</span></a>
+        </li>
+
+        <li class="{{ Request::is('catTipoMandos*') ? 'active' : '' }}">
+            <a href="{!! route('catTipoMandos.index') !!}"><i class="fa fa-edit"></i><span>Tipos Mandamiento</span></a>
+        </li>
+
+        <li class="{{ Request::is('catEtapas*') ? 'active' : '' }}">
+            <a href="{!! route('catEtapas.index') !!}"><i class="fa fa-edit"></i><span>Etapas del Proceso Penal</span></a>
+        </li>
+
+        <li class="{{ Request::is('catMedidas*') ? 'active' : '' }}">
+            <a href="{!! route('catMedidas.index') !!}"><i class="fa fa-edit"></i><span>Medidas Cautelares</span></a>
+        </li>
+
+        <li class="{{ Request::is('catTipoMedidas*') ? 'active' : '' }}">
+            <a href="{!! route('catTipoMedidas.index') !!}"><i class="fa fa-edit"></i><span>Tipo de Medidas Cautelares</span></a>
+        </li>
+        
+        <li class="{{ Request::is('catTipoAmparos*') ? 'active' : '' }}">
+            <a href="{!! route('catTipoAmparos.index') !!}"><i class="fa fa-edit"></i><span>Tipos de Amparo</span></a>
+        </li>
+
+        <li class="{{ Request::is('catResolucionAmparos*') ? 'active' : '' }}">
+            <a href="{!! route('catResolucionAmparos.index') !!}"><i class="fa fa-edit"></i><span>Resolucion Amparo</span></a>
+        </li>
+
+        <li class="{{ Request::is('catAudiencias*') ? 'active' : '' }}">
+            <a href="{!! route('catAudiencias.index') !!}"><i class="fa fa-edit"></i><span>Audiencias</span></a>
+        </li>
+
+        <li class="{{ Request::is('catResolucionInvestigacions*') ? 'active' : '' }}">
+            <a href="{!! route('catResolucionInvestigacions.index') !!}"><i class="fa fa-edit"></i><span>Resolucion Investigacion</span></a>
+        </li>
+
+        <li class="{{ Request::is('catSentencias*') ? 'active' : '' }}">
+            <a href="{!! route('catSentencias.index') !!}"><i class="fa fa-edit"></i><span>Sentencias</span></a>
+        </li>
+
+        <li class="{{ Request::is('catMedidaCautelars*') ? 'active' : '' }}">
+            <a href="{!! route('catMedidaCautelars.index') !!}"><i class="fa fa-edit"></i><span>Medida Cautelar</span></a>
+        </li>
+
+        <li class="{{ Request::is('catMedidaProteccions*') ? 'active' : '' }}">
+            <a href="{!! route('catMedidaProteccions.index') !!}"><i class="fa fa-edit"></i><span>Medida de Proteccion</span></a>
+        </li>
+
+        <li class="{{ Request::is('catJuezs*') ? 'active' : '' }}">
+            <a href="{!! route('catJuezs.index') !!}"><i class="fa fa-edit"></i><span>Cat Juez</span></a>
+        </li>
+
+        <li class="{{ Request::is('catFiscals*') ? 'active' : '' }}">
+            <a href="{!! route('catFiscals.index') !!}"><i class="fa fa-edit"></i><span>Fiscales</span></a>
+        </li>
     </ul>
 </li>
   
@@ -40,69 +104,19 @@
   		<li class="{{ Request::is('personas*') ? 'active' : '' }}">
 		    <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
 		</li>
+
+        </li><li class="{{ Request::is('mandamientos*') ? 'active' : '' }}">
+            <a href="{!! route('mandamientos.index') !!}"><i class="fa fa-edit"></i><span>Mandamientos</span></a>
+        </li>
 	</ul>
-</li><li class="{{ Request::is('mandamientos*') ? 'active' : '' }}">
-    <a href="{!! route('mandamientos.index') !!}"><i class="fa fa-edit"></i><span>Mandamientos</span></a>
+
+
+
+<li class="{{ Request::is('audiencias*') ? 'active' : '' }}">
+    <a href="{!! route('audiencias.index') !!}"><i class="fa fa-edit"></i><span>Audiencias</span></a>
 </li>
 
-<li class="{{ Request::is('catDelitos*') ? 'active' : '' }}">
-    <a href="{!! route('catDelitos.index') !!}"><i class="fa fa-edit"></i><span>CatDelitos</span></a>
-</li>
-
-<li class="{{ Request::is('catJuzgados*') ? 'active' : '' }}">
-    <a href="{!! route('catJuzgados.index') !!}"><i class="fa fa-edit"></i><span>CatJuzgados</span></a>
-</li>
-
-<li class="{{ Request::is('catTipoMandos*') ? 'active' : '' }}">
-    <a href="{!! route('catTipoMandos.index') !!}"><i class="fa fa-edit"></i><span>CatTipoMandos</span></a>
-</li>
-
-<li class="{{ Request::is('catEtapas*') ? 'active' : '' }}">
-    <a href="{!! route('catEtapas.index') !!}"><i class="fa fa-edit"></i><span>CatEtapas</span></a>
-</li>
-
-<li class="{{ Request::is('catMedidas*') ? 'active' : '' }}">
-    <a href="{!! route('catMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatMedidas</span></a>
-</li>
-
-<li class="{{ Request::is('catTipoMedidas*') ? 'active' : '' }}">
-    <a href="{!! route('catTipoMedidas.index') !!}"><i class="fa fa-edit"></i><span>CatTipoMedidas</span></a><li class="{{ Request::is('catTipoAmparos*') ? 'active' : '' }}">
-    <a href="{!! route('catTipoAmparos.index') !!}"><i class="fa fa-edit"></i><span>CatTipoAmparos</span></a>
-</li>
-
-<li class="{{ Request::is('catResolucionAmparos*') ? 'active' : '' }}">
-    <a href="{!! route('catResolucionAmparos.index') !!}"><i class="fa fa-edit"></i><span>CatResolucionAmparos</span></a>
-</li>
-
-<li class="{{ Request::is('catAudiencias*') ? 'active' : '' }}">
-    <a href="{!! route('catAudiencias.index') !!}"><i class="fa fa-edit"></i><span>CatAudiencias</span></a>
-</li>
-
-<li class="{{ Request::is('catResolucionInvestigacions*') ? 'active' : '' }}">
-    <a href="{!! route('catResolucionInvestigacions.index') !!}"><i class="fa fa-edit"></i><span>CatResolucionInvestigacions</span></a>
-</li>
-
-<li class="{{ Request::is('catSentencias*') ? 'active' : '' }}">
-    <a href="{!! route('catSentencias.index') !!}"><i class="fa fa-edit"></i><span>CatSentencias</span></a>
-</li>
-
-<li class="{{ Request::is('catMedidaCautelars*') ? 'active' : '' }}">
-    <a href="{!! route('catMedidaCautelars.index') !!}"><i class="fa fa-edit"></i><span>CatMedidaCautelars</span></a>
-</li>
-
-<li class="{{ Request::is('catMedidaProteccions*') ? 'active' : '' }}">
-    <a href="{!! route('catMedidaProteccions.index') !!}"><i class="fa fa-edit"></i><span>CatMedidaProteccions</span></a>
-</li>
-
-<li class="{{ Request::is('catJuezs*') ? 'active' : '' }}">
-    <a href="{!! route('catJuezs.index') !!}"><i class="fa fa-edit"></i><span>CatJuezs</span></a>
-</li>
-
-<li class="{{ Request::is('catFiscals*') ? 'active' : '' }}">
-    <a href="{!! route('catFiscals.index') !!}"><i class="fa fa-edit"></i><span>CatFiscals</span></a>
-</li>
-
-<li class="{{ Request::is('catFiscals*') ? 'active' : '' }}">
-    <a href="{!! route('catFiscals.index') !!}"><i class="fa fa-edit"></i><span>CatFiscals</span></a>
+<li class="{{ Request::is('unidads*') ? 'active' : '' }}">
+    <a href="{!! route('unidads.index') !!}"><i class="fa fa-edit"></i><span>Unidads</span></a>
 </li>
 
