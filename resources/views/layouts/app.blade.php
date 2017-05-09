@@ -17,37 +17,7 @@
 
     @yield('css')
 
-     <!-- jQuery 2.1.4 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-
-    <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
-
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
-    <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-
-    
-
-    <script type="text/javascript">
-$(document).ready(function() {
-  $(".js-example-basic-single").select2();
-});
-</script>
-    @yield('scripts')
-
 </head>
-
 <body class="skin-blue sidebar-mini">
 @if (!Auth::guest())
     <div class="wrapper">
@@ -77,7 +47,7 @@ $(document).ready(function() {
                                 <!-- The user image in the navbar-->
                                <!-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/>-->
-                                     <div style="text-align:right;display:inline;"><img src="/procesos/public/img/header.png" height="50px"/></div>
+                                     <div style="text-align:right;display:inline;"><img src="/procesos/public/img/header.png" height="80px"/></div>
                                     <div style="text-align:right;display:inline;"><img src="/procesos/public/img/logo.png" height="80px"/></div>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <!--<span class="hidden-xs">{!! Auth::user()->name !!}</span>-->
@@ -123,7 +93,8 @@ $(document).ready(function() {
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Desarrollado por <a href="#">Subdirección de Sistemas</a>.</strong> <img src="" .
+             <div align="right" style="display:block-inline;"><img src="/procesos/public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
+             <strong>Desarrollado por <a href="#">Subdirección de Sistemas</a>.</strong>
         </footer>
 
     </div>
@@ -143,21 +114,21 @@ $(document).ready(function() {
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
+                    Sistema de Control de Procesos
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
+                    <li><a href="{!! url('/home') !!}">Inicio</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
+                    <li><a href="{!! url('/login') !!}">Iniciar Sesión</a></li>
+                    <li><a href="{!! url('/register') !!}">Registrarse</a></li>
                 </ul>
             </div>
         </div>
@@ -173,5 +144,32 @@ $(document).ready(function() {
         </div>
     </div>
     @endif
+
+    
+     <!-- jQuery 2.1.4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+      <link rel="stylesheet" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+    <script src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="http://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="http://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+    <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $(".js-example-basic-single").select2();
+        });
+    </script>
+    @yield('scripts')
 </body>
 </html>
