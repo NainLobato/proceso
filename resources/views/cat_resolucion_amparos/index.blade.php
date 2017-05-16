@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Cat Resolucion Amparos</h1>
+        <h1 class="pull-left">Catálogo de Resolución de Amparos</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catResolucionAmparos.create') !!}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catResolucionAmparos.create') !!}">Nuevo</a>
         </h1>
     </section>
     <div class="content">

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Tipo Mando
+            Catálogo Tipo de Mandamientos
         </h1>
    </section>
    <div class="content">
