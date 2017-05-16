@@ -73,3 +73,11 @@ Route::resource('catFiscals', 'CatFiscalController');
 Route::resource('audiencias', 'AudienciaController');
 
 Route::resource('unidads', 'UnidadController');
+
+Route::resource('imputados', 'ImputadoController');
+
+Route::resource('catTipoLugars', 'CatTipoLugarController');
+
+Route::resource('direccions', 'DireccionController');
+
+Route::resource('procesos', 'ProcesoController');
