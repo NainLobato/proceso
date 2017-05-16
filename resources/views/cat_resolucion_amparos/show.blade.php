@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Resolucion Amparo
+            Catálogo de Resolución de Amparos
         </h1>
     </section>
     <div class="content">
@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('cat_resolucion_amparos.show_fields')
-                    <a href="{!! route('catResolucionAmparos.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('catResolucionAmparos.index') !!}" class="btn btn-default">Regresa</a>
                 </div>
             </div>
         </div>

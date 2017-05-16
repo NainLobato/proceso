@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Tipo Medida
+            Catálogo de Tipos Medidas
         </h1>
     </section>
     <div class="content">

@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="catNacionalidads-table">
     <thead>
         <th>Nacionalidad</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Acción</th>
     </thead>
     <tbody>
     @foreach($catNacionalidads as $catNacionalidad)
@@ -12,7 +12,7 @@
                 <div class='btn-group'>
                     <a href="{!! route('catNacionalidads.show', [$catNacionalidad->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('catNacionalidads.edit', [$catNacionalidad->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('¿Desea eliminar el Registro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

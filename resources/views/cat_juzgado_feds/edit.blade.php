@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Juzgado Fed
+            Catálogo de Juzgados Federales
         </h1>
    </section>
    <div class="content">

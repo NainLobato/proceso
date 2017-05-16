@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Delito
+            Catálogo de Delitos
         </h1>
     </section>
     <div class="content">
@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('cat_delitos.show_fields')
-                    <a href="{!! route('catDelitos.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('catDelitos.index') !!}" class="btn btn-default">Regresa</a>
                 </div>
             </div>
         </div>
