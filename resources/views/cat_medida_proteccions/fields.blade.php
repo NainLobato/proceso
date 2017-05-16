@@ -1,6 +1,6 @@
 <!-- Medidaproteccion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('medidaProteccion', 'Medidaproteccion:') !!}
+    {!! Form::label('medidaProteccion', 'Medida de protección:') !!}
     {!! Form::text('medidaProteccion', null, ['class' => 'form-control']) !!}
 </div>
 

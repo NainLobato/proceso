@@ -6,7 +6,7 @@
 
 <!-- Medidaproteccion Field -->
 <div class="form-group">
-    {!! Form::label('medidaProteccion', 'Medidaproteccion:') !!}
+    {!! Form::label('medidaProteccion', 'Medida de protección:') !!}
     <p>{!! $catMedidaProteccion->medidaProteccion !!}</p>
 </div>
 
