@@ -6,13 +6,13 @@
 
 <!-- Idagrupacion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('idAgrupacion', 'Idagrupacion:') !!}
-    {!! Form::select('idAgrupacion', ], null, ['class' => 'form-control']) !!}
+    {!! Form::label('idAgrupacion', 'Id Agrupacion:') !!}
+    {!! Form::select('idAgrupacion', array(1=>1), null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ndelnum Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ndelnum', 'Ndelnum:') !!}
+    {!! Form::label('ndelnum', 'Número del Delito:') !!}
     {!! Form::text('ndelnum', null, ['class' => 'form-control']) !!}
 </div>
 

@@ -1,6 +1,6 @@
 <!-- Jusgadofederal Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('jusgadofederal', 'Jusgadofederal:') !!}
+    {!! Form::label('jusgadofederal', 'Juzgado Federal:') !!}
     {!! Form::text('jusgadofederal', null, ['class' => 'form-control']) !!}
 </div>
 

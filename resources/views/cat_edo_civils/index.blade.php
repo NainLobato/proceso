@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Cat Edo Civils</h1>
+        <h1 class="pull-left">Catálogo de Estado Civil</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catEdoCivils.create') !!}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catEdoCivils.create') !!}">Nuevo</a>
         </h1>
     </section>
     <div class="content">

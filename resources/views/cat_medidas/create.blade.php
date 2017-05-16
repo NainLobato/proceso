@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Medida
+            Catálogo de Medida Cautelares y/o Protección
         </h1>
     </section>
     <div class="content">

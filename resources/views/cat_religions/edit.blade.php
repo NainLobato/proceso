@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Religion
+            Catálogo de Religiones
         </h1>
    </section>
    <div class="content">

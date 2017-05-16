@@ -37,7 +37,7 @@
         </li>
 
         <li class="{{ Request::is('catJuzgados*') ? 'active' : '' }}">
-            <a href="{!! route('catJuzgados.index') !!}"><i class="fa fa-edit"></i><span>CatJuzgados</span></a>
+            <a href="{!! route('catJuzgados.index') !!}"><i class="fa fa-edit"></i><span>Juzgados de Distrito</span></a>
         </li>
 
         <li class="{{ Request::is('catTipoMandos*') ? 'active' : '' }}">
@@ -85,7 +85,7 @@
         </li>
 
         <li class="{{ Request::is('catJuezs*') ? 'active' : '' }}">
-            <a href="{!! route('catJuezs.index') !!}"><i class="fa fa-edit"></i><span>Cat Juez</span></a>
+            <a href="{!! route('catJuezs.index') !!}"><i class="fa fa-edit"></i><span>Jueses</span></a>
         </li>
 
         <li class="{{ Request::is('catFiscals*') ? 'active' : '' }}">
@@ -100,23 +100,25 @@
         <span>Entidades</span>
         <i class="fa fa-angle-left pull-right"></i>
     </a>
+
     <ul class="treeview-menu">
   		<li class="{{ Request::is('personas*') ? 'active' : '' }}">
 		    <a href="{!! route('personas.index') !!}"><i class="fa fa-edit"></i><span>Personas</span></a>
 		</li>
 
-        </li><li class="{{ Request::is('mandamientos*') ? 'active' : '' }}">
+        
+        <li class="{{ Request::is('mandamientos*') ? 'active' : '' }}">
             <a href="{!! route('mandamientos.index') !!}"><i class="fa fa-edit"></i><span>Mandamientos</span></a>
         </li>
-	</ul>
+	
 
+        <li class="{{ Request::is('audiencias*') ? 'active' : '' }}">
+            <a href="{!! route('audiencias.index') !!}"><i class="fa fa-edit"></i><span>Audiencias</span></a>
+        </li>
 
+        <li class="{{ Request::is('unidads*') ? 'active' : '' }}">
+            <a href="{!! route('unidads.index') !!}"><i class="fa fa-edit"></i><span>Unidads</span></a>
+        </li>
 
-<li class="{{ Request::is('audiencias*') ? 'active' : '' }}">
-    <a href="{!! route('audiencias.index') !!}"><i class="fa fa-edit"></i><span>Audiencias</span></a>
+    </ul>
 </li>
-
-<li class="{{ Request::is('unidads*') ? 'active' : '' }}">
-    <a href="{!! route('unidads.index') !!}"><i class="fa fa-edit"></i><span>Unidads</span></a>
-</li>
-
