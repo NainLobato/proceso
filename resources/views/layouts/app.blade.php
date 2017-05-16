@@ -14,7 +14,9 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
-
+    <style>
+        input {text-transform:uppercase;}
+    </style>
     @yield('css')
 
 </head>
@@ -128,7 +130,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     <li><a href="{!! url('/login') !!}">Iniciar Sesión</a></li>
-                    <li><a href="{!! url('/register') !!}">Registrarse</a></li>
+                   <!-- <li><a href="{!! url('/register') !!}">Registrarse</a></li>-->
                 </ul>
             </div>
         </div>
@@ -177,7 +179,12 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-          $("#idPersona").select2();
+          $("#idVictima").select2();
+        });
+    </script>
+     <script type="text/javascript">
+        $(document).ready(function() {
+          $("#idImputado").select2();
         });
     </script>
     @yield('scripts')

@@ -27,4 +27,32 @@ class AppBaseController extends Controller
     {
         return Response::json(ResponseUtil::makeError($error), $code);
     }
+
+         /**
+     * @param $date
+     * @return string
+     */
+    public function formatDate($date)
+    {
+        if (stripos($date, "/")) {
+            $format = explode("/", $date);
+            // Special format date because daterangepicker format is MM/DD/YYYY
+            return $format[2] . '-' . $format[1] . '-' . $format[0];
+        }
+        return $date;
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function showDate($date)
+    {
+        if (stripos($date, "-")) {
+            $format = explode("-", $date);
+            // Special format date because daterangepicker format is MM/DD/YYYY
+            return $format[2] . '/' . $format[1] . '/' . $format[0];
+        }
+        return $date;
+    }
 }

@@ -81,3 +81,5 @@ Route::resource('catTipoLugars', 'CatTipoLugarController');
 Route::resource('direccions', 'DireccionController');
 
 Route::resource('procesos', 'ProcesoController');
+
+Route::resource('victimas', 'VictimaController');

@@ -70,6 +70,7 @@ class PersonaController extends AppBaseController
     public function store(CreatePersonaRequest $request)
     {
         $input = $request->all();
+        $input['fechaNacimiento'] = $this->formatDate($input['fechaNacimiento']);
 
         $persona = $this->personaRepository->create($input);
 
@@ -141,6 +142,8 @@ class PersonaController extends AppBaseController
      */
     public function update($id, UpdatePersonaRequest $request)
     {
+        $input=$request->all();
+        $input['fechaNacimiento'] = $this->formatDate($input['fechaNacimiento']);
         $persona = $this->personaRepository->findWithoutFail($id);
 
         if (empty($persona)) {
@@ -149,7 +152,7 @@ class PersonaController extends AppBaseController
             return redirect(route('personas.index'));
         }
 
-        $persona = $this->personaRepository->update($request->all(), $id);
+        $persona = $this->personaRepository->update($input, $id);
 
         Flash::success('Persona updated successfully.');
 

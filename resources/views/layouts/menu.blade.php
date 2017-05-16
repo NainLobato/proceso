@@ -136,3 +136,7 @@
     <a href="{!! route('procesos.index') !!}"><i class="fa fa-edit"></i><span>Procesos</span></a>
 </li>
 
+<li class="{{ Request::is('victimas*') ? 'active' : '' }}">
+    <a href="{!! route('victimas.index') !!}"><i class="fa fa-edit"></i><span>Victimas</span></a>
+</li>
+

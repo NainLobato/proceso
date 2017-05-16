@@ -97,6 +97,10 @@ class ImputadoController extends AppBaseController
      */
     public function edit($id)
     {
+        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(nombre," ", paterno," ",materno) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
+        $procesos=Proceso::pluck('numeroProceso','id');
+        $direcciones = Direccion::pluck('calle','id');
+     
         $imputado = $this->imputadoRepository->findWithoutFail($id);
 
         if (empty($imputado)) {
@@ -105,7 +109,7 @@ class ImputadoController extends AppBaseController
             return redirect(route('imputados.index'));
         }
 
-        return view('imputados.edit')->with('imputado', $imputado);
+        return view('imputados.edit',array('personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones))->with('imputado', $imputado);
     }
 
     /**

@@ -14,7 +14,10 @@ use App\Models\Unidad;
 use App\Models\CatFiscal;
 use App\Models\CatJuez;
 use App\Models\CatJuzgado;
-
+use App\Models\Persona;
+use App\Models\Proceso;
+use App\Models\Direccion;
+use DB;
 class ProcesoController extends AppBaseController
 {
     /** @var  ProcesoRepository */
@@ -43,12 +46,15 @@ class ProcesoController extends AppBaseController
      */
     public function create()
     {
-        
+        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(nombre," ", paterno," ",materno) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
+        $procesos=Proceso::pluck('numeroProceso','id');
+        $direcciones = Direccion::pluck('calle','id');
+       
         $unidades=Unidad::pluck('nombre','id');
         $fiscales= CatFiscal::pluck('name','id');
         $jueces= CatJuez::pluck('juez','id');
         $juzgados= CatJuzgado::pluck('juzgado','id');
-        return view('procesos.create',array('unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados));
+        return view('procesos.create',array('unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones));
     }
 
     /**
@@ -61,6 +67,9 @@ class ProcesoController extends AppBaseController
     public function store(CreateProcesoRequest $request)
     {
         $input = $request->all();
+        $input['fechaInicioCarpeta'] = $this->formatDate($input['fechaInicioCarpeta']);
+        $input['fechaRadicacion'] = $this->formatDate($input['fechaRadicacion']);
+        $input['fechaOrden'] = $this->formatDate($input['fechaOrden']);
 
         $proceso = $this->procesoRepository->create($input);
 
@@ -165,31 +174,5 @@ class ProcesoController extends AppBaseController
         return redirect(route('procesos.index'));
     }
 
-        /**
-     * @param $date
-     * @return string
-     */
-    public function formatDate($date)
-    {
-        if (stripos($date, "/")) {
-            $format = explode("/", $date);
-            // Special format date because daterangepicker format is MM/DD/YYYY
-            return $format[2] . '-' . $format[1] . '-' . $format[0];
-        }
-        return $date;
-    }
-
-    /**
-     * @param $date
-     * @return string
-     */
-    public function showDate($date)
-    {
-        if (stripos($date, "-")) {
-            $format = explode("-", $date);
-            // Special format date because daterangepicker format is MM/DD/YYYY
-            return $format[2] . '/' . $format[1] . '/' . $format[0];
-        }
-        return $date;
-    }
+   
 }
