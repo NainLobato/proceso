@@ -29,14 +29,20 @@ class Persona extends Model
         'sexo',
         'idEtnia',
         'idEscolaridad',
-        'padre',
+        'nombrePadre',
         'idReligion',
         'ine',
         'rfc',
         'idNacionalidad',
-        'madre',
+        'nombreMadre',
         'curp',
-        'idEstadoCivil'
+        'idEstadoCivil',
+        'esEmpresa',
+        'primerApellidoPadre',
+        'segundoApellidoPadre',
+        'primerApellidoMadre',
+        'segundoApellidoMadre',
+        'representante'
     ];
 
     /**
@@ -53,14 +59,20 @@ class Persona extends Model
         'sexo' => 'string',
         'idEtnia' => 'integer',
         'idEscolaridad' => 'integer',
-        'padre' => 'string',
+        'nombrePadre' => 'string',
         'idReligion' => 'integer',
         'ine' => 'string',
         'rfc' => 'string',
-        'idNacionalidad',
-        'madre',
-        'curp',
-        'idEstadoCivil'
+        'idNacionalidad'=> 'integer',
+        'nombreMadre'=> 'string',
+        'curp'=> 'string',
+        'idEstadoCivil'=> 'integer',
+         'esEmpresa'=> 'boolean',
+        'primerApellidoPadre'=> 'string',
+        'segundoApellidoPadre'=> 'string',
+        'primerApellidoMadre'=> 'string',
+        'segundoApellidoMadre'=> 'string',
+        'representante'=> 'string',
     ];
 
     /**
@@ -70,7 +82,6 @@ class Persona extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'paterno' => 'required',
     ];
 
      public function religion()

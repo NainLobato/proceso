@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="catMedidaProteccions-table">
     <thead>
         <th>Medida de protección</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Acciones</th>
     </thead>
     <tbody>
     @foreach($catMedidaProteccions as $catMedidaProteccion)

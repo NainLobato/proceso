@@ -17,6 +17,7 @@ use App\Models\CatJuzgado;
 use App\Models\Persona;
 use App\Models\Proceso;
 use App\Models\Direccion;
+use App\Models\CatDelito;
 use DB;
 class ProcesoController extends AppBaseController
 {
@@ -46,15 +47,17 @@ class ProcesoController extends AppBaseController
      */
     public function create()
     {
-        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(nombre," ", paterno," ",materno) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
+        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(COALESCE(nombre," ")," ", COALESCE(paterno," ")," ",COALESCE(materno," "), " / FNAC:",COALESCE(fechaNacimiento," ")) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
         $procesos=Proceso::pluck('numeroProceso','id');
         $direcciones = Direccion::pluck('calle','id');
-       
+        $delitos = CatDelito::pluck('delito','id');
+
+
         $unidades=Unidad::pluck('nombre','id');
         $fiscales= CatFiscal::pluck('name','id');
         $jueces= CatJuez::pluck('juez','id');
         $juzgados= CatJuzgado::pluck('juzgado','id');
-        return view('procesos.create',array('unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones));
+        return view('procesos.create',array('unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
     }
 
     /**

@@ -2,7 +2,7 @@
     <thead>
         <th>Medida Cautelar</th>
         <th>Tipo Medida</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Acciones</th>
     </thead>
     <tbody>
     @foreach($catMedidas as $catMedida)

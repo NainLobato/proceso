@@ -167,26 +167,7 @@
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $("#idFiscal").select2();
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $("#idUIPJ").select2();
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $("#idVictima").select2();
-        });
-    </script>
-     <script type="text/javascript">
-        $(document).ready(function() {
-          $("#idImputado").select2();
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('../resources/assets/js/procesos.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

@@ -12,7 +12,7 @@
         <th>Religion</th>
         <th>Ine</th>
         <th>Rfc</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Acciones</th>
     </thead>
     <tbody>
     @foreach($personas as $persona)
@@ -23,10 +23,11 @@
             <td>{!! $persona->alias !!}</td>
             <td>{!! $persona->fechaNacimiento !!}</td>
             <td>{!! $persona->sexo !!}</td>
-            <td>{!! $persona->etnia()->get()[0]->etnia !!}</td>
-            <td>{!! $persona->escolaridad()->get()[0]->escolaridad !!}</td>
+
+            <td> @if (!empty($persona->etnia()->get()[0])) {!!  $persona->etnia()->get()[0]->etnia !!} @else SIN DATO @endif  </td>
+            <td> @if (!empty($persona->escolaridad()->get()[0])) {!!  $persona->escolaridad()->get()[0]->escolaridad !!} @else SIN DATO @endif  </td>
             <td>{!! $persona->padre !!}</td>
-            <td>{!! $persona->religion()->get()[0]->religion!!}</td>
+            <td> @if (!empty($persona->religion()->get()[0])) {!!  $persona->religion()->get()[0]->religion !!} @else SIN DATO @endif  </td>
             <td>{!! $persona->ine !!}</td>
             <td>{!! $persona->rfc !!}</td>
             <td>

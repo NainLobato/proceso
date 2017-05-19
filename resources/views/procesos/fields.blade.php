@@ -76,6 +76,7 @@
 </div>
 </div>
 <br>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::button('Guardar', [ 'class' => 'btn btn-primary']) !!}

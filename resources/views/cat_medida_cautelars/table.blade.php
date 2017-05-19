@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="catMedidaCautelars-table">
     <thead>
         <th>Medidacautelar</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Acciones</th>
     </thead>
     <tbody>
     @foreach($catMedidaCautelars as $catMedidaCautelar)
