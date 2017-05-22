@@ -17,7 +17,7 @@ use App\Models\CatReligion;
 use App\Models\CatEscolaridad;
 use App\Models\CatEtnia;
 use App\Models\CatNacionalidad;
-
+use App\DataTables\PersonaDataTable;
 
 
 class PersonaController extends AppBaseController
@@ -36,7 +36,7 @@ class PersonaController extends AppBaseController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    /**public function index(Request $request)
     {
         $this->personaRepository->pushCriteria(new RequestCriteria($request));
         $personas = $this->personaRepository->all();
@@ -44,6 +44,12 @@ class PersonaController extends AppBaseController
         return view('personas.index')
             ->with('personas', $personas);
     }
+*/
+    public function index(personaDataTable $personaDataTable)
+    {
+        return $personaDataTable->render('personas.index');
+    }
+
 
     /**
      * Show the form for creating a new Persona.

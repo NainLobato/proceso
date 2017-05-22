@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Audiencia;
+use App\Models\Persona;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class AudienciaDataTable extends DataTable
+class PersonaDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class AudienciaDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'audiencias.datatables_actions')
+            ->addColumn('action', 'personas.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class AudienciaDataTable extends DataTable
      */
     public function query()
     {
-        $audiencias = Audiencia::query();
+        $personas = Persona::query();
 
-        return $this->applyScopes($audiencias);
+        return $this->applyScopes($personas);
     }
 
     /**
@@ -47,7 +47,7 @@ class AudienciaDataTable extends DataTable
                 'dom' => 'Bfrtip',
                 'scrollX' => false,
                 'buttons' => [
-                    'Imprimir',
+                    'print',
                     'reset',
                     'reload',
                     [
@@ -72,15 +72,20 @@ class AudienciaDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'idTipoAudiencia' => ['name' => 'idTipoAudiencia', 'data' => 'idTipoAudiencia'],
-            'fecha' => ['name' => 'fecha', 'data' => 'fecha'],
-            'idJuez' => ['name' => 'idJuez', 'data' => 'idJuez'],
-            'idFiscal' => ['name' => 'idFiscal', 'data' => 'idFiscal'],
-            'resolucion' => ['name' => 'resolucion', 'data' => 'resolucion'],
-            'idEtapa' => ['name' => 'idEtapa', 'data' => 'idEtapa'],
-            'observaciones' => ['name' => 'observaciones', 'data' => 'observaciones'],
-            'idProceso' => ['name' => 'idProceso', 'data' => 'idProceso'],
-            'idImputado' => ['name' => 'idImputado', 'data' => 'idImputado']
+            'id' => ['name' => 'id', 'data' => 'id'],
+            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
+            'paterno' => ['name' => 'paterno', 'data' => 'paterno'],
+            'materno' => ['name' => 'materno', 'data' => 'materno'],
+            'alias' => ['name' => 'alias', 'data' => 'alias'],
+            'fechaNacimiento' => ['name' => 'fechaNacimiento', 'data' => 'fechaNacimiento'],
+            'sexo' => ['name' => 'sexo', 'data' => 'sexo'],
+            'idEtnia' => ['name' => 'idEtnia', 'data' => 'idEtnia'],
+            'idEscolaridad' => ['name' => 'idEscolaridad', 'data' => 'idEscolaridad'],
+            'padre' => ['name' => 'padre', 'data' => 'padre'],
+            'idReligion' => ['name' => 'idReligion', 'data' => 'idReligion'],
+            'ine' => ['name' => 'ine', 'data' => 'ine'],
+            'rfc' => ['name' => 'rfc', 'data' => 'rfc'],
+            'curp' => ['name' => 'curp', 'data' => 'curp']
         ];
     }
 
@@ -91,6 +96,6 @@ class AudienciaDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'audiencias';
+        return 'Personas';
     }
 }
