@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\DataTables\CatEdoCivilDataTable;
+
 
 class CatEdoCivilController extends AppBaseController
 {
@@ -27,13 +29,15 @@ class CatEdoCivilController extends AppBaseController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index(CatEdoCivilDataTable $catEdoCivilDataTable)
     {
+        return $catEdoCivilDataTable->render('cat_edo_civils.index');
+/*
         $this->catEdoCivilRepository->pushCriteria(new RequestCriteria($request));
         $catEdoCivils = $this->catEdoCivilRepository->all();
 
         return view('cat_edo_civils.index')
-            ->with('catEdoCivils', $catEdoCivils);
+            ->with('catEdoCivils', $catEdoCivils);*/
     }
 
     /**

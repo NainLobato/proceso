@@ -27,6 +27,8 @@ class CreatePersonasTable extends Migration
             $table->integer('idReligion');
             $table->string('ine', 256);
             $table->string('rfc', 13);
+            $table->string('rfc', 21);
+
             $table->timestamps();
             $table->softDeletes();
         });*/

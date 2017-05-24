@@ -1,4 +1,10 @@
 
+$(document).on('blur', "input[type=text]", function () {
+    $(this).val(function (_, val) {
+        return val.toUpperCase();
+    });
+});
+
         $(function () {
             var $relationVictima = $('.add-proceso-victima');
             var $removeRelationVictima = $('.remove-proceso-victima');

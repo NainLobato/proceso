@@ -32,7 +32,7 @@
         className: 'buttons-export',
 
         text: function (dt) {
-            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', 'Export') + '&nbsp;<span class="caret"/>';
+            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', 'xport') + '&nbsp;<span class="caret"/>';
         },
 
         buttons: ['csv', 'excel', 'pdf']
@@ -68,11 +68,11 @@
         className: 'buttons-print',
 
         text: function (dt) {
-            return  '<i class="fa fa-print"></i> ' + dt.i18n('buttons.print', 'Print');
+            return  '<i class="fa fa-print"></i> ' + dt.i18n('buttons.print', 'Imprimir');
         },
 
         action: function (e, dt, button, config) {
-            var url = _buildUrl(dt, 'print');
+            var url = _buildUrl(dt, 'imprimir');
             window.location = url;
         }
     };
@@ -81,7 +81,7 @@
         className: 'buttons-reset',
 
         text: function (dt) {
-            return '<i class="fa fa-undo"></i> ' + dt.i18n('buttons.reset', 'Reset');
+            return '<i class="fa fa-undo"></i> ' + dt.i18n('buttons.reset', 'Reinicia');
         },
 
         action: function (e, dt, button, config) {
@@ -93,7 +93,7 @@
         className: 'buttons-reload',
 
         text: function (dt) {
-            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', 'Reload');
+            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', 'Recarga');
         },
 
         action: function (e, dt, button, config) {

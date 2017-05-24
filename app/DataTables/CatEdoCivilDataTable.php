@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Audiencia;
+use App\Models\CatEdoCivil;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class AudienciaDataTable extends DataTable
+class CatEdoCivilDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class AudienciaDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'audiencias.datatables_actions')
+            ->addColumn('action', 'CatEdoCivils.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class AudienciaDataTable extends DataTable
      */
     public function query()
     {
-        $audiencias = Audiencia::query();
+        $CatEdoCivils = CatEdoCivil::query();
 
-        return $this->applyScopes($audiencias);
+        return $this->applyScopes($CatEdoCivils);
     }
 
     /**
@@ -47,7 +47,7 @@ class AudienciaDataTable extends DataTable
                 'dom' => 'Bfrtip',
                 'scrollX' => false,
                 'buttons' => [
-                    'Imprimir',
+                    'print',
                     'reset',
                     'reload',
                     [
@@ -72,15 +72,8 @@ class AudienciaDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'idTipoAudiencia' => ['name' => 'idTipoAudiencia', 'data' => 'idTipoAudiencia'],
-            'fecha' => ['name' => 'fecha', 'data' => 'fecha'],
-            'idJuez' => ['name' => 'idJuez', 'data' => 'idJuez'],
-            'idFiscal' => ['name' => 'idFiscal', 'data' => 'idFiscal'],
-            'resolucion' => ['name' => 'resolucion', 'data' => 'resolucion'],
-            'idEtapa' => ['name' => 'idEtapa', 'data' => 'idEtapa'],
-            'observaciones' => ['name' => 'observaciones', 'data' => 'observaciones'],
-            'idProceso' => ['name' => 'idProceso', 'data' => 'idProceso'],
-            'idImputado' => ['name' => 'idImputado', 'data' => 'idImputado']
+            'id' => ['id' => 'id', 'data' => 'id'],
+            'estadocivil' => ['name' => 'estadocivil', 'data' => 'estadocivil']
         ];
     }
 
@@ -91,6 +84,6 @@ class AudienciaDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'audiencias';
+        return 'CatEdoCivils';
     }
 }
