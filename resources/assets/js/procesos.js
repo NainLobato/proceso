@@ -1,3 +1,36 @@
+$.ajaxSetup({
+    headers: {
+       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+  function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+$(document).ready(function() {
+    $('#submitProceso').on('click', function (e) {
+        e.preventDefault();
+        var dataJSON = JSON.stringify(getFormData($('#procesoForm')));  
+         $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+            type: "POST",
+            url: '/procesos/public/procesos/saveProceso',
+            data: dataJSON,
+            contentType : 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function( msg ) {
+                $("#ajaxResponse").append("<div>"+msg+"</div>");
+            }
+        });
+    });
+});
 
 $(document).on('blur', "input[type=text]", function () {
     $(this).val(function (_, val) {

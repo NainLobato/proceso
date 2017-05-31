@@ -19,6 +19,8 @@ use App\Models\Proceso;
 use App\Models\Direccion;
 use App\Models\CatDelito;
 use DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 class ProcesoController extends AppBaseController
 {
     /** @var  ProcesoRepository */
@@ -73,12 +75,36 @@ class ProcesoController extends AppBaseController
         $input['fechaInicioCarpeta'] = $this->formatDate($input['fechaInicioCarpeta']);
         $input['fechaRadicacion'] = $this->formatDate($input['fechaRadicacion']);
         $input['fechaOrden'] = $this->formatDate($input['fechaOrden']);
-
         $proceso = $this->procesoRepository->create($input);
-
         Flash::success('Proceso saved successfully.');
-
         return redirect(route('procesos.index'));
+    }
+
+     /**
+     * Store a newly created Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function saveProceso()
+    {
+          if (\Request::ajax()){
+            $input=Input::all();
+            $input['fechaInicioCarpeta'] = $this->formatDate(\Request::input('fechaInicioCarpeta'));
+            $input['fechaRadicacion'] = $this->formatDate(\Request::input('fechaRadicacion'));
+            $input['fechaOrden'] = $this->formatDate(\Request::input('fechaOrden'));
+            $proceso = $this->procesoRepository->create($input);
+
+            if($proceso){
+                return response()->json(['message' => 'Proceso Guardado Exitosamente', 'proceso'=>json_encode($proceso)]);
+            }
+            else{
+                return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+            }
+        }else{
+            return response()->json(['message' => 'Formato de Petición Incorrecta']);
+        }
     }
 
     /**

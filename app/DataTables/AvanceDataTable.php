@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Persona;
+use App\Models\Avance;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class PersonaDataTable extends DataTable
+class AvanceDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class PersonaDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'personas.datatables_actions')
+            ->addColumn('action', 'avances.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class PersonaDataTable extends DataTable
      */
     public function query()
     {
-        $personas = Persona::query();
+        $avances = Avance::query();
 
-        return $this->applyScopes($personas);
+        return $this->applyScopes($avances);
     }
 
     /**
@@ -72,20 +72,9 @@ class PersonaDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id' => ['name' => 'id', 'data' => 'id'],
-            'nombre' => ['name' => 'nombre', 'data' => 'nombre'],
-            'paterno' => ['name' => 'paterno', 'data' => 'paterno'],
-            'materno' => ['name' => 'materno', 'data' => 'materno'],
-            'alias' => ['name' => 'alias', 'data' => 'alias'],
-            'fechaNacimiento' => ['name' => 'fechaNacimiento', 'data' => 'fechaNacimiento'],
-            'sexo' => ['name' => 'sexo', 'data' => 'sexo'],
-            'idEtnia' => ['name' => 'idEtnia', 'data' => 'idEtnia'],
-            'idEscolaridad' => ['name' => 'idEscolaridad', 'data' => 'idEscolaridad'],
-            'nombrePadre' => ['name' => 'nombrePadre', 'data' => 'nombrePadre'],
-            'idReligion' => ['name' => 'idReligion', 'data' => 'idReligion'],
-            'ine' => ['name' => 'ine', 'data' => 'ine'],
-            'rfc' => ['name' => 'rfc', 'data' => 'rfc'],
-            'curp' => ['name' => 'curp', 'data' => 'curp']
+            'idMandamiento' => ['name' => 'idMandamiento', 'data' => 'idMandamiento'],
+            'fechaAvance' => ['name' => 'fechaAvance', 'data' => 'fechaAvance'],
+            'observaciones' => ['name' => 'observaciones', 'data' => 'observaciones']
         ];
     }
 
@@ -96,6 +85,6 @@ class PersonaDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Personas';
+        return 'avances';
     }
 }

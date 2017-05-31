@@ -66,6 +66,22 @@ class VictimaController extends AppBaseController
         return redirect(route('victimas.index'));
     }
 
+    public function saveVictima()
+    {
+          if (\Request::ajax()){
+            $input=Input::all();
+    
+            $victima = $this->victimaRepository->create($input);
+            if($victima){
+                return response()->json(['message' => 'Victima Guardada Exitosamente', 'victima'=>json_encode($victima)]);
+            }
+            else{
+                return response()->json(['message' => 'Error al Procesar la solicitud', 'victima'=>json_encode($victima)]);
+            }
+        }else{
+            return response()->json(['message' => 'Formato de Petición Incorrecta']);
+        }
+    }
     /**
      * Display the specified Victima.
      *

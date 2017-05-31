@@ -140,4 +140,7 @@
     <a href="{!! route('victimas.index') !!}"><i class="fa fa-edit"></i><span>Victimas</span></a>
 </li>
     </ul>
+</li><li class="{{ Request::is('avances*') ? 'active' : '' }}">
+    <a href="{!! route('avances.index') !!}"><i class="fa fa-edit"></i><span>Avances</span></a>
 </li>
+

@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'procesos.store']) !!}
+                    {!! Form::open(['route' => 'procesos.store', 'id'=>'procesoForm']) !!}
                         @include('procesos.fields')
                     {!! Form::close() !!}
  &nbsp;

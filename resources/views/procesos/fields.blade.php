@@ -79,6 +79,10 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::button('Guardar', [ 'class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Guardar', ['id'=>'submitProceso' ,'class' => 'btn btn-primary']) !!}
     <a href="{!! route('procesos.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
+<div id="ajaxResponse">
+
+</div>
+submitProceso

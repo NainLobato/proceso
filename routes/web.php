@@ -83,3 +83,8 @@ Route::resource('direccions', 'DireccionController');
 Route::resource('procesos', 'ProcesoController');
 
 Route::resource('victimas', 'VictimaController');
+
+Route::post('procesos/saveProceso', ['middleware' => 'web','as'=>'procesos.saveProceso','uses'=>'ProcesoController@saveProceso']);
+
+
+Route::resource('avances', 'AvanceController');
