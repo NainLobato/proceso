@@ -79,14 +79,7 @@ class PersonaDataTable extends DataTable
             'alias' => ['name' => 'alias', 'data' => 'alias'],
             'fechaNacimiento' => ['name' => 'fechaNacimiento', 'data' => 'fechaNacimiento'],
             'sexo' => ['name' => 'sexo', 'data' => 'sexo'],
-            'idEtnia' => ['name' => 'idEtnia', 'data' => 'idEtnia'],
-            'idEscolaridad' => ['name' => 'idEscolaridad', 'data' => 'idEscolaridad'],
-            'nombrePadre' => ['name' => 'nombrePadre', 'data' => 'nombrePadre'],
-            'idReligion' => ['name' => 'idReligion', 'data' => 'idReligion'],
-            'ine' => ['name' => 'ine', 'data' => 'ine'],
-            'rfc' => ['name' => 'rfc', 'data' => 'rfc'],
-            'curp' => ['name' => 'curp', 'data' => 'curp']
-        ];
+           ];
     }
 
     /**
