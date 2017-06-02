@@ -1,6 +1,6 @@
 <div class="form-group col-sm-12">
     <div class="col-sm-offset-0 col-sm-5">
-            {!! Form::label('resEmpresa', '¿ES PERSONA FISICA?:') !!}
+            {!! Form::label('resEmpresa', '¿ES PERSONA FÍSICA?:') !!}
             {!! Form::radio('esEmpresa', '0', true) !!} 
     </div>
     <div class="col-sm-offset-1 col-sm-5">
