@@ -21,12 +21,16 @@ $(document).ready(function() {
          $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
             type: "POST",
-            url: '/procesos/public/procesos/saveProceso',
+            url: '//public/procesos/saveProceso',
             data: dataJSON,
             contentType : 'application/json; charset=utf-8',
             dataType: 'json',
-            success: function( msg ) {
-                $("#ajaxResponse").append("<div>"+msg+"</div>");
+            success: function( msg,data ) {
+                $("#ajaxResponse").append("<div>"+data+"</div>");
+                $("#ajaxResponse")
+            }
+            error: function( msg ) {
+                $("#ajaxResponse").append("<div>"+data+"</div>");
             }
         });
     });

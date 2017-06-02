@@ -55,7 +55,7 @@ class CatJuezController extends AppBaseController
 
         $catJuez = $this->catJuezRepository->create($input);
 
-        Flash::success('Cat Juez saved successfully.');
+        Flash::success('Cat Juez guardado exitosamente.');
 
         return redirect(route('catJuezs.index'));
     }

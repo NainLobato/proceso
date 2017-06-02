@@ -55,7 +55,7 @@ class AvanceController extends AppBaseController
 
         $avance = $this->avanceRepository->create($input);
 
-        Flash::success('Avance saved successfully.');
+        Flash::success('Avance guardado exitosamente.');
 
         return redirect(route('avances.index'));
     }

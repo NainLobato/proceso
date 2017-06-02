@@ -59,7 +59,7 @@ class CatMedidaProteccionController extends AppBaseController
 
         $catMedidaProteccion = $this->catMedidaProteccionRepository->create($input);
 
-        Flash::success('Cat Medida Proteccion saved successfully.');
+        Flash::success('Cat Medida Proteccion guardado exitosamente.');
 
         return redirect(route('catMedidaProteccions.index'));
     }

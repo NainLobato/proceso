@@ -59,7 +59,7 @@ class CatNacionalidadController extends AppBaseController
 
         $catNacionalidad = $this->catNacionalidadRepository->create($input);
 
-        Flash::success('Cat Nacionalidad saved successfully.');
+        Flash::success('Cat Nacionalidad guardado exitosamente.');
 
         return redirect(route('catNacionalidads.index'));
     }

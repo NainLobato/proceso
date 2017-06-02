@@ -55,7 +55,7 @@ class AudienciaController extends AppBaseController
 
         $audiencia = $this->audienciaRepository->create($input);
 
-        Flash::success('Audiencia saved successfully.');
+        Flash::success('Audiencia guardado exitosamente.');
 
         return redirect(route('audiencias.index'));
     }

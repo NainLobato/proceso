@@ -59,7 +59,7 @@ class CatMedidaController extends AppBaseController
 
         $catMedida = $this->catMedidaRepository->create($input);
 
-        Flash::success('Cat Medida saved successfully.');
+        Flash::success('Cat Medida guardado exitosamente.');
 
         return redirect(route('catMedidas.index'));
     }

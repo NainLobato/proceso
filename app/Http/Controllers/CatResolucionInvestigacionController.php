@@ -59,7 +59,7 @@ class CatResolucionInvestigacionController extends AppBaseController
 
         $catResolucionInvestigacion = $this->catResolucionInvestigacionRepository->create($input);
 
-        Flash::success('Cat Resolucion Investigacion saved successfully.');
+        Flash::success('Cat Resolucion Investigacion guardado exitosamente.');
 
         return redirect(route('catResolucionInvestigacions.index'));
     }

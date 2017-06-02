@@ -59,7 +59,7 @@ class CatResolucionAmparoController extends AppBaseController
 
         $catResolucionAmparo = $this->catResolucionAmparoRepository->create($input);
 
-        Flash::success('Cat Resolucion Amparo saved successfully.');
+        Flash::success('Cat Resolucion Amparo guardado exitosamente.');
 
         return redirect(route('catResolucionAmparos.index'));
     }

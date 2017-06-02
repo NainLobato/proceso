@@ -59,7 +59,7 @@ class CatEtapaController extends AppBaseController
 
         $catEtapa = $this->catEtapaRepository->create($input);
 
-        Flash::success('Cat Etapa saved successfully.');
+        Flash::success('Cat Etapa guardado exitosamente.');
 
         return redirect(route('catEtapas.index'));
     }

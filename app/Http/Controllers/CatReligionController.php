@@ -59,7 +59,7 @@ class CatReligionController extends AppBaseController
 
         $catReligion = $this->catReligionRepository->create($input);
 
-        Flash::success('Cat Religion saved successfully.');
+        Flash::success('Cat Religion guardado exitosamente.');
 
         return redirect(route('catReligions.index'));
     }

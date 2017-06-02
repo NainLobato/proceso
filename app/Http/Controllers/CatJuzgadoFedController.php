@@ -59,7 +59,7 @@ class CatJuzgadoFedController extends AppBaseController
 
         $catJuzgadoFed = $this->catJuzgadoFedRepository->create($input);
 
-        Flash::success('Cat Juzgado Fed saved successfully.');
+        Flash::success('Cat Juzgado Fed guardado exitosamente.');
 
         return redirect(route('catJuzgadoFeds.index'));
     }

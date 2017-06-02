@@ -59,7 +59,7 @@ class CatSentenciaController extends AppBaseController
 
         $catSentencia = $this->catSentenciaRepository->create($input);
 
-        Flash::success('Cat Sentencia saved successfully.');
+        Flash::success('Cat Sentencia guardado exitosamente.');
 
         return redirect(route('catSentencias.index'));
     }

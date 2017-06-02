@@ -59,7 +59,7 @@ class CatMedidaCautelarController extends AppBaseController
 
         $catMedidaCautelar = $this->catMedidaCautelarRepository->create($input);
 
-        Flash::success('Cat Medida Cautelar saved successfully.');
+        Flash::success('Cat Medida Cautelar guardado exitosamente.');
 
         return redirect(route('catMedidaCautelars.index'));
     }

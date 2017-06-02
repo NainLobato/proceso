@@ -59,7 +59,7 @@ class CatDelitoController extends AppBaseController
 
         $catDelito = $this->catDelitoRepository->create($input);
 
-        Flash::success('Cat Delito saved successfully.');
+        Flash::success('Cat Delito guardado exitosamente.');
 
         return redirect(route('catDelitos.index'));
     }

@@ -59,7 +59,7 @@ class CatAudienciaController extends AppBaseController
 
         $catAudiencia = $this->catAudienciaRepository->create($input);
 
-        Flash::success('Cat Audiencia saved successfully.');
+        Flash::success('Cat Audiencia guardado exitosamente.');
 
         return redirect(route('catAudiencias.index'));
     }

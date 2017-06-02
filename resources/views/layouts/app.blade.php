@@ -50,8 +50,8 @@
                                 <!-- The user image in the navbar-->
                                <!-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/>-->
-                                     <div style="text-align:right;display:inline;"><img src="/procesos/public/img/header.png" height="80px"/></div>
-                                    <div style="text-align:right;display:inline;"><img src="/procesos/public/img/logo.png" height="80px"/></div>
+                                     <div style="text-align:right;display:inline;"><img src="//public/img/header.png" height="80px"/></div>
+                                    <div style="text-align:right;display:inline;"><img src="//public/img/logo.png" height="80px"/></div>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <!--<span class="hidden-xs">{!! Auth::user()->name !!}</span>-->
                             </a>
@@ -96,7 +96,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-             <div align="right" style="display:block-inline;"><img src="/procesos/public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
+             <div align="right" style="display:block-inline;"><img src="//public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
              <strong>Desarrollado por <a href="#">Subdirección de Sistemas</a>.</strong>
         </footer>
 

@@ -55,7 +55,7 @@ class CatFiscalController extends AppBaseController
 
         $catFiscal = $this->catFiscalRepository->create($input);
 
-        Flash::success('Cat Fiscal saved successfully.');
+        Flash::success('Cat Fiscal guardado exitosamente.');
 
         return redirect(route('catFiscals.index'));
     }

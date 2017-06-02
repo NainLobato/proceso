@@ -63,7 +63,7 @@ class CatEdoCivilController extends AppBaseController
 
         $catEdoCivil = $this->catEdoCivilRepository->create($input);
 
-        Flash::success('Cat Edo Civil saved successfully.');
+        Flash::success('Cat Edo Civil guardado exitosamente.');
 
         return redirect(route('catEdoCivils.index'));
     }

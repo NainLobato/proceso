@@ -59,7 +59,7 @@ class CatEtniaController extends AppBaseController
 
         $catEtnia = $this->catEtniaRepository->create($input);
 
-        Flash::success('Cat Etnia saved successfully.');
+        Flash::success('Cat Etnia guardado exitosamente.');
 
         return redirect(route('catEtnias.index'));
     }

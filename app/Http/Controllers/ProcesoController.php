@@ -76,7 +76,7 @@ class ProcesoController extends AppBaseController
         $input['fechaRadicacion'] = $this->formatDate($input['fechaRadicacion']);
         $input['fechaOrden'] = $this->formatDate($input['fechaOrden']);
         $proceso = $this->procesoRepository->create($input);
-        Flash::success('Proceso saved successfully.');
+        Flash::success('Proceso guardado exitosamente.');
         return redirect(route('procesos.index'));
     }
 
