@@ -58,11 +58,11 @@ class PersonaController extends AppBaseController
      */
     public function create()
     {
-        $catEtnia=CatEtnia::pluck('etnia','id');
-        $catEdoCivil=CatEdoCivil::pluck('estadoCivil','id');
-        $catReligion = CatReligion::pluck('religion','id');
-        $catNacionalidad = CatNacionalidad::pluck('nacionalidad','id');
-        $catEscolaridad = CatEscolaridad::pluck('escolaridad','id');
+        $catEtnia=CatEtnia::orderBy('etnia','asc')->pluck('etnia','id');
+        $catEdoCivil=CatEdoCivil::orderBy('estadoCivil','asc')->pluck('estadoCivil','id');
+        $catReligion = CatReligion::orderBy('religion','asc')->pluck('religion','id');
+        $catNacionalidad = CatNacionalidad::orderBy('nacionalidad','asc')->pluck('nacionalidad','id');
+        $catEscolaridad = CatEscolaridad::orderBy('escolaridad','asc')->pluck('escolaridad','id');
         return view('personas.create',array('catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad,'catEdoCivil'=>$catEdoCivil));
     }
 
@@ -80,7 +80,7 @@ class PersonaController extends AppBaseController
 
         $persona = $this->personaRepository->create($input);
 
-        Flash::success('Persona saved successfully.');
+        Flash::success('Persona guardado exitosamente.');
 
         return redirect(route('personas.index'));
     }

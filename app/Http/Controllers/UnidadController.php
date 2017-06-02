@@ -57,7 +57,7 @@ class UnidadController extends AppBaseController
 
         $unidad = $this->unidadRepository->create($input);
 
-        Flash::success('Unidad saved successfully.');
+        Flash::success('Unidad guardado exitosamente.');
 
         return redirect(route('unidads.index'));
     }

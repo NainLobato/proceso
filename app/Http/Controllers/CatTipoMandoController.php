@@ -59,7 +59,7 @@ class CatTipoMandoController extends AppBaseController
 
         $catTipoMando = $this->catTipoMandoRepository->create($input);
 
-        Flash::success('Cat Tipo Mando saved successfully.');
+        Flash::success('Cat Tipo Mando guardado exitosamente.');
 
         return redirect(route('catTipoMandos.index'));
     }

@@ -59,7 +59,7 @@ class MandamientoController extends AppBaseController
 
         $mandamiento = $this->mandamientoRepository->create($input);
 
-        Flash::success('Mandamiento saved successfully.');
+        Flash::success('Mandamiento guardado exitosamente.');
 
         return redirect(route('mandamientos.index'));
     }

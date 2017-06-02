@@ -55,7 +55,7 @@ class DireccionController extends AppBaseController
 
         $direccion = $this->direccionRepository->create($input);
 
-        Flash::success('Direccion saved successfully.');
+        Flash::success('Direccion guardado exitosamente.');
 
         return redirect(route('direccions.index'));
     }

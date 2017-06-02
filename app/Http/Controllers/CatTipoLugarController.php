@@ -55,7 +55,7 @@ class CatTipoLugarController extends AppBaseController
 
         $catTipoLugar = $this->catTipoLugarRepository->create($input);
 
-        Flash::success('Cat Tipo Lugar saved successfully.');
+        Flash::success('Cat Tipo Lugar guardado exitosamente.');
 
         return redirect(route('catTipoLugars.index'));
     }

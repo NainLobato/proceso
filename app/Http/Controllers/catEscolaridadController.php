@@ -59,7 +59,7 @@ class catEscolaridadController extends AppBaseController
 
         $catEscolaridad = $this->catEscolaridadRepository->create($input);
 
-        Flash::success('Cat Escolaridad saved successfully.');
+        Flash::success('Cat Escolaridad guardado exitosamente.');
 
         return redirect(route('catEscolaridads.index'));
     }

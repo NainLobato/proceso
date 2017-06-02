@@ -63,7 +63,7 @@ class ImputadoController extends AppBaseController
 
         $imputado = $this->imputadoRepository->create($input);
 
-        Flash::success('Imputado saved successfully.');
+        Flash::success('Imputado guardado exitosamente.');
 
         return redirect(route('imputados.index'));
     }

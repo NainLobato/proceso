@@ -59,7 +59,7 @@ class CatTipoAmparoController extends AppBaseController
 
         $catTipoAmparo = $this->catTipoAmparoRepository->create($input);
 
-        Flash::success('Cat Tipo Amparo saved successfully.');
+        Flash::success('Cat Tipo Amparo guardado exitosamente.');
 
         return redirect(route('catTipoAmparos.index'));
     }

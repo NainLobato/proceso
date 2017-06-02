@@ -61,7 +61,7 @@ class VictimaController extends AppBaseController
 
         $victima = $this->victimaRepository->create($input);
 
-        Flash::success('Victima saved successfully.');
+        Flash::success('Victima guardado exitosamente.');
 
         return redirect(route('victimas.index'));
     }
