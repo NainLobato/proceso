@@ -21,6 +21,8 @@ use App\Models\CatDelito;
 use DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use App\Models\Victima;
+use App\Models\Imputado;
 class ProcesoController extends AppBaseController
 {
     /** @var  ProcesoRepository */
@@ -49,16 +51,14 @@ class ProcesoController extends AppBaseController
      */
     public function create()
     {
-        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(COALESCE(nombre," ")," ", COALESCE(paterno," ")," ",COALESCE(materno," "), " / FNAC:",COALESCE(fechaNacimiento," ")) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
+        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(COALESCE(nombre," ")," ", COALESCE(paterno," ")," ",COALESCE(materno," ")) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
         $procesos=Proceso::pluck('numeroProceso','id');
         $direcciones = Direccion::pluck('calle','id');
-        $delitos = CatDelito::pluck('delito','id');
-
-
-        $unidades=Unidad::pluck('nombre','id');
-        $fiscales= CatFiscal::pluck('name','id');
-        $jueces= CatJuez::pluck('juez','id');
-        $juzgados= CatJuzgado::pluck('juzgado','id');
+        $delitos = CatDelito::orderBy('delito')->pluck('delito','id');
+        $unidades=Unidad::orderBy('nombre')->pluck('nombre','id');
+        $fiscales= CatFiscal::orderBy('name')->pluck('name','id');
+        $jueces= CatJuez::orderBy('juez')->pluck('juez','id');
+        $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
         return view('procesos.create',array('unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
     }
 
@@ -89,21 +89,125 @@ class ProcesoController extends AppBaseController
      */
     public function saveProceso()
     {
-          if (\Request::ajax()){
-            $input=Input::all();
-            $input['fechaInicioCarpeta'] = $this->formatDate(\Request::input('fechaInicioCarpeta'));
-            $input['fechaRadicacion'] = $this->formatDate(\Request::input('fechaRadicacion'));
-            $input['fechaOrden'] = $this->formatDate(\Request::input('fechaOrden'));
-            $proceso = $this->procesoRepository->create($input);
+        try{
+              if (\Request::ajax()){
+                $input=Input::all();
+                $input['fechaInicioCarpeta'] = $this->formatDate(\Request::input('fechaInicioCarpeta'));
+                $input['fechaRadicacion'] = $this->formatDate(\Request::input('fechaRadicacion'));
+                $input['fechaOrden'] = $this->formatDate(\Request::input('fechaOrden'));
+                $proceso = $this->procesoRepository->create($input);
+                if($proceso){
+                    return response()->json($proceso);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+            }else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+            }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
 
-            if($proceso){
-                return response()->json(['message' => 'Proceso Guardado Exitosamente', 'proceso'=>json_encode($proceso)]);
-            }
-            else{
-                return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
-            }
-        }else{
-            return response()->json(['message' => 'Formato de Petición Incorrecta']);
+    }
+
+
+       /**
+     * Store a newly created Victima for Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function saveVictima()
+    {
+         try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                if (empty($proceso)) {
+                    return response()->json(['message' => 'Proceso no encontrado']);
+                }
+                $victima=new Victima($input);
+                if($victima){
+                    $victima->save();
+                    return response()->json($victima);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
+  /**
+     * Store a newly created Victima for Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function saveImputado()
+    {
+         try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                if (empty($proceso)) {
+                    return response()->json(['message' => 'Proceso no encontrado']);
+                }
+                $imputado=new Imputado($input);
+                if($imputado){
+                    $imputado->save();    
+                    return response()->json($imputado);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud']);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
+ /**
+     * Store a newly created Victima for Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function saveImputacion()
+    {
+         try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                if (empty($proceso)) {
+                    return response()->json(['message' => 'Proceso no encontrado']);
+                }
+                $imputado=new Imputado($input);
+                if($imputado){
+                    $imputado->save();    
+                    return response()->json($imputado);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud']);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
         }
     }
 

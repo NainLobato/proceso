@@ -86,5 +86,10 @@ Route::resource('victimas', 'VictimaController');
 
 Route::post('procesos/saveProceso', ['middleware' => 'web','as'=>'procesos.saveProceso','uses'=>'ProcesoController@saveProceso']);
 
+Route::post('procesos/saveVictima', ['middleware' => 'web','as'=>'procesos.saveVictima','uses'=>'ProcesoController@saveVictima']);
+
+Route::post('procesos/saveImputado', ['middleware' => 'web','as'=>'procesos.saveImputado','uses'=>'ProcesoController@saveImputado']);
+
+Route::post('procesos/saveImputacion', ['middleware' => 'web','as'=>'procesos.saveImputacion','uses'=>'ProcesoController@saveImputacion']);
 
 Route::resource('avances', 'AvanceController');

@@ -16,6 +16,7 @@
                         @include('procesos.fields')
                     {!! Form::close() !!}
  &nbsp;
+ 
                 <div id="divVictimas">
                     <fieldset>
                         <legend>Victimas</legend>
@@ -24,7 +25,7 @@
                         </div>
                     </fieldset>
                 </div>
-                
+
                 <div id="divImputados">
                     <fieldset>
                         <legend>Imputados</legend>
@@ -44,7 +45,7 @@
 
                          <div class="col-sm-offset-0 col-sm-3">
                             {!! Form::label('idVictima', 'Delito Imputado:') !!}
-                            {!! Form::select('idDelitoImputado', $delitos, null, ['class' => 'form-control']) !!}
+                            {!! Form::select('idDelitoImputado', $delitos, null, ['id'=>'idDelitoImputado','class' => 'form-control']) !!}
                         </div>
 
                          <div class="col-sm-offset-0 col-sm-3">

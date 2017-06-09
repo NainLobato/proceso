@@ -90,4 +90,19 @@ class Proceso extends Model
     public function juzgado(){
         return $this->hasOne('App\Models\CatJuzgado', "id","idJuzgado");
     }
+
+    public function victimas(){
+        return $this->belongsToMany("App\Models\Persona", "victimas", "idPersona", "idProceso")
+            ->withPivot("idDireccion");
+    }
+
+    public function imputados(){
+        return $this->belongsToMany("App\Models\Persona", "imputados", "idPersona", "idProceso")
+            ->withPivot("idDireccion","esDetenido","fechaDetencion");
+    }
+
+    public function imputaciones(){
+        return $this->belongsToMany("App\Models\VictimaImputado", "victimaimputado", "idVictima", "idImputado")
+            ->withPivot("idDelito","idTipoRelacion");
+    }
 }

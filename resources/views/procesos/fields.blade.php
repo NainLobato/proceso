@@ -41,12 +41,12 @@
     </div>
     <div class="col-sm-offset-1 col-sm-3">
         {!! Form::label('idJuez', 'JUEZ:') !!}
-        {!! Form::select('idJuez', $jueces, null, ['class' => 'form-control']) !!}
+        {!! Form::select('idJuez', $jueces, null, ['id'=>'idJuez','class' => 'form-control']) !!}
 
     </div>
     <div class="col-sm-offset-0 col-sm-3">
         {!! Form::label('Juzgado', 'JUZGADO:') !!}
-        {!! Form::select('idJuzgado', $juzgados, null, ['class' => 'form-control']) !!}
+        {!! Form::select('idJuzgado', $juzgados, null, ['id'=>'idJuzgado','class' => 'form-control']) !!}
     </div>
     <div class="col-sm-offset-1 col-sm-2">
         {!! Form::label('fechaRadicacion', 'FECHA RADICACION:') !!}
@@ -83,6 +83,7 @@
     <a href="{!! route('procesos.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
 <div id="ajaxResponse">
+<!-- Idproceso Field -->
+    {!! Form::hidden('idProceso', null, ['id'=>'idProceso','class' => 'form-control']) !!}
 
 </div>
-submitProceso
