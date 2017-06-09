@@ -92,4 +92,6 @@ Route::post('procesos/saveImputado', ['middleware' => 'web','as'=>'procesos.save
 
 Route::post('procesos/saveImputacion', ['middleware' => 'web','as'=>'procesos.saveImputacion','uses'=>'ProcesoController@saveImputacion']);
 
+Route::post('procesos/getImplicados', ['middleware' => 'web','as'=>'procesos.getImplicados','uses'=>'ProcesoController@getImplicados']);
+
 Route::resource('avances', 'AvanceController');

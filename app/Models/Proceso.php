@@ -92,17 +92,18 @@ class Proceso extends Model
     }
 
     public function victimas(){
-        return $this->belongsToMany("App\Models\Persona", "victimas", "idPersona", "idProceso")
-            ->withPivot("idDireccion");
+        return $this->belongsToMany("App\Models\Persona", "victimas", "idPersona", "id")
+            ->withPivot("idDireccion","idProceso");
     }
 
     public function imputados(){
-        return $this->belongsToMany("App\Models\Persona", "imputados", "idPersona", "idProceso")
-            ->withPivot("idDireccion","esDetenido","fechaDetencion");
+        return $this->belongsToMany("App\Models\Persona", "imputados", "idPersona", "id")
+            ->withPivot("idDireccion","esDetenido","fechaDetencion","idProceso");
     }
 
     public function imputaciones(){
-        return $this->belongsToMany("App\Models\VictimaImputado", "victimaimputado", "idVictima", "idImputado")
+        return $this->hasMany("App\Models\VictimaImputado", "victimaimputado", "idVictima", "idImputado")
             ->withPivot("idDelito","idTipoRelacion");
     }
+
 }
