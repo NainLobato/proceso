@@ -16,6 +16,14 @@
     <p>{!! $proceso->anioCarpeta !!}</p>
 </div>
 
+<!-- Prueba -->
+<div class="form-group">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{!! $proceso->id !!}</p>
+</div>
+
+
+
 <!-- Numerocarpeta Field -->
 <div class="form-group">
     {!! Form::label('numeroCarpeta', 'Numerocarpeta:') !!}
