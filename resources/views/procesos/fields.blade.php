@@ -1,31 +1,35 @@
 <!-- Iduipj Field -->
  <fieldset>
     <legend>Carpeta Investigación</legend>
- 
-     <div class="form-group" > 
     <div class="row">       
             <div class="col-sm-offset-0 col-sm-1">
-                {!! Form::label('anioCarpeta', 'AÑO:') !!}
-                {!! Form::number('anioCarpeta', null, ['class' => 'form-control']) !!}
+                <div class="form-group">
+                    {!! Form::label('anioCarpeta', 'AÑO:') !!}*
+                    {!! Form::number('anioCarpeta', null, ['class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
+                </div>
             </div>
             <div class="col-sm-offset-0 col-sm-1">
-                {!! Form::label('numeroCarpeta', 'NUMERO:') !!}
-                {!! Form::text('numeroCarpeta', null, ['class' => 'form-control']) !!}
+                <div class="form-group">
+                    {!! Form::label('numeroCarpeta', 'NUMERO:') !!}*
+                    {!! Form::text('numeroCarpeta', null, ['class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
+                </div>
             </div>
 
              <div class="col-sm-offset-0 col-sm-3">
-                {!! Form::label('idUIPJ', 'UIPJ:') !!}
-                {!! Form::select('idUIPJ', $unidades, null, ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
+                {!! Form::label('idUIPJ', 'UIPJ:') !!}*
+                {!! Form::select('idUIPJ', $unidades, null, ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
+
             </div>
 
             <div class="col-sm-offset-0 col-sm-3">
-            {!! Form::label('idFiscal', 'FISCAL') !!}
-            {!! Form::select('idFiscal', $fiscales, 'null', ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
+            {!! Form::label('idFiscal', 'FISCAL') !!}*
+            {!! Form::select('idFiscal', $fiscales, 'null', ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'']) !!}
+
         </div>
 
             <div class="col-sm-offset-0 col-sm-2">
-                {!! Form::label('fechaInicioCarpeta', 'FECHA INICIO:') !!}
-                {!! Form::date('fechaInicioCarpeta', null, ['class' => 'form-control']) !!}
+                {!! Form::label('fechaInicioCarpeta', 'FECHA INICIO:') !!}*
+                {!! Form::date('fechaInicioCarpeta', null, ['class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
     </div>    
@@ -36,28 +40,28 @@
  <div class="form-group" > 
     <div class="row">
         <div class="col-sm-offset-0 col-sm-1">
-            {!! Form::label('anioProceso', 'AÑO:') !!}
-            {!! Form::number('anioProceso', null, ['class' => 'form-control']) !!}
+            {!! Form::label('anioProceso', 'AÑO:') !!}*
+            {!! Form::number('anioProceso', null, ['class' => 'form-control','required'=>'']) !!}
         </div>
         <div class="col-sm-offset-0 col-sm-1">
-            {!! Form::label('numeroProceso', 'NUMERO:') !!}
-            {!! Form::text('numeroProceso', null, ['class' => 'form-control']) !!}
+            {!! Form::label('numeroProceso', 'NUMERO:') !!}*
+            {!! Form::text('numeroProceso', null, ['class' => 'form-control','required'=>'']) !!}
         </div>
         
         <div class="col-sm-offset-0 col-sm-3">
-            {!! Form::label('idJuez', 'JUEZ:') !!}
-            {!! Form::select('idJuez', $jueces, null, ['placeholder' => 'Seleccionar...','id'=>'idJuez','class' => 'form-control']) !!}
+            {!! Form::label('idJuez', 'JUEZ:') !!}*
+            {!! Form::select('idJuez', $jueces, null, ['placeholder' => 'Seleccionar...','id'=>'idJuez','class' => 'form-control','required'=>'']) !!}
 
         </div>
         
         <div class="col-sm-offset-0 col-sm-3">
-            {!! Form::label('Juzgado', 'JUZGADO:') !!}
-            {!! Form::select('idJuzgado', $juzgados, null, ['placeholder' => 'Seleccionar...','id'=>'idJuzgado','class' => 'form-control']) !!}
+            {!! Form::label('Juzgado', 'JUZGADO:') !!}*
+            {!! Form::select('idJuzgado', $juzgados, null, ['placeholder' => 'Seleccionar...','id'=>'idJuzgado','class' => 'form-control','required'=>'']) !!}
         </div>
 
         <div class="col-sm-offset-0 col-sm-2">
-            {!! Form::label('fechaRadicacion', 'FECHA RADICACION:') !!}
-            {!! Form::date('fechaRadicacion', null, ['class' => 'form-control']) !!}
+            {!! Form::label('fechaRadicacion', 'FECHA RADICACION:') !!}*
+            {!! Form::date('fechaRadicacion', null, ['class' => 'form-control','required'=>'']) !!}
         </div>
     </div>
     <div class="row">
@@ -84,8 +88,6 @@
                {!! Form::date('fechaOrden', null, ['class' => 'form-control']) !!}
         </div>
     </div>
-
-</div>
 </div>
 <br>
 
@@ -98,5 +100,4 @@
 
 <div id="ajaxResponse">
 <!-- Idproceso Field -->
-
 </div>

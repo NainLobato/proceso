@@ -58,6 +58,7 @@ class PersonaController extends AppBaseController
      */
     public function create()
     {
+
         $catEtnia=CatEtnia::orderBy('etnia','asc')->pluck('etnia','id');
         $catEdoCivil=CatEdoCivil::orderBy('estadoCivil','asc')->pluck('estadoCivil','id');
         $catReligion = CatReligion::orderBy('religion','asc')->pluck('religion','id');
@@ -121,6 +122,7 @@ class PersonaController extends AppBaseController
 
             return redirect(route('personas.index'));
         }
+
 
         $catEtnia=CatEtnia::pluck('etnia','id');
         $catEdoCivil=CatEdoCivil::pluck('estadoCivil','id');
