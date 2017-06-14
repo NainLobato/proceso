@@ -7,55 +7,43 @@
 <!-- Iduipj Field -->
 <div class="form-group">
     {!! Form::label('idUIPJ', 'Iduipj:') !!}
-    <p>{!! $proceso->idUIPJ !!}</p>
+    <p>{!! $proceso->carpeta->uipj !!}</p>
 </div>
 
 <!-- Aniocarpeta Field -->
 <div class="form-group">
     {!! Form::label('anioCarpeta', 'Aniocarpeta:') !!}
-    <p>{!! $proceso->anioCarpeta !!}</p>
+    <p>{!! $proceso->carpeta->numero !!}</p>
 </div>
 <!--dsa-->
 <!-- Numerocarpeta Field -->
 <div class="form-group">
     {!! Form::label('numeroCarpeta', 'Numerocarpeta:') !!}
-    <p>{!! $proceso->numeroCarpeta !!}</p>
-</div>
-
-<!-- Anioproceso Field -->
-<div class="form-group">
-    {!! Form::label('anioProceso', 'Anioproceso:') !!}
-    <p>{!! $proceso->anioProceso !!}</p>
-</div>
-
-<!-- Numeroproceso Field -->
-<div class="form-group">
-    {!! Form::label('numeroProceso', 'Numeroproceso:') !!}
-    <p>{!! $proceso->numeroProceso !!}</p>
+    <p>{!! $proceso->radicacion->numero !!}</p>
 </div>
 
 <!-- Fechainiciocarpeta Field -->
 <div class="form-group">
     {!! Form::label('fechaInicioCarpeta', 'Fechainiciocarpeta:') !!}
-    <p>{!! $proceso->fechaInicioCarpeta !!}</p>
+    <p>{!! $proceso->carpeta->fecha !!}</p>
 </div>
 
 <!-- Idfiscal Field -->
 <div class="form-group">
     {!! Form::label('idFiscal', 'Idfiscal:') !!}
-    <p>{!! $proceso->idFiscal !!}</p>
+    <p>{!! $proceso->carpeta->fiscal !!}</p>
 </div>
 
 <!-- Idjuez Field -->
 <div class="form-group">
     {!! Form::label('idJuez', 'Idjuez:') !!}
-    <p>{!! $proceso->idJuez !!}</p>
+    <p>{!! $proceso->radicacion->juez !!}</p>
 </div>
 
 <!-- Idjuzgado Field -->
 <div class="form-group">
     {!! Form::label('idJuzgado', 'Idjuzgado:') !!}
-    <p>{!! $proceso->idJuzgado !!}</p>
+    <p>{!! $proceso->Juzgado !!}</p>
 </div>
 
 <!-- Fecharadicacion Field -->

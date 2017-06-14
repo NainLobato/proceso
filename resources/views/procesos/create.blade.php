@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -12,35 +13,39 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'procesos.store', 'id'=>'procesoForm']) !!}
+                    {!! Form::open(['route' => 'procesos.store','data-toggle'=>'validator', 'role'=>'form','id'=>'procesoForm']) !!}
                         @include('procesos.fields')
                     {!! Form::close() !!}
  &nbsp;
  
                 <!--<div id="divVictimas" style="display:none">-->
-                <div id="divVictimas">
-                    <fieldset>
-                        <legend>Victimas</legend>
-                         <div class="form-group" > 
-                            @include('victimas.fields2')
-                        </div>
-                    </fieldset>
-                </div>
-
+                  <fieldset>
+                    <legend><a href="#divVictimas" data-toggle="collapse">Victimas</a></legend>
+                    <div id="divVictimas">
+                             <div class="form-group" > 
+                                @include('victimas.fields2')
+                            </div>
+                       
+                    </div>
+                </fieldset>
                 <!--<div id="divImputados" style="display:none">-->
-                <div id="divImputados">
-                    <fieldset>
-                        <legend>Imputados</legend>
-                         <div class="form-group" > 
-                            @include('imputados.fields2')
-                        </div>
-                    </fieldset>
-                </div>
+                <fieldset>
+                <legend><a href="#divImputados" data-toggle="collapse">Imputados</a></legend>
+                    <div id="divImputados">
+                        <fieldset>
+                            <legend></legend>
+                             <div class="form-group" > 
+                                @include('imputados.fields2')
+                            </div>
+                    </div>
+                </fieldset>
+
                 
                 <!--<div id="divImputaciones"  style="display:none">-->
-                <div id="divImputaciones">
-                    <fieldset>
-                        <legend>Imputaciones / Delitos</legend>
+                 <fieldset>
+                        <legend><a href="#divImputaciones" data-toggle="collapse">Imputaciones/Delitos</a></legend>
+                    <div id="divImputaciones">
+                   
                         <div class="col-sm-offset-0 col-sm-3">
                             {!! Form::label('idVictimaImputacion', ' Victima:') !!}
                             {!! Form::select('idVictimaImputacion', array(), null, ['id'=>'idVictimaImputacion','class' => 'form-control']) !!}
@@ -80,13 +85,12 @@
                             @endif
                         </div>
 
-                    </fieldset>
+                   
                 </div>
+                 </fieldset>
                     
             </div>
         </div>
     </div>
     </div>
 @endsection
-
-  
