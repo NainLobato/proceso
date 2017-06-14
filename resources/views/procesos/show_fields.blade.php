@@ -15,15 +15,7 @@
     {!! Form::label('anioCarpeta', 'Aniocarpeta:') !!}
     <p>{!! $proceso->anioCarpeta !!}</p>
 </div>
-
-<!-- Prueba -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $proceso->id !!}</p>
-</div>
-
-
-
+<!--dsa-->
 <!-- Numerocarpeta Field -->
 <div class="form-group">
     {!! Form::label('numeroCarpeta', 'Numerocarpeta:') !!}

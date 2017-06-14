@@ -2,13 +2,13 @@
      {!! Form::open(['id' => 'frmVictimas']) !!}
 
 <!-- Idpersona Field -->
-    <div class="col-sm-offset-0 col-sm-3">
-    {!! Form::label('idVictima', 'Nombre Victima:') !!}
+<div class="col-sm-offset-0 col-sm-3">
+    {!! Form::label('idVictima', 'Nombre Victima:') !!}<br>
     {!! Form::select('idVictima', $personas, null, ['class' => 'form-control']) !!}
 </div>
 <!-- Iddireccion Field -->
 <div class="col-sm-offset-1 col-sm-2">
-    {!! Form::label('idDireccion', 'Direccion:') !!}
+    {!! Form::label('idDireccion', 'Direccion:') !!}<br>
     {!! Form::select('idDireccionVictima', $direcciones, null, ['name'=>'idDireccionVictima','id'=>'idDireccionVictima','class' => 'form-control']) !!}
 </div>
 <div class="col-sm-offset-0 col-sm-1">
@@ -32,4 +32,4 @@
     @endif
 </div>
 </div>
-     {!! Form::close() !!}
+    {!! Form::close() !!}
