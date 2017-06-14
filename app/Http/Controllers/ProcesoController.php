@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Models\Victima;
 use App\Models\Imputado;
+use App\Models\VictimaImputado;
+
 class ProcesoController extends AppBaseController
 {
     /** @var  ProcesoRepository */
@@ -108,9 +110,41 @@ class ProcesoController extends AppBaseController
         }catch(\Exception $e){
             return response()->json($e);
         }
-
     }
 
+    public function getImplicados()
+    {
+        try{
+              if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                $victimas= DB::table('personas')
+                ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
+                ->where('victimas.idProceso','=',$input['idProceso'])
+                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
+                
+                $imputados= DB::table('personas')
+                ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
+                ->where('imputados.idProceso','=',$input['idProceso'])
+                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
+
+                if($victimas){
+                    return response()->json(['victimas'=>$victimas,'imputados'=>$imputados]);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+            }else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+            }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
+    public function getReporte(){
+        
+    }
 
        /**
      * Store a newly created Victima for Proceso in storage.
@@ -132,6 +166,39 @@ class ProcesoController extends AppBaseController
                 if($victima){
                     $victima->save();
                     return response()->json($victima);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
+
+        /**
+     * Store a newly created Victima for Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function deleteVictima()
+    {
+         try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                if (empty($proceso)) {
+                    return response()->json(['message' => 'Proceso no encontrado']);
+                }
+                if($proceso){
+                    Victima::find($input['idVictima'])->delete();
+                    return response()->json(['message' => 'Victima eliminada correctamente']);
                 }
                 else{
                     return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
@@ -190,14 +257,16 @@ class ProcesoController extends AppBaseController
          try{
              if (\Request::ajax()){
                 $input=Input::all();
+                var_dump($input);
                 $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
                 if (empty($proceso)) {
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
-                $imputado=new Imputado($input);
-                if($imputado){
-                    $imputado->save();    
-                    return response()->json($imputado);
+                $victimaImputado=new VictimaImputado($input);
+                var_dump($victimaImputado);
+                if($victimaImputado){
+                    $victimaImputado->save();    
+                    return response()->json($victimaImputado);
                 }
                 else{
                     return response()->json(['message' => 'Error al procesar la solicitud']);
