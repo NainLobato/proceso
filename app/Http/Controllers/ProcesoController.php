@@ -381,9 +381,9 @@ class ProcesoController extends AppBaseController
             "imputado":{  
                "tipo":"fisica",
                "nombre":"Clara Robles Hernández",
-               "FechaNacimiento":"20/01/1979",
+               "fechaNacimiento":"20/01/1979",
                "sexo":"femenino",
-               "EstadoCivil":"soltera",
+               "estadoCivil":"soltera",
                "direccion":"calle 5 #146 Col. Mexico C.P 57900",
                "nombrePadre":"Juan FLores",
                "nombreMadre":"Daniela Hernández"
