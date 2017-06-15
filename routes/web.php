@@ -88,3 +88,5 @@ Route::post('procesos/saveProceso', ['middleware' => 'web','as'=>'procesos.saveP
 
 
 Route::resource('avances', 'AvanceController');
+
+Route::resource('catAgrupacions', 'CatAgrupacionController');
