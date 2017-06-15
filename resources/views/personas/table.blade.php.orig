@@ -1,0 +1,58 @@
+<<<<<<< HEAD
+<table class="table table-responsive" id="personas-table">
+    <thead>
+        <th>Nombre</th>
+        <th>Paterno</th>
+        <th>Materno</th>
+        <th>Alias</th>
+        <th>Fechanacimiento</th>
+        <th>Sexo</th>
+        <th>Etnia</th>
+        <th>Escolaridad</th>
+        <th>Padre</th>
+        <th>Religion</th>
+        <th>Ine</th>
+        <th>Rfc</th>
+        <th colspan="3">Acciones</th>
+    </thead>
+    <tbody>
+    @foreach($personas as $persona)
+        <tr>
+            <td>{!! $persona->nombre !!}</td>
+            <td>{!! $persona->paterno !!}</td>
+            <td>{!! $persona->materno !!}</td>
+            <td>{!! $persona->alias !!}</td>
+            <td>{!! $persona->fechaNacimiento !!}</td>
+            <td>{!! $persona->sexo !!}</td>
+
+            <td> @if (!empty($persona->etnia()->get()[0])) {!!  $persona->etnia()->get()[0]->etnia !!} @else SIN DATO @endif  </td>
+            <td> @if (!empty($persona->escolaridad()->get()[0])) {!!  $persona->escolaridad()->get()[0]->escolaridad !!} @else SIN DATO @endif  </td>
+            <td>{!! $persona->padre !!}</td>
+            <td> @if (!empty($persona->religion()->get()[0])) {!!  $persona->religion()->get()[0]->religion !!} @else SIN DATO @endif  </td>
+            <td>{!! $persona->ine !!}</td>
+            <td>{!! $persona->rfc !!}</td>
+            <td>
+                {!! Form::open(['route' => ['personas.destroy', $persona->id], 'method' => 'delete']) !!}
+                <div class='btn-group'>
+                    <a href="{!! route('personas.show', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('personas.edit', [$persona->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                </div>
+                {!! Form::close() !!}
+            </td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
+=======
+@section('css')
+    @include('layouts.datatables_css')
+@endsection
+
+{!! $dataTable->table(['width' => '100%']) !!}
+
+@section('scripts')
+    @include('layouts.datatables_js')
+    {!! $dataTable->scripts() !!}
+@endsection
+>>>>>>> 14941e8501a822af123ad8240fd69a0f15aec99f

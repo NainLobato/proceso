@@ -1,17 +1,21 @@
 <!-- Idpersona Field -->
 <div class="col-sm-offset-0 col-sm-3">
-    {!! Form::label('idImputado', 'Nombre Imputado:') !!}
+    {!! Form::label('idImputado', 'Nombre Imputado:') !!}<br>
     {!! Form::select('idImputado', $personas, null, ['class' => 'form-control']) !!}
-
-    {!! Form::label('esDetenido', '¿Detenido?') !!}
+ </div>
+<div class="col-sm-offset-0 col-sm-1">
+     {!! Form::label('esDetenido', '¿Detenido?') !!}<br>
+     <br>
     {!! Form::checkbox('esDetenido', '1', null) !!} 
 </div>
-
-<!-- Idproceso Field -->
-    {!! Form::hidden('idProceso', 1, null, ['class' => 'form-control']) !!}
+<div class="col-sm-offset-0 col-sm-3">
+     {!! Form::label('FechaDetencion', 'Fecha Detención') !!}<br>
+     <br>
+        {!! Form::date('fechaDetencionImputado', null, ['id'=>'fechaDetencionImputado','class' => 'form-control']) !!}
+</div>
 <!-- Iddireccion Field -->
-<div class="col-sm-offset-1 col-sm-2">
-    {!! Form::label('idDireccion', 'Direccion:') !!}
+<div class="col-sm-offset-0 col-sm-2">
+    {!! Form::label('idDireccion', 'Direccion:') !!}<br>
     {!! Form::select('idDireccionImputado', $direcciones, null, ['class' => 'form-control']) !!}
 </div>
 

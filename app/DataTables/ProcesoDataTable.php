@@ -5,6 +5,8 @@ namespace App\DataTables;
 use App\Models\Proceso;
 use Form;
 use Yajra\Datatables\Services\DataTable;
+use DB;
+use Yajra\Datatables\Datatables;
 
 class ProcesoDataTable extends DataTable
 {
@@ -14,8 +16,21 @@ class ProcesoDataTable extends DataTable
      */
     public function ajax()
     {
-        return $this->datatables
+       /* return $this->datatables
             ->eloquent($this->query())
+            ->addColumn('action', 'procesos.datatables_actions')
+            ->make(true);*/
+            $procesos = DB::table('procesos')
+                    ->join('cat_juezs','procesos.idJuez','=','cat_juezs.id')
+                    ->join('cat_juzgados','procesos.idJuzgado','=','cat_juzgados.id')
+                    ->join('cat_fiscals','procesos.idFiscal','=','cat_fiscals.id')
+                    ->join('unidads','procesos.idUIPJ','=','unidads.id')
+                    ->select(['procesos.*', 'unidads.nombre as uipj', 'cat_fiscals.name as fiscal', 'cat_juzgados.juzgado','cat_juezs.juez']);
+            /*return Datatables::of($procesos)
+            ->addColumn('action', 'procesos.datatables_actions')
+            ->make(true);*/
+            return $this->datatables
+            ->queryBuilder($procesos)
             ->addColumn('action', 'procesos.datatables_actions')
             ->make(true);
     }
@@ -27,7 +42,13 @@ class ProcesoDataTable extends DataTable
      */
     public function query()
     {
-        $procesos = Proceso::query();
+        $procesos = DB::table('procesos')
+                    ->join('cat_juezs','procesos.idJuez','=','cat_juezs.id')
+                    ->join('cat_juzgados','procesos.idJuzgado','=','cat_juzgados.id')
+                    ->join('cat_fiscals','procesos.idFiscal','=','cat_fiscals.id')
+                    ->join('unidads','procesos.idUIPJ','=','unidads.id')
+                    ->select(['procesos.*', 'unidads.nombre as uipj', 'cat_fiscals.name as fiscal', 'cat_juzgados.juzgado','cat_juezs.juez']);
+        //$procesos =Proceso::query();
 
         return $this->applyScopes($procesos);
     }
@@ -72,20 +93,16 @@ class ProcesoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'idUIPJ' => ['name' => 'idUIPJ', 'data' => 'idUIPJ'],
-            'anioCarpeta' => ['name' => 'anioCarpeta', 'data' => 'anioCarpeta'],
-            'numeroCarpeta' => ['name' => 'numeroCarpeta', 'data' => 'numeroCarpeta'],
-            'anioProceso' => ['name' => 'anioProceso', 'data' => 'anioProceso'],
-            'numeroProceso' => ['name' => 'numeroProceso', 'data' => 'numeroProceso'],
-            'fechaInicioCarpeta' => ['name' => 'fechaInicioCarpeta', 'data' => 'fechaInicioCarpeta'],
-            'idFiscal' => ['name' => 'idFiscal', 'data' => 'idFiscal'],
-            'idJuez' => ['name' => 'idJuez', 'data' => 'idJuez'],
-            'idJuzgado' => ['name' => 'idJuzgado', 'data' => 'idJuzgado'],
-            'fechaRadicacion' => ['name' => 'fechaRadicacion', 'data' => 'fechaRadicacion'],
-            'conDetenido' => ['name' => 'conDetenido', 'data' => 'conDetenido'],
-            'obsequiaOrden' => ['name' => 'obsequiaOrden', 'data' => 'obsequiaOrden'],
-            'fechaOrden' => ['name' => 'fechaOrden', 'data' => 'fechaOrden'],
-            'observaciones' => ['name' => 'observaciones', 'data' => 'observaciones']
+            'UIPJ' => ['name' => 'uipj', 'data' => 'uipj'],
+            'Año Carpeta' => ['name' => 'anioCarpeta', 'data' => 'anioCarpeta'],
+            'No. Carpeta' => ['name' => 'numeroCarpeta', 'data' => 'numeroCarpeta'],
+            'Año Proceso' => ['name' => 'anioProceso', 'data' => 'anioProceso'],
+            'No. Proceso' => ['name' => 'numeroProceso', 'data' => 'numeroProceso'],
+            'Fiscal' => ['name' => 'fiscal', 'data' => 'fiscal'],
+            'Juez' => ['name' => 'juez', 'data' => 'juez'],
+            'Juzgado' => ['name' => 'juzgado', 'data' => 'juzgado'],
+            'Fecha' => ['name' => 'fechaRadicacion', 'data' => 'fechaRadicacion'],
+            'Observaciones' => ['name' => 'observaciones', 'data' => 'observaciones']
         ];
     }
 

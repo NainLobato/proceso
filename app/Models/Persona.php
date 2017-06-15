@@ -108,4 +108,5 @@ class Persona extends Model
     {
         return $this->hasOne('App\Models\CatEscolaridad', "id","idEscolaridad");
     }
+
 }
