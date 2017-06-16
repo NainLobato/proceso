@@ -94,4 +94,10 @@ Route::post('procesos/saveImputacion', ['middleware' => 'web','as'=>'procesos.sa
 
 Route::post('procesos/getImplicados', ['middleware' => 'web','as'=>'procesos.getImplicados','uses'=>'ProcesoController@getImplicados']);
 
+Route::post('procesos/deleteVictima', ['middleware' => 'web','as'=>'procesos.deleteVictima','uses'=>'ProcesoController@deleteVictima']);
+
+Route::post('procesos/deleteImputado', ['middleware' => 'web','as'=>'procesos.deleteImputado','uses'=>'ProcesoController@deleteImputado']);
+
+Route::post('procesos/deleteImputacion', ['middleware' => 'web','as'=>'procesos.deleteImputacion','uses'=>'ProcesoController@deleteImputacion']);
+
 Route::resource('avances', 'AvanceController');
