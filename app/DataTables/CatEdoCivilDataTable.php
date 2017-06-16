@@ -16,7 +16,7 @@ class CatEdoCivilDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'CatEdoCivils.datatables_actions')
+            ->addColumn('action', 'cat_edo_civils.datatables_actions')
             ->make(true);
     }
 

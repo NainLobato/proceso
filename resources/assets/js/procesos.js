@@ -4,6 +4,19 @@ $.ajaxSetup({
     }
 });
 
+
+
+
+
+
+/*$('#procesoForm').on('submit', function (e) {
+  if (e.isDefaultPrevented()) {
+    // handle the invalid form...
+  } else {
+    // everything looks good!
+  }
+});*/
+
   function getFormData($form){
     var unindexed_array = $form.serializeArray();
     var indexed_array = {};
@@ -40,8 +53,12 @@ function getImplicados(){
 /* Save Victima Function */
 $(document).ready(function() {  
     $('#submitProceso').on('click', function (e) {
-        e.preventDefault();
-        var dataJSON = JSON.stringify(getFormData($('#procesoForm')));  
+        $("#procesoForm").submit(function(e){
+         e.preventDefault();
+        });
+        $("#procesoForm").submit();
+        //e.preventDefault();
+        var dataJSON = JSON.stringify(getFormData($('#procesoForm')));
          $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
             type: "POST",
@@ -88,7 +105,7 @@ $(document).on('blur', "input[type=text]", function () {
                     dataType: 'json',
                     success: function( msg,data ) {
                         if(msg.id){
-                            $relationProcesoVictima.append('<div class="row proceso-victima" data-link-id="' + $victima.val() + '" style="margin-bottom: 10px;">'
+                            $relationProcesoVictima.append('<div class="row proceso-victima" data-victima-id="' + msg.id + '" style="margin-bottom: 10px;">'
                             + '<input type="hidden" name="victimas[]" value="' + $victima.val() + '">'
                             + '<input type="hidden" name="direccionesVictimas[]" value="' + dirVictima + '">'
                             + '<div class="col-sm-offset-2 col-sm-5" data-victima="' + $victima.val() + '">' + $('#idVictima option:selected').text() + '</div>'
@@ -106,9 +123,36 @@ $(document).on('blur', "input[type=text]", function () {
             $relationVictima.on('click', addRelationVictima);
             
             var removeRelationVictimaF = function (event) {
+                var dataJSON = JSON.stringify({idVictima:$(this).closest('.row').attr('data-victima-id'),idProceso:$('#idProceso').val()});  
+                $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+                type: "POST",
+                url: '/procesos/public/procesos/deleteVictima',
+                data: dataJSON,
+                contentType : 'application/json; charset=utf-8',
+                dataType: 'json',
+                    success: function( msg,data ) {
+                        if(msg.id){
+                            getImplicados();
+                        }
+                        else{
+                                $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                        }
+                    },
+                    error: function( msg,data ) {
+                        if(msg.id){
+                            getImplicados();
+                        }
+                        else{
+                                $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                        }
+                    }
+                    
+                });
                 $(this).closest('.row').remove();
             };
-             $removeRelationVictima.on('click', 'i', removeRelationVictimaF);
+
+            $removeRelationVictima.on('click', 'i', removeRelationVictimaF);
         });
 
         $(function () {
@@ -122,7 +166,6 @@ $(document).on('blur', "input[type=text]", function () {
                 var dirImputado= $('#idDireccionImputado').val() != undefined ? $('#idDireccionImputado').val() : " ";
                 var dataJSON = JSON.stringify({idPersona:$imputado.val(),idDireccion:$direccionImputado.val(),idProceso:$('#idProceso').val(),esDetenido:$esDetenidoImputado.val(),fechaDetencion:$fechaDetencionImputado.val()});
                 $relationProcesoImputado = $('.relation-proceso-imputado');
-
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                     type: "POST",
@@ -132,7 +175,7 @@ $(document).on('blur', "input[type=text]", function () {
                     dataType: 'json',
                     success: function( msg,data ) {
                         if(msg.id){
-                            $relationProcesoImputado.append('<div class="row proceso-imputado" data-link-id="' + $imputado.val() + '" style="margin-bottom: 10px;">'
+                            $relationProcesoImputado.append('<div class="row proceso-imputado" data-imputado-id="' + msg.id + '" style="margin-bottom: 10px;">'
                             + '<input type="hidden" name="imputados[]" value="' + $imputado.val() + '">'
                             + '<input type="hidden" name="direccionesImputados[]" value="' + $direccionImputado.val() + '">'
                             + '<input type="hidden" name="detenidosImputados[]" value="' + $esDetenidoImputado.val() + '">'
@@ -153,6 +196,23 @@ $(document).on('blur', "input[type=text]", function () {
             };
             $relationImputado.on('click', addRelationImputado);
             var removeRelationImputadoF = function (event) {
+                  var dataJSON = JSON.stringify({idImputado:$(this).closest('.row').attr('data-imputado-id'),idProceso:$('#idProceso').val()});  
+                $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+                type: "POST",
+                url: '/procesos/public/procesos/deleteImputado',
+                data: dataJSON,
+                contentType : 'application/json; charset=utf-8',
+                dataType: 'json',
+                    success: function( msg,data ) {
+                        if(msg.id){
+                            getImplicados();
+                        }
+                        else{
+                            $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                        }
+                    }
+                });
                 $(this).closest('.row').remove();
             };
              $removeRelationImputado.on('click', 'i', removeRelationImputadoF);
@@ -237,8 +297,6 @@ $(document).on('blur', "input[type=text]", function () {
         $(document).ready(function() {
           $("#idDelitoImputado").select2();
         });
-         
-
 
  $(document).ready(function(){
 

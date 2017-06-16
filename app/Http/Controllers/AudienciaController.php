@@ -10,6 +10,10 @@ use App\Repositories\AudienciaRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\CatFiscal;
+use App\Models\CatJuez;
+use App\Models\CatJuzgado;
+
 
 class AudienciaController extends AppBaseController
 {
@@ -39,7 +43,13 @@ class AudienciaController extends AppBaseController
      */
     public function create()
     {
-        return view('audiencias.create');
+        $catFiscal= CatFiscal::orderBy('name')->pluck('name','id');
+        $catJuez= CatJuez::orderBy('juez')->pluck('juez','id');
+        $catJuzgado= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        return view('audiencias.create',array('catFiscal'=>$catFiscal,'catJuez'=>$catJuez,'catJuzgado'=>$catJuzgado,'catAudiencia'=>array(),'catEtapa'=>array(),'catProceso'=>array()));
     }
 
     /**

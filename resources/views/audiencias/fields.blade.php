@@ -1,19 +1,19 @@
 <!-- Idtipoaudiencia Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idTipoAudiencia', 'Idtipoaudiencia:') !!}
-    {!! Form::select('idTipoAudiencia', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('idTipoAudiencia', $catAudiencia, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Idjuez Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idJuez', 'Idjuez:') !!}
-    {!! Form::select('idJuez', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('idJuez', $catJuez, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Idfiscal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idFiscal', 'Idfiscal:') !!}
-    {!! Form::select('idFiscal', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('idFiscal', $catFiscal, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Resolucion Field -->
@@ -25,7 +25,7 @@
 <!-- Idetapa Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idEtapa', 'Idetapa:') !!}
-    {!! Form::select('idEtapa', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('idEtapa', $catEtapa, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Observaciones Field -->
@@ -37,13 +37,7 @@
 <!-- Idproceso Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idProceso', 'Idproceso:') !!}
-    {!! Form::select('idProceso', ], null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Idimputado Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idImputado', 'Idimputado:') !!}
-    {!! Form::select('idImputado', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('idProceso', $catProceso, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
