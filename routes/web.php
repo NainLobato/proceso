@@ -101,3 +101,5 @@ Route::post('procesos/deleteImputado', ['middleware' => 'web','as'=>'procesos.de
 Route::post('procesos/deleteImputacion', ['middleware' => 'web','as'=>'procesos.deleteImputacion','uses'=>'ProcesoController@deleteImputacion']);
 
 Route::resource('avances', 'AvanceController');
+
+Route::resource('catAgrupacions', 'CatAgrupacionController');
