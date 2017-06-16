@@ -14,6 +14,8 @@
 <div class="col-sm-offset-0 col-sm-1">
     <br>
         <button type="button" class="btn btn-primary add-proceso-victima">Agregar Victima</button>
+         <button type="button" data-href="../personas/createModal" class="btn btn-primary modal-persona" data-target="#myModal" data-toggle="modal">Crear Victima</button>
+        
     </div>
 
 <div class="relation-proceso-victima">

@@ -6,8 +6,11 @@ $.ajaxSetup({
 
 
 
-
-
+//JS script
+$('.modal-persona').on('click', function(e){
+  e.preventDefault();
+  $('#modalPersona').modal('show').find('.modal-body').load($(this).attr('data-href'));
+});
 
 /*$('#procesoForm').on('submit', function (e) {
   if (e.isDefaultPrevented()) {

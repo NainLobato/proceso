@@ -21,6 +21,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('catEscolaridads', 'catEscolaridadController');
+
+Route::get('personas/createModal', ['middleware' => 'web','as'=>'personas.createModal','uses'=>'PersonaController@createModal']);
+
 Route::resource('personas', 'PersonaController');
 
 Route::resource('catEscolaridads', 'catEscolaridadController');

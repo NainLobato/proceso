@@ -67,6 +67,21 @@ class PersonaController extends AppBaseController
         return view('personas.create',array('catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad,'catEdoCivil'=>$catEdoCivil));
     }
 
+ /**
+     * Show the form for creating a new Persona.
+     *
+     * @return Response
+     */
+    public function createModal()
+    {
+
+        $catEtnia=CatEtnia::orderBy('etnia','asc')->pluck('etnia','id');
+        $catEdoCivil=CatEdoCivil::orderBy('estadoCivil','asc')->pluck('estadoCivil','id');
+        $catReligion = CatReligion::orderBy('religion','asc')->pluck('religion','id');
+        $catNacionalidad = CatNacionalidad::orderBy('nacionalidad','asc')->pluck('nacionalidad','id');
+        $catEscolaridad = CatEscolaridad::orderBy('escolaridad','asc')->pluck('escolaridad','id');
+        return view('personas.createModal',array('catEtnia'=>$catEtnia,'catReligion'=>$catReligion,'catNacionalidad'=>$catNacionalidad,'catEscolaridad'=>$catEscolaridad,'catEdoCivil'=>$catEdoCivil));
+    }
     /**
      * Store a newly created Persona in storage.
      *
