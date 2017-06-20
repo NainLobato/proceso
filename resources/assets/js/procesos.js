@@ -261,8 +261,6 @@ $(document).on('blur', "input[type=text]", function () {
         });
 
 
-
-    
         $(document).ready(function() {
           $("#idFiscal").select2();
         });
@@ -289,11 +287,10 @@ $(document).on('blur', "input[type=text]", function () {
         });
 
         $(document).ready(function() {
-         var idVictimaImputacionS= $("#idVictimaImputacion").select2();
-          idVictimaImputacionS.onSelect=getImplicados;
+            var idVictimaImputacionS= $("#idVictimaImputacion").select2();
         });
  
-       $(document).ready(function() {
+        $(document).ready(function() {
           $("#idImputadoImputacion").select2();
         });
 

@@ -93,7 +93,6 @@
         <div class="content-wrapper">
             @yield('content')
         </div>
-
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
              <div align="right" style="display:block-inline;"><img src="/public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
