@@ -21,6 +21,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('catEscolaridads', 'catEscolaridadController');
+
+Route::get('personas/createModal', ['middleware' => 'web','as'=>'personas.createModal','uses'=>'PersonaController@createModal']);
+
 Route::resource('personas', 'PersonaController');
 
 Route::resource('catEscolaridads', 'catEscolaridadController');
@@ -94,4 +97,12 @@ Route::post('procesos/saveImputacion', ['middleware' => 'web','as'=>'procesos.sa
 
 Route::post('procesos/getImplicados', ['middleware' => 'web','as'=>'procesos.getImplicados','uses'=>'ProcesoController@getImplicados']);
 
+Route::post('procesos/deleteVictima', ['middleware' => 'web','as'=>'procesos.deleteVictima','uses'=>'ProcesoController@deleteVictima']);
+
+Route::post('procesos/deleteImputado', ['middleware' => 'web','as'=>'procesos.deleteImputado','uses'=>'ProcesoController@deleteImputado']);
+
+Route::post('procesos/deleteImputacion', ['middleware' => 'web','as'=>'procesos.deleteImputacion','uses'=>'ProcesoController@deleteImputacion']);
+
 Route::resource('avances', 'AvanceController');
+
+Route::resource('catAgrupacions', 'CatAgrupacionController');

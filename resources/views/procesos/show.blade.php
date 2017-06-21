@@ -2,18 +2,24 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Proceso
-        </h1>
+        <img class="img-responsive" src="{{ asset('img/logo.png') }}">
     </section>
     <div class="content">
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row" style="padding-left: 20px">
-                    @include('procesos.show_fields')
-                    <a href="{!! route('procesos.index') !!}" class="btn btn-default">Regresar</a>
+    
+        <div class="panel panel-primary"> 
+        <div class="panel-heading"> 
+            <h3 class="panel-title">Proceso</h3> 
+        </div> 
+        <div class="panel-body"> 
+            <!--<div class="box box-primary">-->
+                <div class="box-body">
+                    <div class="row" style="padding-left: 20px">
+                        @include('procesos.show_fields')
+                        <a href="{!! route('procesos.index') !!}" class="btn btn-primary">Regresar</a>
+                    </div>
                 </div>
-            </div>
+            <!--</div>-->
         </div>
+        </div> 
     </div>
 @endsection

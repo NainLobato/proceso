@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\CatEdoCivil;
+use App\Models\CatAgrupacion;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class CatEdoCivilDataTable extends DataTable
+class CatAgrupacionDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class CatEdoCivilDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'cat_edo_civils.datatables_actions')
+            ->addColumn('action', 'cat_agrupacions.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class CatEdoCivilDataTable extends DataTable
      */
     public function query()
     {
-        $CatEdoCivils = CatEdoCivil::query();
+        $catAgrupacions = CatAgrupacion::query();
 
-        return $this->applyScopes($CatEdoCivils);
+        return $this->applyScopes($catAgrupacions);
     }
 
     /**
@@ -72,8 +72,8 @@ class CatEdoCivilDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id' => ['id' => 'id', 'data' => 'id'],
-            'estadocivil' => ['name' => 'estadocivil', 'data' => 'estadocivil']
+            'agrupacion' => ['name' => 'agrupacion', 'data' => 'agrupacion'],
+            'clave' => ['name' => 'clave', 'data' => 'clave']
         ];
     }
 
@@ -84,6 +84,6 @@ class CatEdoCivilDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'CatEdoCivils';
+        return 'catAgrupacions';
     }
 }
