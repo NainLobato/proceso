@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\cp;
 
 /**
  * Class Direccion
@@ -28,7 +29,7 @@ class Direccion extends Model
         'entreCalle1',
         'entreCalle2',
         'referencia',
-        'idTipoLugar'
+        'idTipoLugar',
     ];
 
     /**
@@ -54,9 +55,15 @@ class Direccion extends Model
      */
     public static $rules = [
         'calle' => 'required',
-        'idCodigo' => 'required',
-        'entreCalle2' => 'referencia string,256 text'
+        /*'idCodigo' => 'required',
+        'entreCalle2' => 'referencia string,256 text'*/
     ];
 
     
+         public function tipoLugar()
+    {
+        return $this->hasOne('App\Models\cat_Tipo_Lugar', "id","tipoLugar");
+    }
+
+
 }

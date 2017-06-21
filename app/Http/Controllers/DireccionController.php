@@ -10,6 +10,9 @@ use App\Repositories\DireccionRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\cp;
+use App\Models\CatTipoLugar;
+
 
 class DireccionController extends AppBaseController
 {
@@ -39,7 +42,12 @@ class DireccionController extends AppBaseController
      */
     public function create()
     {
-        return view('direccions.create');
+        $catTipoLugar = catTipoLugar::orderBy('tipoLugar','asc')->pluck('tipoLugar','id');
+        $cp = cp::orderBy('d_codigo','asc')->pluck('d_codigo','idCodigo');
+         return view('direccions.create',array("cp"=>$cp, "CatTipoLugar"=>$catTipoLugar));
+        /*$cp = cp::orderBy('cp','asc')->pluck('cp','idCodigo');
+        return view('direccions.create',array("cp"=>$cp, "CatTipoLugar"=>$catTipoLugar));*/
+       
     }
 
     /**
@@ -97,7 +105,9 @@ class DireccionController extends AppBaseController
             return redirect(route('direccions.index'));
         }
 
-        return view('direccions.edit')->with('direccion', $direccion);
+        $catTipoLugar = catTipoLugar::pluck('tipoLugar','id');
+        $cp = cp::pluck('d_codigo','idCodigo');
+        return view('direccions.edit',array("cp"=>$cp, "CatTipoLugar"=>$catTipoLugar))->with('direccion', $direccion);
     }
 
     /**

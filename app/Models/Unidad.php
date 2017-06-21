@@ -21,6 +21,7 @@ class Unidad extends Model
 
 
     public $fillable = [
+        'id',
         'nombre',
         'direccion',
         'latitud',
@@ -38,6 +39,7 @@ class Unidad extends Model
      * @var array
      */
     protected $casts = [
+        'id' => 'integer',
         'nombre' => 'string',
         'direccion' => 'string',
         'latitud' => 'string',
@@ -55,6 +57,7 @@ class Unidad extends Model
      * @var array
      */
     public static $rules = [
+        'id' => 'required',
         'nombre' => 'required',
         'idFiscal' => 'required',
         'distrito' => 'required',
