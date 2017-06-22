@@ -54,12 +54,12 @@
 
         <div class="relation-proceso-imputado">
         @if(true or $action == '')
-            @foreach(array() as $imputado)
+            @foreach($imputados as $imputado)
             <div class="row row-proceso-imputado" style="margin-bottom: 10px;">
                 <input type="hidden" name="imputados[]" value="{!! $imputado->id !!}">
-                <input type="hidden" name="direccionesImputados[]" value="{!! $imputado->direccion()->id !!}">
-                <div class="col-sm-offset-2 col-sm-5">{!! $imputado->nombre . ' ' . $imputado->paterno !!}</div>
-                <div class="col-sm-4">{!! $imputado->direccion()->id !!}</div>
+                <input type="hidden" name="direccionesImputados[]" value="{!! $imputado->id !!}">
+                <div class="col-sm-offset-2 col-sm-5">{!! $imputado->nombre !!}</div>
+                <div class="col-sm-4">{!! $imputado->id !!}</div>
                 <div class="col-sm-1 text-center">
                     <i class="fa fa-times icon-red remove-proceso-imputado"></i>
                 </div>

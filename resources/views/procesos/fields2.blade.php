@@ -49,7 +49,6 @@
                 {!! Form::date('fechaInicioCarpeta', null, ['class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
-
     </div>
     </div>
     </div>

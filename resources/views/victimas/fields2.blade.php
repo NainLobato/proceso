@@ -39,12 +39,12 @@
 
         <div class="relation-proceso-victima">
             @if (true or $action == '')
-                @foreach(array() as $victima)
+                @foreach($victimas as $victima)
                     <div class="row row-proceso-victima" style="margin-bottom: 10px;">
                         <input type="hidden" name="victimas[]" value="{!! $victima->id !!}">
-                        <input type="hidden" name="direccionesVictimas[]" value="{!! $victima->direccion()->id !!}">
-                        <div class="col-sm-offset-2 col-sm-5">{!! $victima->nombre . ' ' . $victima->paterno !!}</div>
-                        <div class="col-sm-4">{!! $victima->direccion()->id !!}</div>
+                        <input type="hidden" name="direccionesVictimas[]" value="{!! $victima->id !!}">
+                        <div class="col-sm-offset-2 col-sm-5">{!! $victima->nombre !!}</div>
+                        <div class="col-sm-4">{!! $victima->    id !!}</div>
                         <div class="col-sm-1 text-center">
                             <i class="fa fa-times icon-red remove-proceso-victima"></i>
                         </div>
