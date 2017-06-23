@@ -6,7 +6,7 @@
 
 <!-- Username Field -->
 <div class="form-group">
-    {!! Form::label('username', 'Username:') !!}
+    {!! Form::label('username', 'username:') !!}
     <p>{!! $catFiscal->username !!}</p>
 </div>
 

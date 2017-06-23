@@ -11,7 +11,7 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
 
-class CatTipoLugarController extends AppBaseController
+class catTipoLugarController extends AppBaseController
 {
     /** @var  CatTipoLugarRepository */
     private $catTipoLugarRepository;
@@ -39,7 +39,8 @@ class CatTipoLugarController extends AppBaseController
      */
     public function create()
     {
-        return view('cat_tipo_lugars.create');
+        $catTipoLugar=catTipoLugar::orderBy('tipoLugar','asc')->pluck('tipoLugar','id');
+        return view('cat_tipo_lugars.create', array('catTipolugars'-> $catTipoLugars));
     }
 
     /**

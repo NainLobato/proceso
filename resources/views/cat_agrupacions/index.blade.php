@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Catalogo de Fiscales</h1>
+        <h1 class="pull-left">Cat Agrupacions</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catFiscals.create') !!}">Nuevo</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('catAgrupacions.create') !!}">Add New</a>
         </h1>
     </section>
     <div class="content">
@@ -15,7 +15,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('cat_fiscals.table')
+                    @include('cat_agrupacions.table')
             </div>
         </div>
     </div>

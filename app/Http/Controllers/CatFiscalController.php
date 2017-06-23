@@ -10,6 +10,7 @@ use App\Repositories\CatFiscalRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\unidad;
 
 class CatFiscalController extends AppBaseController
 {
@@ -39,7 +40,9 @@ class CatFiscalController extends AppBaseController
      */
     public function create()
     {
-        return view('cat_fiscals.create');
+
+        $unidad = unidad::orderBy('nombre','asc')->pluck('nombre','id');
+        return view('cat_fiscals.create',array("unidad"=>$unidad));
     }
 
     /**
@@ -77,6 +80,7 @@ class CatFiscalController extends AppBaseController
             return redirect(route('catFiscals.index'));
         }
 
+
         return view('cat_fiscals.show')->with('catFiscal', $catFiscal);
     }
 
@@ -97,7 +101,9 @@ class CatFiscalController extends AppBaseController
             return redirect(route('catFiscals.index'));
         }
 
-        return view('cat_fiscals.edit')->with('catFiscal', $catFiscal);
+        
+        $unidad=unidad::pluck('nombre','id');
+        return view('cat_fiscals.edit',array("unidad"=>$unidad))->with('catFiscal', $catFiscal);
     }
 
     /**

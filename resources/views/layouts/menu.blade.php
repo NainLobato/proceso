@@ -22,6 +22,10 @@
             <a href="{!! route('catDelitos.index') !!}"><i class="fa fa-edit"></i><span>Delitos</span></a>
         </li>
 
+        <li class="{{ Request::is('catAgrupacions*') ? 'active' : '' }}">
+            <a href="{!! route('catAgrupacions.index') !!}"><i class="fa fa-edit"></i><span>Agrupaciones Delitos</span></a>
+        </li>
+
          <li class="{{ Request::is('catEscolaridads*') ? 'active' : '' }}">
             <a href="{!! route('catEscolaridads.index') !!}"><i class="fa fa-edit"></i><span>Escolaridad</span></a>
         </li>
@@ -142,5 +146,6 @@
         </li>
     </ul>
 </li>
+
 
 

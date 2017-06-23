@@ -465,11 +465,15 @@ class ProcesoController extends AppBaseController
      */
     public function edit($id)
     {
-        $unidades=Unidad::pluck('nombre','id');
-        $fiscales= CatFiscal::pluck('name','id');
-        $jueces= CatJuez::pluck('juez','id');
-        $juzgados= CatJuzgado::pluck('juzgado','id');
-
+        $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(COALESCE(nombre," ")," ", COALESCE(paterno," ")," ",COALESCE(materno," ")) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
+        $procesos=Proceso::pluck('numeroProceso','id');
+        $direcciones = Direccion::pluck('calle','id');
+        $delitos = CatDelito::orderBy('delito')->pluck('delito','id');
+        $unidades=Unidad::orderBy('nombre')->pluck('nombre','id');
+        $fiscales= CatFiscal::orderBy('name')->pluck('name','id');
+        $jueces= CatJuez::orderBy('juez')->pluck('juez','id');
+        $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+      
         $proceso = $this->procesoRepository->findWithoutFail($id);
 
         if (empty($proceso)) {

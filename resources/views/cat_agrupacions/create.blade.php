@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Catalogo de Fiscales
+            Cat Agrupacion
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'catFiscals.store']) !!}
+                    {!! Form::open(['route' => 'catAgrupacions.store']) !!}
 
-                        @include('cat_fiscals.fields')
+                        @include('cat_agrupacions.fields')
 
                     {!! Form::close() !!}
                 </div>
