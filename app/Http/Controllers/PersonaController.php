@@ -18,7 +18,7 @@ use App\Models\CatEscolaridad;
 use App\Models\CatEtnia;
 use App\Models\CatNacionalidad;
 use App\DataTables\PersonaDataTable;
-
+use Illuminate\Support\Facades\Input;
 
 class PersonaController extends AppBaseController
 {
@@ -204,5 +204,29 @@ class PersonaController extends AppBaseController
         Flash::success('Persona deleted successfully.');
 
         return redirect(route('personas.index'));
+    }
+
+
+    public function getPersonas()
+    {
+        try{
+//              if (\Request::ajax()){
+                $input=Input::all();
+                $nombre = $input['q'];
+                $personas= DB::table('personas')
+                ->where(DB::raw('CONCAT(nombre, " ", paterno," ",materno)'),'LIKE', '%'.$nombre.'%')
+                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, id')->get();
+                if($personas){
+                    return response()->json(['personas'=>$personas,'total'=>sizeof($personas)]);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud']);
+                }
+            /* }else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+            }*/
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
     }
 }

@@ -149,3 +149,7 @@
 
 
 
+<li class="{{ Request::is('catTipoRelacions*') ? 'active' : '' }}">
+    <a href="{!! route('catTipoRelacions.index') !!}"><i class="fa fa-edit"></i><span>CatTipoRelacions</span></a>
+</li>
+

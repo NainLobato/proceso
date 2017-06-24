@@ -24,7 +24,7 @@ use Illuminate\Http\Request;
 use App\Models\Victima;
 use App\Models\Imputado;
 use App\Models\VictimaImputado;
-
+use App\Models\CatTipoRelacion;
 class ProcesoController extends AppBaseController
 {
     /** @var  ProcesoRepository */
@@ -57,14 +57,15 @@ class ProcesoController extends AppBaseController
         $procesos=Proceso::pluck('numeroProceso','id');
         $direcciones = Direccion::pluck('calle','id');
         $delitos = CatDelito::orderBy('delito')->pluck('delito','id');
+        $delitos = CatDelito::orderBy('delito')->pluck('delito','id');
         $unidades=Unidad::orderBy('nombre')->pluck('nombre','id');
         $fiscales= CatFiscal::orderBy('name')->pluck('name','id');
         $jueces= CatJuez::orderBy('juez')->pluck('juez','id');
         $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        $tiposRelacion= CatTipoRelacion::orderBy('tipoRelacion')->pluck('tipoRelacion','id');
         $victimas= array();
         $imputados= array();
-
-        return view('procesos.create',array('unidades'=>$unidades,'victimas'=>$victimas,'imputados'=>$imputados,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
+        return view('procesos.create',array('tiposRelacion'=>$tiposRelacion,'unidades'=>$unidades,'victimas'=>$victimas,'imputados'=>$imputados,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
     }
 
     /**
@@ -468,6 +469,7 @@ class ProcesoController extends AppBaseController
      */
     public function edit($id)
     {
+        $tiposRelacion= CatTipoRelacion::orderBy('tipoRelacion')->pluck('tipoRelacion','id');
         $personas=Persona::orderBy('nombreCompleto')->select(DB::raw('CONCAT(COALESCE(nombre," ")," ", COALESCE(paterno," ")," ",COALESCE(materno," ")) as nombreCompleto'),'id')->pluck('nombreCompleto','id');
         $procesos=Proceso::pluck('numeroProceso','id');
         $direcciones = Direccion::pluck('calle','id');
@@ -503,7 +505,7 @@ class ProcesoController extends AppBaseController
             return redirect(route('procesos.index'));
         }
 
-        return view('procesos.edit',array('personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
+        return view('procesos.edit',array('tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
     }
 
     /**

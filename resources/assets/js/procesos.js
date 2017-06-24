@@ -76,7 +76,7 @@ $(document).ready(function() {
                     $("#divVictimas").show();
                     $("#divImputados").show();
                 }
-                else{
+                else{   
                     $("#ajaxResponse").html("<div>No se pudo guardar el proceso, error: "+JSON.stringify(msg)+"</div>");
                 }
             }
@@ -94,6 +94,10 @@ $(document).on('blur', "input[type=text]", function () {
             var $relationVictima = $('.add-proceso-victima');
             var $removeRelationVictima = $('.relation-proceso-victima');
             var addRelationVictima = function () {
+                if($('#idProceso').val()==undefined || $('#idProceso').val()=="" || $('#idProceso').val()==null){
+                    alert('Registre los datos del proceso antes de agregar victimas');
+                    return;
+                }
                 $victima = $('#idVictima');
                 $direccionVictima = $('#idDireccionVictima');
                 $relationProcesoVictima = $('.relation-proceso-victima');
@@ -147,7 +151,7 @@ $(document).on('blur', "input[type=text]", function () {
                             getImplicados();
                         }
                         else{
-                                $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                            $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
                         }
                     }
                     
@@ -162,12 +166,21 @@ $(document).on('blur', "input[type=text]", function () {
             var $relationImputado = $('.add-proceso-imputado');
             var $removeRelationImputado = $('.relation-proceso-imputado');
             var addRelationImputado = function () {
-                $imputado = $('#idImputado');
+                if($('#idProceso').val()==undefined || $('#idProceso').val()=="" || $('#idProceso').val()==null){
+                    alert('Registre los datos del proceso antes de agregar imputados');
+                    return;
+                }
+                $imputadoSelect = $('#idImputado');
+                $imputadoSelect2 = $('#select2-idImputado-container');
+                var options = $('#idImputado option');
+
+                $imputado={"nombre":$imputadoSelect2.text(),"id":options[options.length-1].value};
                 $esDetenidoImputado = $('#esDetenido');
                 $fechaDetencionImputado = $('#fechaDetencionImputado');
                 $direccionImputado = $('#idDireccionImputado');
                 var dirImputado= $('#idDireccionImputado').val() != undefined ? $('#idDireccionImputado').val() : " ";
-                var dataJSON = JSON.stringify({idPersona:$imputado.val(),idDireccion:$direccionImputado.val(),idProceso:$('#idProceso').val(),esDetenido:$esDetenidoImputado.val(),fechaDetencion:$fechaDetencionImputado.val()});
+              
+                var dataJSON = JSON.stringify({idPersona:$imputado.id,idDireccion:$direccionImputado.val(),idProceso:$('#idProceso').val(),esDetenido:$esDetenidoImputado.val(),fechaDetencion:$fechaDetencionImputado.val()});
                 $relationProcesoImputado = $('.relation-proceso-imputado');
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
@@ -179,10 +192,10 @@ $(document).on('blur', "input[type=text]", function () {
                     success: function( msg,data ) {
                         if(msg.id){
                             $relationProcesoImputado.append('<div class="row proceso-imputado" data-imputado-id="' + msg.id + '" style="margin-bottom: 10px;">'
-                            + '<input type="hidden" name="imputados[]" value="' + $imputado.val() + '">'
+                            + '<input type="hidden" name="imputados[]" value="' + $imputado.id + '">'
                             + '<input type="hidden" name="direccionesImputados[]" value="' + $direccionImputado.val() + '">'
                             + '<input type="hidden" name="detenidosImputados[]" value="' + $esDetenidoImputado.val() + '">'
-                            + '<div class="col-sm-offset-2 col-sm-5" data-imputado="' + $imputado.val() + '">' + $('#idImputado option:selected').text() + '</div>'
+                            + '<div class="col-sm-offset-2 col-sm-5" data-imputado="' + $imputado.nombre + '">' + $imputado.nombre + '</div>'
                             + '<div class="col-sm-4" data-direccion="' + dirImputado + '">' + dirImputado + '</div>'
                             + '<div class="col-sm-1 text-center"><i class="fa fa-times icon-red remove-proceso-imputado"></i></div>'
                             + '</div>');
@@ -227,6 +240,10 @@ $(document).on('blur', "input[type=text]", function () {
             var $relationImputacion = $('.add-proceso-imputacion');
             var $removeRelationImputacion = $('.relation-proceso-imputacion');
             var addRelationImputacion = function () {
+                if($('#idProceso').val()==undefined || $('#idProceso').val()=="" || $('#idProceso').val()==null){
+                    alert('Registre los datos del proceso antes de agregar victimas');
+                    return;
+                }
                 $victima = $('#idVictimaImputacion');
                 $imputado = $('#idImputadoImputacion');
                 $delito = $('#idDelitoImputado');
@@ -270,14 +287,113 @@ $(document).on('blur', "input[type=text]", function () {
           $("#idUIPJ").select2();
         });
   
-         $(document).ready(function() {
-          $("#idVictima").select2();
+          $(document).ready(function() {
+            $("#idVictima").select2(
+                {
+                    placeholder: "Buscar persona...",
+                    minimumInputLength: 4,
+                    ajax: {
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+                        type: "GET",
+                        url: '/procesos/public/personas/getPersonas',
+                        contentType : 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        quietMillis: 1000,
+                        delay:1000,
+                        data: function (params) {
+                          return {
+                            q: params.term, // search term
+                            page: params.page
+                          };
+                        },
+                        processResults: function (data, params) {
+                          // parse the results into the format expected by Select2
+                          // since we are using custom formatting functions we do not need to
+                          // alter the remote JSON data, except to indicate that infinite
+                          // scrolling can be used
+                          params.page = params.page || 1;
+
+                          return {
+                            results: data.personas,
+                            pagination: {
+                              more: (params.page * 30) < data.total
+                            }
+                          };
+                        },
+                        cache: true
+                    },
+                escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+                templateResult: formatRepo, // omitted for brevity, see the source of this page
+                templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+            });
         });
  
        $(document).ready(function() {
-          $("#idImputado").select2();
+            $("#idImputado").select2(
+                {
+                    placeholder: "Buscar persona...",
+                    minimumInputLength: 4,
+                    ajax: {
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+                        type: "GET",
+                        url: '/procesos/public/personas/getPersonas',
+                        contentType : 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        quietMillis: 1000,
+                        delay:1000,
+                        data: function (params) {
+                          return {
+                            q: params.term, // search term
+                            page: params.page
+                          };
+                        },
+                        processResults: function (data, params) {
+                          // parse the results into the format expected by Select2
+                          // since we are using custom formatting functions we do not need to
+                          // alter the remote JSON data, except to indicate that infinite
+                          // scrolling can be used
+                          params.page = params.page || 1;
+
+                          return {
+                            results: data.personas,
+                            pagination: {
+                              more: (params.page * 30) < data.total
+                            }
+                          };
+                        },
+                        cache: true
+                    },
+                escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+                templateResult: formatRepo, // omitted for brevity, see the source of this page
+                templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+            });
         });
         
+             function formatRepo (repo) {
+              if (repo.loading) return repo.text;
+              var markup = "<div class='select2-result-repository clearfix'>" +
+                "<div class='select2-result-repository__meta'>" +
+                  "<div class='select2-result-repository__title'>" + repo.nombre + "</div>";
+              return markup;
+            }
+
+            function formatRepoSelection (repo) {
+              return repo.nombre;
+            }
+
+            function formatRepo2 (repo) {
+              if (repo.loading) return repo.text;
+              var markup = "<div class='select2-result-repository clearfix'>" +
+                "<div class='select2-result-repository__meta'>" +
+                  "<div class='select2-result-repository__title'>" + repo.nombre + "</div>";
+              return markup;
+            }
+
+            function formatRepoSelection2 (repo) {
+              return repo.nombre;
+            }
+
+
         $(document).ready(function() {
           $("#idJuez").select2();
         });

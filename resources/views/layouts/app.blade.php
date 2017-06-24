@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
     <style>
         input {text-transform:uppercase;}
-        /*.panel-heading {
+        /*  .panel-heading {
             background-color: #0000FF;
             color: #000000;
         }

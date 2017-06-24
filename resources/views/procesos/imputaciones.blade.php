@@ -11,27 +11,27 @@
         <div class="col-md-3 col-xs-3">
             <div class="form-group">
                 {!! Form::label('idVictimaImputacion', ' Victima:') !!}
-                {!! Form::select('idVictimaImputacion', array(), null, ['id'=>'idVictimaImputacion','class' => 'form-control']) !!}
+                {!! Form::select('idVictimaImputacion', $victimas, null, ['id'=>'idVictimaImputacion','placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
 
         <div class="col-md-2 col-xs-2">
             <div class="form-group">
                 {!! Form::label('idVictima', 'Delito Imputado:') !!}
-                {!! Form::select('idDelitoImputado', $delitos, null, ['id'=>'idDelitoImputado','class' => 'form-control']) !!}
+                {!! Form::select('idDelitoImputado', $delitos, null,  ['id'=>'idDelitoImputado','placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
 
         <div class="col-md-2 col-xs-2">
             <div class="form-group">
                 {!! Form::label('idRelacionImputacion', 'Tipo De Relacion:') !!}
-                {!! Form::select('idRelacionImputacion', array('1'=>'a','2'=>'b','3'=>'c','4'=>'d'), null, ['id'=>'idRelacionImputacion','class' => 'form-control']) !!}
+                {!! Form::select('idRelacionImputacion', $tiposRelacion, null, ['id'=>'idRelacionImputacion','placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-md-3 col-xs-3">
             <div class="form-group">
                 {!! Form::label('idImputadoImputacion', 'Imputado:') !!}
-                {!! Form::select('idImputadoImputacion',  array(), null, ['id'=>'idImputadoImputacion','class' => 'form-control']) !!}
+                {!! Form::select('idImputadoImputacion',  $imputados, null, ['id'=>'idImputadoImputacion','placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-md-1 col-xs-1">

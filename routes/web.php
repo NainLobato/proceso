@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('catEscolaridads', 'catEscolaridadController');
 
 Route::get('personas/createModal', ['middleware' => 'web','as'=>'personas.createModal','uses'=>'PersonaController@createModal']);
+Route::get('personas/getPersonas', ['middleware' => 'web','as'=>'personas.getPersonas','uses'=>'PersonaController@getPersonas']);
 
 Route::resource('personas', 'PersonaController');
 
@@ -106,3 +107,7 @@ Route::post('procesos/deleteImputacion', ['middleware' => 'web','as'=>'procesos.
 Route::resource('avances', 'AvanceController');
 
 Route::resource('catAgrupacions', 'CatAgrupacionController');
+
+
+
+Route::resource('catTipoRelacions', 'CatTipoRelacionController');

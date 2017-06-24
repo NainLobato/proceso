@@ -42,14 +42,14 @@ class ProcesoDataTable extends DataTable
      */
     public function query()
     {
-        $procesos = DB::table('procesos')
+      /*  $procesos = DB::table('procesos')
                     ->join('cat_juezs','procesos.idJuez','=','cat_juezs.id')
                     ->join('cat_juzgados','procesos.idJuzgado','=','cat_juzgados.id')
                     ->join('cat_fiscals','procesos.idFiscal','=','cat_fiscals.id')
                     ->join('unidads','procesos.idUIPJ','=','unidads.id')
                     ->select(['procesos.*', 'unidads.nombre as uipj', 'cat_fiscals.name as fiscal', 'cat_juzgados.juzgado','cat_juezs.juez']);
-        //$procesos =Proceso::query();
-
+        */
+        $procesos =Proceso::query();
         return $this->applyScopes($procesos);
     }
 
