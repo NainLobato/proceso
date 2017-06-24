@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCatAgrupacionsTable extends Migration
+class CreateCatTipoRelacionsTable extends Migration
 {
 
     /**
@@ -13,13 +13,12 @@ class CreateCatAgrupacionsTable extends Migration
      */
     public function up()
     {
-       /* Schema::create('cat_agrupacions', function (Blueprint $table) {
+        Schema::create('cat_tipo_relacions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('agrupacion', 255);
-            $table->integer('clave');
+            $table->string('tipoRelacion');
             $table->timestamps();
             $table->softDeletes();
-        });*/
+        });
     }
 
     /**
@@ -29,6 +28,6 @@ class CreateCatAgrupacionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cat_agrupacions');
+        Schema::drop('cat_tipo_relacions');
     }
 }
