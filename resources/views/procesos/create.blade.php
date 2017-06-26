@@ -81,6 +81,7 @@
                 <button type="button" class="btn btn-primary add-proceso-imputacion">Agregar Delito Imputado</button>
             </div>
         </div>
+        </div>
 
         <div class="relation-proceso-imputacion">
             @if(true or $action == '')

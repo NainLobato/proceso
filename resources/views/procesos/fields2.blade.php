@@ -115,14 +115,14 @@
                 {!! Form::checkbox('conDetenido', '1', null) !!} 
             </div>
         </div>
-        <div class="col-md-2 col-xs-6">
+        <div class="col-md-3 col-xs-6">
             <div class="form-group">
                   {!! Form::label('obsequiaOrden', '¿ORDEN OBSEQUIADA?:') !!}<br>
                 {!! Form::hidden('obsequiaOrden', false) !!}
                 {!! Form::checkbox('obsequiaOrden', '1', null) !!} 
           </div>
         </div>
-        <div class="col-md-3 col-xs-8">
+        <div class="col-md-2 col-xs-8">
             <div class="form-group">
               {!! Form::label('fechaOrden', 'FECHA ORDEN:') !!}
                {!! Form::date('fechaOrden', null, ['class' => 'form-control']) !!}
