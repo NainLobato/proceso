@@ -94,13 +94,21 @@ $(document).on('blur', "input[type=text]", function () {
             var $relationVictima = $('.add-proceso-victima');
             var $removeRelationVictima = $('.relation-proceso-victima');
             var addRelationVictima = function () {
+                
+
                 if($('#idProceso').val()==undefined || $('#idProceso').val()=="" || $('#idProceso').val()==null){
                     alert('Registre los datos del proceso antes de agregar victimas');
                     return;
                 }
+
                 $victimaSelect = $('#idVictima');
                 $victimaSelect2 = $('#select2-idVictima-container');
                 var options = $('#idVictima option');
+
+                if($victimaSelect2.text()=="" || $victimaSelect2.text()==null){
+                    alert('Asegurese de seleccionar una victima antes de dar clic al botón Agregar');
+                    return;
+                }
 
                 $victima={"nombre":$victimaSelect2.text(),"id":options[options.length-1].value};
          
@@ -179,6 +187,12 @@ $(document).on('blur', "input[type=text]", function () {
                 $imputadoSelect = $('#idImputado');
                 $imputadoSelect2 = $('#select2-idImputado-container');
                 var options = $('#idImputado option');
+
+                if($imputadoSelect2.text()=="" || $imputadoSelect2.text()==null){
+                    alert('Asegurese de seleccionar un imputado antes de dar clic al botón Agregar');
+                    return;
+                }
+
 
                 $imputado={"nombre":$imputadoSelect2.text(),"id":options[options.length-1].value};
                 $esDetenidoImputado = $('#esDetenido');
@@ -395,7 +409,7 @@ $(document).on('blur', "input[type=text]", function () {
           $("#idJuzgado").select2();
         });
 
-        $(document).ready(function() {
+       /* $(document).ready(function() {
             var idVictimaImputacionS= $("#idVictimaImputacion").select2(
                     {
                         initSelection: function(element, callback) {
@@ -403,11 +417,11 @@ $(document).on('blur', "input[type=text]", function () {
                         }
                     }
                 );
-        });
+        });*/
  
-        $(document).ready(function() {
+       /*$(document).ready(function() {
           $("#idImputadoImputacion").select2();
-        });
+        });*/
 
         $(document).ready(function() {
           $("#idDelitoImputado").select2();
