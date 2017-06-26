@@ -119,12 +119,11 @@ $(document).on('blur', "input[type=text]", function () {
                     dataType: 'json',
                     success: function( msg,data ) {
                         if(msg.id){
-                            $relationProcesoVictima.append('<div class="row proceso-victima" data-victima-id="' + msg.id + '" style="margin-bottom: 10px;">'
+                            $relationProcesoVictima.append('<div class="row proceso-victima" data-victima-id="' + msg.id
                             + '<input type="hidden" name="victimas[]" value="' + $victima.id + '">'
                             + '<input type="hidden" name="direccionesVictimas[]" value="' + dirVictima + '">'
-                            + '<div class="col-sm-offset-2 col-sm-5" data-victima="' + $victima.nombre + '">' + $victima.nombre + '</div>'
-                            + '<div class="col-sm-4" data-direccion="' + dirVictima + '">' + dirVictima + '</div>'
-                            + '<div class="col-sm-1 text-center"><i class="fa fa-times icon-red remove-proceso-victima"></i></div>'
+                            + '<div class="col-sm-10 col-xs-10" data-victima="' + $victima.nombre + '">' + $victima.nombre + '</div>'
+                            + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-victima"></i></div>'
                             + '</div>');
                             getImplicados();
                         }
@@ -198,13 +197,12 @@ $(document).on('blur', "input[type=text]", function () {
                     dataType: 'json',
                     success: function( msg,data ) {
                         if(msg.id){
-                            $relationProcesoImputado.append('<div class="row proceso-imputado" data-imputado-id="' + msg.id + '" style="margin-bottom: 10px;">'
+                            $relationProcesoImputado.append('<div class="row proceso-imputado" data-imputado-id="' + msg.id
                             + '<input type="hidden" name="imputados[]" value="' + $imputado.id + '">'
                             + '<input type="hidden" name="direccionesImputados[]" value="' + $direccionImputado.val() + '">'
                             + '<input type="hidden" name="detenidosImputados[]" value="' + $esDetenidoImputado.val() + '">'
-                            + '<div class="col-sm-offset-2 col-sm-5" data-imputado="' + $imputado.nombre + '">' + $imputado.nombre + '</div>'
-                            + '<div class="col-sm-4" data-direccion="' + dirImputado + '">' + dirImputado + '</div>'
-                            + '<div class="col-sm-1 text-center"><i class="fa fa-times icon-red remove-proceso-imputado"></i></div>'
+                            + '<div class="col-sm-10 col-xs-10" data-imputado="' + $imputado.nombre + '">' + $imputado.nombre + '</div>'
+                            + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputado"></i></div>'
                             + '</div>');
                             getImplicados();
                         }else{
@@ -256,12 +254,12 @@ $(document).on('blur', "input[type=text]", function () {
                 $delito = $('#idDelitoImputado');
                 $relacion = $('#idRelacionImputacion');
                 $relationProcesoImputacion = $('.relation-proceso-imputacion');
-                $relationProcesoImputacion.append('<div class="row proceso-imputacion" data-link-id="' + $victima.val() + '" style="margin-bottom: 10px;">'
+                $relationProcesoImputacion.append('<div class="row proceso-imputacion" data-link-id="' + $victima.val()
                     + '<input type="hidden" name="victimasImputacion[]" value="' + $victima.val() + '">'
                     + '<input type="hidden" name="imputadosImputacion[]" value="' + $imputado.val() + '">'
                     + '<input type="hidden" name="delitosImputacion[]" value="' + $delito.val() + '">'
-                    + '<div class="col-sm-offset-2 col-sm-5">' +  $('#idVictimaImputacion option:selected').text() +  '&nbsp;' + $('#idDelitoImputado option:selected').text()  +  '&nbsp;' + $('#idImputadoImputacion option:selected').text() + '</div>'
-                    + '<div class="col-sm-1 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
+                    + '<div class="col-sm-10 col-xs-10">' +  $('#idVictimaImputacion option:selected').text() +  '&nbsp;' + $('#idDelitoImputado option:selected').text()  +  '&nbsp;' + $('#idImputadoImputacion option:selected').text() + '</div>'
+                    + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
                     + '</div>');
                 var dataJSON = JSON.stringify({idVictima:$victima.val(),idImputado:$imputado.val(),idDelito:$delito.val(),idTipoRelacion:$relacion.val(),idProceso:$("#idProceso").val()});  
                  $.ajax({
