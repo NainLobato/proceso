@@ -13,7 +13,7 @@
         <div class="col-md-3 col-xs-3">
              <div class="form-group">
                 {!! Form::label('idVictima', 'Nombre Victima:') !!}<br>
-                {!! Form::select('idVictima', $personas, null, ['class' => 'form-control']) !!}
+                {!! Form::select('idVictima', array(), null, ['class' => 'form-control']) !!}
             </div>
         </div>
 

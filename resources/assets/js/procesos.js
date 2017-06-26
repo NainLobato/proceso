@@ -98,11 +98,18 @@ $(document).on('blur', "input[type=text]", function () {
                     alert('Registre los datos del proceso antes de agregar victimas');
                     return;
                 }
-                $victima = $('#idVictima');
+                $victimaSelect = $('#idVictima');
+                $victimaSelect2 = $('#select2-idVictima-container');
+                var options = $('#idVictima option');
+
+                $victima={"nombre":$victimaSelect2.text(),"id":options[options.length-1].value};
+         
+
+                
                 $direccionVictima = $('#idDireccionVictima');
                 $relationProcesoVictima = $('.relation-proceso-victima');
                 var dirVictima= $('#idDireccionVictima').val() != undefined ? $('#idDireccionVictima').val() : " ";
-                var dataJSON = JSON.stringify({idPersona:$victima.val(),idDireccion:$direccionVictima.val(),idProceso:$('#idProceso').val()});  
+                var dataJSON = JSON.stringify({idPersona:$victima.id,idDireccion:$direccionVictima.val(),idProceso:$('#idProceso').val()});
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
                     type: "POST",
@@ -113,16 +120,16 @@ $(document).on('blur', "input[type=text]", function () {
                     success: function( msg,data ) {
                         if(msg.id){
                             $relationProcesoVictima.append('<div class="row proceso-victima" data-victima-id="' + msg.id + '" style="margin-bottom: 10px;">'
-                            + '<input type="hidden" name="victimas[]" value="' + $victima.val() + '">'
+                            + '<input type="hidden" name="victimas[]" value="' + $victima.id + '">'
                             + '<input type="hidden" name="direccionesVictimas[]" value="' + dirVictima + '">'
-                            + '<div class="col-sm-offset-2 col-sm-5" data-victima="' + $victima.val() + '">' + $('#idVictima option:selected').text() + '</div>'
+                            + '<div class="col-sm-offset-2 col-sm-5" data-victima="' + $victima.nombre + '">' + $victima.nombre + '</div>'
                             + '<div class="col-sm-4" data-direccion="' + dirVictima + '">' + dirVictima + '</div>'
                             + '<div class="col-sm-1 text-center"><i class="fa fa-times icon-red remove-proceso-victima"></i></div>'
                             + '</div>');
                             getImplicados();
                         }
                         else{
-                                $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                            $relationProcesoVictima.append('<div class="row proceso-victima">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-victima"></i>');
                         }
                     }
                 });
@@ -143,7 +150,7 @@ $(document).on('blur', "input[type=text]", function () {
                             getImplicados();
                         }
                         else{
-                                $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                                $relationProcesoVictima.append('<div class="row proceso-victima">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-victima"></i>');
                         }
                     },
                     error: function( msg,data ) {
@@ -151,7 +158,7 @@ $(document).on('blur', "input[type=text]", function () {
                             getImplicados();
                         }
                         else{
-                            $relationProcesoImputado.append('<div class="row proceso-imputado">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-imputado"></i>');
+                            $relationProcesoVictima.append('<div class="row proceso-victima">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-victima"></i>');
                         }
                     }
                     
@@ -381,18 +388,6 @@ $(document).on('blur', "input[type=text]", function () {
               return repo.nombre;
             }
 
-            function formatRepo2 (repo) {
-              if (repo.loading) return repo.text;
-              var markup = "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__meta'>" +
-                  "<div class='select2-result-repository__title'>" + repo.nombre + "</div>";
-              return markup;
-            }
-
-            function formatRepoSelection2 (repo) {
-              return repo.nombre;
-            }
-
 
         $(document).ready(function() {
           $("#idJuez").select2();
@@ -403,7 +398,13 @@ $(document).on('blur', "input[type=text]", function () {
         });
 
         $(document).ready(function() {
-            var idVictimaImputacionS= $("#idVictimaImputacion").select2();
+            var idVictimaImputacionS= $("#idVictimaImputacion").select2(
+                    {
+                        initSelection: function(element, callback) {
+                        callback($('#idVictimaImputacion').val());
+                        }
+                    }
+                );
         });
  
         $(document).ready(function() {
