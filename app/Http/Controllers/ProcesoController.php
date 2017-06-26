@@ -57,7 +57,6 @@ class ProcesoController extends AppBaseController
         $procesos=Proceso::pluck('numeroProceso','id');
         $direcciones = Direccion::pluck('calle','id');
         $delitos = CatDelito::orderBy('delito')->pluck('delito','id');
-        $delitos = CatDelito::orderBy('delito')->pluck('delito','id');
         $unidades=Unidad::orderBy('nombre')->pluck('nombre','id');
         $fiscales= CatFiscal::orderBy('name')->pluck('name','id');
         $jueces= CatJuez::orderBy('juez')->pluck('juez','id');
@@ -65,7 +64,8 @@ class ProcesoController extends AppBaseController
         $tiposRelacion= CatTipoRelacion::orderBy('tipoRelacion')->pluck('tipoRelacion','id');
         $victimas= array();
         $imputados= array();
-        return view('procesos.create',array('tiposRelacion'=>$tiposRelacion,'unidades'=>$unidades,'victimas'=>$victimas,'imputados'=>$imputados,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
+        $action="crear";
+        return view('procesos.create',array('action'=>$action,'tiposRelacion'=>$tiposRelacion,'unidades'=>$unidades,'victimas'=>$victimas,'imputados'=>$imputados,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
     }
 
     /**
@@ -126,8 +126,7 @@ class ProcesoController extends AppBaseController
                 ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
                 ->where('victimas.idProceso','=',$input['idProceso'])
                 ->where('victimas.deleted_at','=',NULL)
-                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
-                
+                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, victimas.id')->get();
                 $imputados= DB::table('personas')
                 ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
                 ->where('imputados.idProceso','=',$input['idProceso'])
@@ -478,25 +477,41 @@ class ProcesoController extends AppBaseController
         $fiscales= CatFiscal::orderBy('name')->pluck('name','id');
         $jueces= CatJuez::orderBy('juez')->pluck('juez','id');
         $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
-        $selectedVictimas= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        $action="editar";
+
         $victimas= DB::table('personas')
             ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
             ->where('victimas.idProceso','=',$id)
             ->where('victimas.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
+            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->pluck('nombre','id');
         
         $imputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
+            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->pluck('nombre','id');
 
-        $imputaciones= DB::table('personas')
+        $selectedVictimas= DB::table('personas')
+            ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
+            ->where('victimas.idProceso','=',$id)
+            ->where('victimas.deleted_at','=',NULL)
+            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
+        
+        $selectedImputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
             ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
 
+       /* $imputaciones= DB::table('personas')
+            ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
+            ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
+            ->where('victimaimputado.idVictima','=','victimas.id')
+            ->where('victimaimputado.idImputado','=','imputados.id')
+            ->where('imputados.deleted_at','=',NULL)
+            ->where('victimas.deleted_at','=',NULL)
+            ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreVictima, imputados.id,CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreImputado, imputados.id')->get();
+*/
         $proceso = $this->procesoRepository->findWithoutFail($id);
 
         if (empty($proceso)) {
@@ -505,7 +520,7 @@ class ProcesoController extends AppBaseController
             return redirect(route('procesos.index'));
         }
 
-        return view('procesos.edit',array('tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
+        return view('procesos.edit',array('action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
     }
 
     /**

@@ -13,7 +13,7 @@
         <div class="col-md-3 col-xs-10">
              <div class="form-group">
                 {!! Form::label('idVictima', 'Nombre Victima:') !!}<br>
-                {!! Form::select('idVictima', $personas, null, ['class' => 'form-control']) !!}
+                {!! Form::select('idVictima', array(), null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
@@ -42,14 +42,13 @@
     
         <div class="relation-proceso-victima">
             @if (true or $action == '')
-                @foreach(array() as $victima)
+                @foreach($selectedVictimas as $victima)
                     <!--<div class="row row-proceso-victima">-->
                         <input type="hidden" name="victimas[]" value="{!! $victima->id !!}">
-                        <input type="hidden" name="direccionesVictimas[]" value="{!! $victima->direccion()->id !!}">
                         <div class="row">
                         <div class="col-sm-10 col-xs-10">
                         <div class="form-group">
-                            {!! $victima->nombre . ' ' . $victima->paterno !!}
+                            {!! $victima->nombre !!}
                         </div>
                         </div>
                         <div class="col-sm-2 col-xs-2 text-center">

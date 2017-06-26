@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="col-md-2 col-xs-2">
+        <div class="col-md-2 col-xs-2"> 
             <div class="form-group">
                 {!! Form::label('idRelacionImputacion', 'Tipo De Relacion:') !!}
                 {!! Form::select('idRelacionImputacion', $tiposRelacion, null, ['id'=>'idRelacionImputacion','placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
@@ -41,15 +41,12 @@
         </div>
 
         <div class="relation-proceso-imputacion">
-            @if(true or $action == '')
+            @if($action == "editar")
                 @foreach(array() as $imputacion)
                     <div class="row row-proceso-imputacion" style="margin-bottom: 10px;">
-                        <input type="hidden" name="victimasImputacion[]" value="{!! $victima->id !!}">
-                        <input type="hidden" name="direccionesVictimas[]" value="{!! $victima->direccion()->id !!}">
-                        <div class="col-sm-offset-2 col-sm-5">{!! $victima->nombre . ' ' . $victima->paterno !!}</div>
-                        <div class="col-sm-4">{!! $victima->direccion()->id !!}</div>
+                        <div class="col-sm-offset-2 col-sm-5">{!! $imputacion->nombre  !!}</div>
                         <div class="col-sm-1 text-center">
-                            <i class="fa fa-times icon-red remove-proceso-victima"></i>
+                            <i class="fa fa-times icon-red remove-proceso-imputacion"></i>
                         </div>
                     </div>
                 @endforeach
