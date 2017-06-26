@@ -14,7 +14,14 @@
     <div class="box box-default">
     <div class="box-body">
     <div class="row">
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-3 col-xs-3">
+            <!-- Uipj Field -->
+            <div class="form-group">
+                <h4>{!! Form::label('uipj', 'UIPJ:') !!}</h4>
+                <p>{!! $proceso->carpeta->uipj !!}</p> 
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3">
             <!-- Numerocarpeta Field -->
             <div class="form-group">
                 <h4>{!! Form::label('numero', 'Número de carpeta:') !!}</h4>
@@ -22,7 +29,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-3 col-xs-3">
             <!-- Fiscal Field -->
             <div class="form-group">
                 <h4>{!! Form::label('fiscal', 'Fiscal:') !!}</h4>
@@ -30,7 +37,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-3 col-xs-3">
             <!-- Fecha Field -->
             <div class="form-group">
                 <h4>{!! Form::label('fecha', 'Fecha de carpeta:') !!}</h4>

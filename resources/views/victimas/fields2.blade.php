@@ -10,14 +10,14 @@
     <div class="box-body">
     <div class="row">
         {!! Form::open(['id' => 'frmVictimas']) !!}
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-10">
              <div class="form-group">
                 {!! Form::label('idVictima', 'Nombre Victima:') !!}<br>
-                {!! Form::select('idVictima', array(), null, ['class' => 'form-control']) !!}
+                {!! Form::select('idVictima', $personas, null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-10">
             <div class="form-group">
                 {!! Form::label('idDireccion', 'Direccion:') !!}<br>
                 {!! Form::select('idDireccionVictima', $direcciones, null, ['name'=>'idDireccionVictima','id'=>'idDireccionVictima','class' => 'form-control']) !!}
@@ -25,33 +25,43 @@
         </div>
         {!! Form::close() !!}   
 
-        <div class="col-md-1 col-xs-1">
+        <div class="col-md-3 col-xs-6">
             <div class="form-group">
+                <br>
                 <button type="button" class="btn btn-primary add-proceso-victima">Agregar Victima</button>
             </div>
         </div>
         
-        <div class="col-md-1 col-xs-1">
+        <div class="col-md-3 col-xs-6">
             <div class="form-group">
+                <br>
                 <button type="button" data-href="../personas/createModal" class="btn btn-primary modal-persona" data-target="#myModal" data-toggle="modal"> Crear Victima </button>
             </div>
         </div>
-
+    </div>
+    
         <div class="relation-proceso-victima">
             @if (true or $action == '')
-                @foreach($victimas as $victima)
-                    <div class="row row-proceso-victima" style="margin-bottom: 10px;">
+                @foreach(array() as $victima)
+                    <!--<div class="row row-proceso-victima">-->
                         <input type="hidden" name="victimas[]" value="{!! $victima->id !!}">
-                        <input type="hidden" name="direccionesVictimas[]" value="{!! $victima->id !!}">
-                        <div class="col-sm-offset-2 col-sm-5">{!! $victima->nombre !!}</div>
-                        <div class="col-sm-4">{!! $victima->    id !!}</div>
-                        <div class="col-sm-1 text-center">
+                        <input type="hidden" name="direccionesVictimas[]" value="{!! $victima->direccion()->id !!}">
+                        <div class="row">
+                        <div class="col-sm-10 col-xs-10">
+                        <div class="form-group">
+                            {!! $victima->nombre . ' ' . $victima->paterno !!}
+                        </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-2 text-center">
+                        <div class="form-group">
                             <i class="fa fa-times icon-red remove-proceso-victima"></i>
                         </div>
-                    </div>
+                        </div>
+                        
+                    <!--</div>-->
+                        </div>
                 @endforeach
             @endif
-        </div>
 </div>
 </div>
 </div>
