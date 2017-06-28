@@ -13,7 +13,7 @@
         <div class="col-md-4 col-xs-9">
              <div class="form-group">
                 {!! Form::label('idImputado', 'Nombre Imputado:') !!}<br>
-                {!! Form::select('idImputado', $personas, null, ['class' => 'form-control']) !!}
+                {!! Form::select('idImputado', array(), null, ['class' => 'form-control']) !!}
              </div>
         </div>
 
@@ -54,15 +54,14 @@
     </div>
 
         <div class="relation-proceso-imputado">
-        @if(true or $action == '')
-            @foreach(array() as $imputado)
+        @if($action == 'editar')
+            @foreach($selectedImputados as $imputado)
             <!--<div class="row row-proceso-imputado" style="margin-bottom: 10px;">-->
                 <input type="hidden" name="imputados[]" value="{!! $imputado->id !!}">
-                <input type="hidden" name="direccionesImputados[]" value="{!! $imputado->direccion()->id !!}">
                 <div class="row">
                 <div class="col-sm-10 col-xs-10">
                         <div class="form-group">
-                            {!! $imputado->nombre . ' ' . $imputado->paterno !!}
+                            {!! $imputado->nombre !!}
                         </div>
                 </div>
                 <div class="col-sm-2 col-xs-2 text-center">

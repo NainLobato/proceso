@@ -64,6 +64,7 @@
             {!! Form::date('fechaRadicacion', null, ['class' => 'form-control','required'=>'']) !!}
         </div>
     </div>
+    
     <div class="row">
         <div class="col-sm-offset-0 col-sm-11">
             {!! Form::label('observaciones', 'OBSERVACIONES:') !!}
@@ -97,7 +98,6 @@
     <a href="{!! route('procesos.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
     {!! Form::hidden('idProceso', null, ['id'=>'idProceso','class' => 'form-control']) !!}
-
 <div id="ajaxResponse">
 <!-- Idproceso Field -->
 </div>
