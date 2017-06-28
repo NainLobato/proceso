@@ -29,8 +29,9 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                   {!! Form::model($proceso, ['route' => ['procesos.update', $proceso->id], 'method' => 'patch']) !!}                        @include('procesos.fields2')
-                    {!! Form::close() !!}
+                   {!! Form::model($proceso, ['route' => ['procesos.update', $proceso->id], 'data-toggle'=>'validator', 'role'=>'form','id'=>'procesoForm','method' => 'patch']) !!}
+                   @include('procesos.fields2')
+                   {!! Form::close() !!}
                  </div>
             </div>
         </div>

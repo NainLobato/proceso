@@ -130,18 +130,23 @@
     </div>
     
     <div class="row">
-         <div class="col-md-2 col-xs-6">
-            <div class="form-group">
-                {!! Form::submit('Guardar', ['id'=>'submitProceso' ,'class' => 'btn btn-primary']) !!}
-                {!! Form::hidden('idProceso', null, ['id'=>'idProceso','class' => 'form-control']) !!}              
+            <div class="col-md-2 col-xs-6">
+                <div class="form-group">
+                    @if($action=='crear')
+                        {!! Form::submit('Guardar', ['id'=>'submitProceso' ,'class' => 'btn btn-primary']) !!}
+                    @else
+                        {!! Form::button('Actualizar', ['id'=>'updateProceso' ,'class' => 'btn btn-primary']) !!}
+                    @endif
+
+                    {!! Form::hidden('idProceso', $idProceso, ['id'=>'idProceso','class' => 'form-control']) !!}              
+                </div>
             </div>
-        </div>
-        <div class="col-md-2 col-xs-6">
-            <div class="form-group">
+            <div class="col-md-2 col-xs-6">
+                <div class="form-group">
                   <a href="{!! route('procesos.index') !!}" class="btn btn-default">Cancelar</a>
+                </div>
             </div>
         </div>
-    </div>
     </div>
     </div>
     </div>

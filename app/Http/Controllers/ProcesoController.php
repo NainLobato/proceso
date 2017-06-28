@@ -65,7 +65,8 @@ class ProcesoController extends AppBaseController
         $victimas= array();
         $imputados= array();
         $action="crear";
-        return view('procesos.create',array('action'=>$action,'tiposRelacion'=>$tiposRelacion,'unidades'=>$unidades,'victimas'=>$victimas,'imputados'=>$imputados,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos));
+        $idProceso=null;
+        return view('procesos.create',array('action'=>$action,'tiposRelacion'=>$tiposRelacion,'unidades'=>$unidades,'victimas'=>$victimas,'imputados'=>$imputados,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'personas'=>$personas,'procesos'=>$procesos,'direcciones'=>$direcciones,'delitos'=>$delitos,'idProceso'=>$idProceso));
     }
 
     /**
@@ -95,7 +96,7 @@ class ProcesoController extends AppBaseController
      */
     public function saveProceso()
     {
-        try{
+         try{
               if (\Request::ajax()){
                 $input=Input::all();
                 $input['fechaInicioCarpeta'] = $this->formatDate(\Request::input('fechaInicioCarpeta'));
@@ -114,6 +115,46 @@ class ProcesoController extends AppBaseController
         }catch(\Exception $e){
             return response()->json($e);
         }
+    }
+
+
+ /**
+     * Store a newly created Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function updateProceso()
+    {
+        echo "DSADAS";
+        try{
+              if (\Request::ajax()){
+                $input=Input::all();
+                $input['fechaInicioCarpeta'] = $this->formatDate(\Request::input('fechaInicioCarpeta'));
+                $input['fechaRadicacion'] = $this->formatDate(\Request::input('fechaRadicacion'));
+                $input['fechaOrden'] = $this->formatDate(\Request::input('fechaOrden'));
+                $id=$input['idProceso'];
+                $proceso = $this->procesoRepository->findWithoutFail($id);
+                if (empty($proceso)) {
+                    return response()->json(['error' => 'No se encontró el proceso que desea actualizar']);
+                }
+
+                $proceso = $this->procesoRepository->update($input, $id);
+                if($proceso){
+                    return response()->json($proceso);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+            }else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+            }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+
+       
     }
 
     public function getImplicados()
@@ -520,7 +561,7 @@ class ProcesoController extends AppBaseController
             return redirect(route('procesos.index'));
         }
 
-        return view('procesos.edit',array('action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
+        return view('procesos.edit',array('idProceso'=>$id,'action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
     }
 
     /**

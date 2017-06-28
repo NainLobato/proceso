@@ -55,6 +55,34 @@ function getImplicados(){
 
 /* Save Victima Function */
 $(document).ready(function() {  
+    $('#updateProceso').on('click', function (e) {
+        $("#procesoForm").submit(function(e){
+            e.preventDefault();
+        });
+        //$("#procesoForm").submit();
+        //e.preventDefault();
+        alert('si');
+        var dataJSON = JSON.stringify(getFormData($('#procesoForm')));
+         $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+            type: "POST",
+            url: '/procesos/public/procesos/updateProceso',
+            data: dataJSON,
+            contentType : 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function( msg,data) {
+                if (msg.id){
+                    $("#idProceso").val(msg.id);
+                    $("#ajaxResponse").html("<div>Proceso Actualizado exitosamente ahora puede Agregar Victimas/Imputados/Delitos</div>");
+                }
+                else{   
+                    $("#ajaxResponse").html("<div>No se pudo guardar el proceso, error: "+JSON.stringify(msg)+"</div>");
+                }
+            }
+        }); 
+    });
+});
+$(document).ready(function() {  
     $('#submitProceso').on('click', function (e) {
         $("#procesoForm").submit(function(e){
          e.preventDefault();

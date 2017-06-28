@@ -41,7 +41,7 @@
     </div>
     
         <div class="relation-proceso-victima">
-            @if (true or $action == '')
+            @if ($action == 'editar')
                 @foreach($selectedVictimas as $victima)
                     <!--<div class="row row-proceso-victima">-->
                         <input type="hidden" name="victimas[]" value="{!! $victima->id !!}">
