@@ -272,7 +272,7 @@ $(document).on('blur', "input[type=text]", function () {
                     + '<input type="hidden" name="victimasImputacion[]" value="' + $victima.val() + '">'
                     + '<input type="hidden" name="imputadosImputacion[]" value="' + $imputado.val() + '">'
                     + '<input type="hidden" name="delitosImputacion[]" value="' + $delito.val() + '">'
-                    + '<div class="col-sm-10 col-xs-10">' +  $('#idVictimaImputacion option:selected').text() +  '&nbsp;' + $('#idDelitoImputado option:selected').text()  +  '&nbsp;' + $('#idImputadoImputacion option:selected').text() + '</div>'
+                    + '<div class="col-sm-10 col-xs-10"><i class="fa fa-user-circle"></i>' +  $('#idVictimaImputacion option:selected').text() +  '&nbsp;<i class="fa fa-gavel" aria-hidden="true"></i>' + $('#idDelitoImputado option:selected').text()  +  '&nbsp; <i class="fa fa-user-secret" aria-hidden="true"></i>' + $('#idImputadoImputacion option:selected').text() + '</div>'
                     + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
                     + '</div>');
                 var dataJSON = JSON.stringify({idVictima:$victima.val(),idImputado:$imputado.val(),idDelito:$delito.val(),idTipoRelacion:$relacion.val(),idProceso:$("#idProceso").val()});  
