@@ -158,7 +158,7 @@ $(document).on('blur', "input[type=text]", function () {
                             $relationProcesoVictima.append('<div class="row proceso-victima" data-victima-id="' + msg.id
                             + '<input type="hidden" name="victimas[]" value="' + $victima.id + '">'
                             + '<input type="hidden" name="direccionesVictimas[]" value="' + dirVictima + '">'
-                            + '<div class="col-sm-10 col-xs-10" data-victima="' + $victima.nombre + '">' + $victima.nombre + '</div>'
+                            + '<div class="col-sm-10 col-xs-10" data-victima="' + $victima.nombre + '"><i class="fa fa-user-circle fa-2x"></i> &nbsp;' + $victima.nombre + '</div>'
                             + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-victima"></i></div>'
                             + '</div>');
                             getImplicados();
@@ -243,7 +243,7 @@ $(document).on('blur', "input[type=text]", function () {
                             + '<input type="hidden" name="imputados[]" value="' + $imputado.id + '">'
                             + '<input type="hidden" name="direccionesImputados[]" value="' + $direccionImputado.val() + '">'
                             + '<input type="hidden" name="detenidosImputados[]" value="' + $esDetenidoImputado.val() + '">'
-                            + '<div class="col-sm-10 col-xs-10" data-imputado="' + $imputado.nombre + '">' + $imputado.nombre + '</div>'
+                            + '<div class="col-sm-10 col-xs-10" data-imputado="' + $imputado.nombre + '"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i> &nbsp;' + $imputado.nombre + '</div>'
                             + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputado"></i></div>'
                             + '</div>');
                             getImplicados();
@@ -300,8 +300,10 @@ $(document).on('blur', "input[type=text]", function () {
                     + '<input type="hidden" name="victimasImputacion[]" value="' + $victima.val() + '">'
                     + '<input type="hidden" name="imputadosImputacion[]" value="' + $imputado.val() + '">'
                     + '<input type="hidden" name="delitosImputacion[]" value="' + $delito.val() + '">'
-                    + '<div class="col-sm-10 col-xs-10"><i class="fa fa-user-circle"></i>' +  $('#idVictimaImputacion option:selected').text() +  '&nbsp;<i class="fa fa-gavel" aria-hidden="true"></i>' + $('#idDelitoImputado option:selected').text()  +  '&nbsp; <i class="fa fa-user-secret" aria-hidden="true"></i>' + $('#idImputadoImputacion option:selected').text() + '</div>'
-                    + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
+                    + '<div class="col-sm-4 col-xs-4"><i class="fa fa-user-circle fa-2x"></i> &nbsp;' +  $('#idVictimaImputacion option:selected').text() + '</div>'
+                    + '<div class="col-sm-3 col-xs-3"><i class="fa fa-gavel fa-2x" aria-hidden="true"></i> &nbsp;' +  $('#idDelitoImputado option:selected').text()  + '</div>'
+                    + '<div class="col-sm-4 col-xs-4"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i> &nbsp;' + $('#idImputadoImputacion option:selected').text() + '</div>'                    
+                    + '<div class="col-sm-1 col-xs-1 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
                     + '</div>');
                 var dataJSON = JSON.stringify({idVictima:$victima.val(),idImputado:$imputado.val(),idDelito:$delito.val(),idTipoRelacion:$relacion.val(),idProceso:$("#idProceso").val()});  
                  $.ajax({
