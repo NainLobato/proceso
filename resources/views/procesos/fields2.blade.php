@@ -39,14 +39,18 @@
         <div class="col-md-3 col-xs-11">
             <div class="form-group">
              {!! Form::label('idFiscal', 'FISCAL') !!}*
-             {!! Form::select('idFiscal', $fiscales, 'null', ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'']) !!}
+             {!! Form::select('idFiscal', $fiscales, null, ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
 
         <div class="col-md-2 col-xs-8">
             <div class="form-group">
                 {!! Form::label('fechaInicioCarpeta', 'FECHA INICIO:') !!}*
-                {!! Form::date('fechaInicioCarpeta', null, ['class' => 'form-control','required'=>'']) !!}
+                @if($action=='crear')
+                    {!! Form::date('fechaInicioCarpeta', null, ['class' => 'form-control','required'=>'']) !!}
+                @else 
+                    {!! Form::date('fechaInicioCarpeta', $proceso->fechaInicioCarpeta->format('Y-m-d'), ['class' => 'form-control','required'=>'']) !!}
+                @endif
             </div>
         </div>
     </div>
@@ -95,7 +99,11 @@
         <div class="col-md-2 col-xs-8">
             <div class="form-group">
             {!! Form::label('fechaRadicacion', 'FECHA RADICACION:') !!}*
-            {!! Form::date('fechaRadicacion', null, ['class' => 'form-control','required'=>'']) !!}
+            @if($action=='crear')
+                    {!! Form::date('fechaRadicacion', null, ['class' => 'form-control','required'=>'']) !!}
+            @else 
+                    {!! Form::date('fechaRadicacion', $proceso->fechaRadicacion->format('Y-m-d'), ['class' => 'form-control','required'=>'']) !!}
+            @endif
              </div>
         </div>
     </div>
@@ -124,7 +132,11 @@
         <div class="col-md-2 col-xs-8">
             <div class="form-group">
               {!! Form::label('fechaOrden', 'FECHA ORDEN:') !!}
-               {!! Form::date('fechaOrden', null, ['class' => 'form-control']) !!}
+            @if($action=='crear')
+                    {!! Form::date('fechaOrden', null, ['class' => 'form-control','required'=>'']) !!}
+            @else 
+                    {!! Form::date('fechaOrden', $proceso->fechaOrden->format('Y-m-d'), ['class' => 'form-control','required'=>'']) !!}
+            @endif
             </div>
         </div>
     </div>

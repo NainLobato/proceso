@@ -39,8 +39,4 @@
 
        
 
-
-            @include('victimas.fields2')
-            @include('imputados.fields2')
-            @include('procesos.imputaciones')    
 @endsection

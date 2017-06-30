@@ -83,8 +83,9 @@ class ProcesoController extends AppBaseController
         $input['fechaRadicacion'] = $this->formatDate($input['fechaRadicacion']);
         $input['fechaOrden'] = $this->formatDate($input['fechaOrden']);
         $proceso = $this->procesoRepository->create($input);
-        Flash::success('Proceso guardado exitosamente.');
-        return redirect(route('procesos.index'));
+        Flash::success('Proceso guardado exitosamente ahora puede agregar Victimas/Imputados/Delitos.');
+        return redirect(route('procesos.edit',$proceso->id));
+        //return redirect(route('procesos.index'));
     }
 
      /**
@@ -127,7 +128,6 @@ class ProcesoController extends AppBaseController
      */
     public function updateProceso()
     {
-        echo "DSADAS";
         try{
               if (\Request::ajax()){
                 $input=Input::all();
@@ -288,6 +288,40 @@ class ProcesoController extends AppBaseController
         }
     }
 
+
+    /**
+     * Store a newly created Victima for Proceso in storage.
+     *
+     * @param CreateProcesoRequest $request
+     *
+     * @return Response
+     */
+    public function deleteImputacion()
+    {
+         try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                if (empty($proceso)) {
+                    return response()->json(['message' => 'Proceso no encontrado']);
+                }
+                if($proceso && VictimaImputado::find($input['idImputacion'])->forceDelete()){
+                    VictimaImputado::find($input['idImputacion'])->forceDelete() ;
+                    $proceso->save();
+                    return response()->json(['id' => $input['idImputacion']]);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
   /**
      * Store a newly created Victima for Proceso in storage.
      *
@@ -333,13 +367,11 @@ class ProcesoController extends AppBaseController
          try{
              if (\Request::ajax()){
                 $input=Input::all();
-                var_dump($input);
                 $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
                 if (empty($proceso)) {
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
                 $victimaImputado=new VictimaImputado($input);
-                var_dump($victimaImputado);
                 if($victimaImputado){
                     $victimaImputado->save();    
                     return response()->json($victimaImputado);
@@ -366,6 +398,31 @@ class ProcesoController extends AppBaseController
     public function show($id)
     {
       //  $proceso = $this->procesoRepository->findWithoutFail($id);
+
+  $selectedVictimas= DB::table('personas')
+            ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
+            ->where('victimas.idProceso','=',$id)
+            ->where('victimas.deleted_at','=',NULL)
+            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
+        
+        $selectedImputados= DB::table('personas')
+            ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
+            ->where('imputados.idProceso','=',$id)
+            ->where('imputados.deleted_at','=',NULL)
+            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
+
+        $imputaciones= DB::table('personas')
+            ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
+            ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
+            ->where('victimaimputado.idVictima','=','victimas.id')
+            ->where('victimaimputado.idImputado','=','imputados.id')
+            ->where('imputados.deleted_at','=',NULL)
+            ->where('victimas.deleted_at','=',NULL)
+            ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreVictima, imputados.id,CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreImputado, imputados.id')->get();
+
+
+
+
         $proceso=json_decode('{
       "id":1,
       "carpeta":{  
@@ -544,24 +601,45 @@ class ProcesoController extends AppBaseController
             ->where('imputados.deleted_at','=',NULL)
             ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
 
-       /* $imputaciones= DB::table('personas')
+          /*$imputaciones= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
-            ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
+            ->join('victimas', 'victimas.idPersona', '=', 'per.id')
+            ->join('victimaimputado', 'victimaimputado.idVictima', '=', 'victimas.id')
+            
+            ->join('personas per', 'per.id', '=', 'victimas.idPersona')
             ->where('victimaimputado.idVictima','=','victimas.id')
             ->where('victimaimputado.idImputado','=','imputados.id')
             ->where('imputados.deleted_at','=',NULL)
             ->where('victimas.deleted_at','=',NULL)
             ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreVictima, imputados.id,CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreImputado, imputados.id')->get();
 */
+            $imputaciones= DB::table('victimaimputado')
+            ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
+            ->join('personas', 'personas.id', '=', 'victimas.idPersona')
+            ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
+            ->where('victimas.idProceso','=',$id)
+            ->where('imputados.idProceso','=',$id)
+            ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id,CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id')->get();
+
         $proceso = $this->procesoRepository->findWithoutFail($id);
 
+
+     /*   $proceso['fechaInicioCarpeta']=$this->showDate(substr($proceso['fechaInicioCarpeta'],0,10));
+        $proceso['fechaRadicacion']=$this->showDate(substr($proceso['fechaRadicacion'],0,10));
+        $proceso['fechaOrden']=$this->showDate(substr($proceso['fechaOrden'],0,10));*/
+        
+        /*$proceso['fechaRadicacion']=date_format(date_create(substr($proceso['fechaRadicacion'],0,10)), 'd/m/y');
+        $proceso['fechaOrden']=date_format(date_create(substr($proceso['fechaOrden'],0,10)), 'd/m/y');
+*/
         if (empty($proceso)) {
             Flash::error('Proceso not found');
 
             return redirect(route('procesos.index'));
         }
 
-        return view('procesos.edit',array('idProceso'=>$id,'action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados))->with('proceso', $proceso);
+        return view('procesos.edit',array('idProceso'=>$id,'action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'imputaciones'=>$imputaciones))->with('proceso', $proceso);
     }
 
     /**
@@ -612,6 +690,32 @@ class ProcesoController extends AppBaseController
 
         return redirect(route('procesos.index'));
     }
+   /**
+     * @param $date
+     * @return string
+     */
+    public function formatDate($date)
+    {
+        if (stripos($date, "/")) {
+            $format = explode("/", $date);
+            // Special format date because daterangepicker format is MM/DD/YYYY
+            return $format[2] . '-' . $format[1] . '-' . $format[0];
+        }
+        return $date;
+    }
 
+    /**
+     * @param $date
+     * @return string
+     */
+    public function showDate($date)
+    {
+        if (stripos($date, "-")) {
+            $format = explode("-", $date);
+            // Special format date because daterangepicker format is MM/DD/YYYY
+            return $format[2] . '/' . $format[1] . '/' . $format[0];
+        }
+        return $date;
+    }
    
 }

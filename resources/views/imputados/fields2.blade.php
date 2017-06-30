@@ -48,29 +48,28 @@
         
         <div class="col-md-2 col-xs-6">
             <div class="form-group">
-                <button type="button" data-href="../personas/createModal" class="btn btn-primary modal-persona" data-target="#myModal" data-toggle="modal"> Crear Victima </button>
+                <button type="button" data-href="/procesos/public/personas/createModal" class="btn btn-primary modal-persona" data-target="#myModal" data-toggle="modal"> Crear Nueva Persona</button>
             </div>
         </div>
     </div>
 
         <div class="relation-proceso-imputado">
-        @if($action == 'editar')
-            @foreach($selectedImputados as $imputado)
-            <!--<div class="row row-proceso-imputado" style="margin-bottom: 10px;">-->
-                <input type="hidden" name="imputados[]" value="{!! $imputado->id !!}">
-                <div class="row">
-                <div class="col-sm-10 col-xs-10">
+       @if ($action == 'editar')
+                @foreach($selectedImputados as $imputado)
+                    <div class="row row-proceso-imputado" data-imputado-id="{!! $imputado->id !!}">
+                        <input type="hidden" name="imputados[]" value="{!! $imputado->id !!}">
+                        <div class="col-sm-8 col-xs-8">
                         <div class="form-group">
                             {!! $imputado->nombre !!}
                         </div>
-                </div>
-                <div class="col-sm-2 col-xs-2 text-center">
+                        <div class="col-sm-2 col-xs-2 text-center">
                         <div class="form-group">
                             <i class="fa fa-times icon-red remove-proceso-imputado"></i>
                         </div>
-                </div>
-            </div>
-            @endforeach
+                        </div>
+                    </div>
+                    </div>
+                @endforeach
         @endif
 </div>
 </div>

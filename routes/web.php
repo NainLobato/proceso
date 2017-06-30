@@ -88,9 +88,9 @@ Route::resource('procesos', 'ProcesoController');
 
 Route::resource('victimas', 'VictimaController');
 
-Route::post('procesos/saveProceso', ['middleware' => 'web','as'=>'procesos.saveProceso','uses'=>'ProcesoController@saveProceso']);
+Route::post('procesos/updateProceso',['middleware' => 'web','as'=>'procesos.updateProceso','uses'=>'ProcesoController@updateProceso']);
 
-Route::post('procesos/updateProceso', ['middleware' => 'web','as'=>'procesos.updateProceso','uses'=>'ProcesoController@updateProceso']);
+Route::post('procesos/saveProceso', ['middleware' => 'web','as'=>'procesos.saveProceso','uses'=>'ProcesoController@saveProceso']);
 
 Route::post('procesos/saveVictima', ['middleware' => 'web','as'=>'procesos.saveVictima','uses'=>'ProcesoController@saveVictima']);
 
@@ -109,7 +109,5 @@ Route::post('procesos/deleteImputacion', ['middleware' => 'web','as'=>'procesos.
 Route::resource('avances', 'AvanceController');
 
 Route::resource('catAgrupacions', 'CatAgrupacionController');
-
-
 
 Route::resource('catTipoRelacions', 'CatTipoRelacionController');

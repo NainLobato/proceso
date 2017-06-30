@@ -35,7 +35,7 @@
         <div class="col-md-3 col-xs-6">
             <div class="form-group">
                 <br>
-                <button type="button" data-href="../personas/createModal" class="btn btn-primary modal-persona" data-target="#myModal" data-toggle="modal"> Crear Victima </button>
+                <button type="button" data-href="/procesos/public/personas/createModal" class="btn btn-primary modal-persona" data-target="#myModal" data-toggle="modal"> Crear Victima </button>
             </div>
         </div>
     </div>
@@ -43,22 +43,19 @@
         <div class="relation-proceso-victima">
             @if ($action == 'editar')
                 @foreach($selectedVictimas as $victima)
-                    <!--<div class="row row-proceso-victima">-->
+                    <div class="row row-proceso-victima" data-victima-id="{!! $victima->id !!}">
                         <input type="hidden" name="victimas[]" value="{!! $victima->id !!}">
-                        <div class="row">
-                        <div class="col-sm-10 col-xs-10">
+                        <div class="col-sm-8 col-xs-8">
                         <div class="form-group">
                             {!! $victima->nombre !!}
-                        </div>
                         </div>
                         <div class="col-sm-2 col-xs-2 text-center">
                         <div class="form-group">
                             <i class="fa fa-times icon-red remove-proceso-victima"></i>
                         </div>
                         </div>
-                        
-                    <!--</div>-->
-                        </div>
+                    </div>
+                    </div>
                 @endforeach
             @endif
 </div>

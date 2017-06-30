@@ -25,7 +25,8 @@ class ProcesoDataTable extends DataTable
                     ->join('cat_juzgados','procesos.idJuzgado','=','cat_juzgados.id')
                     ->join('cat_fiscals','procesos.idFiscal','=','cat_fiscals.id')
                     ->join('unidads','procesos.idUIPJ','=','unidads.id')
-                    ->select(['procesos.*', 'unidads.nombre as uipj', 'cat_fiscals.name as fiscal', 'cat_juzgados.juzgado','cat_juezs.juez']);
+                    ->whereNull('procesos.deleted_at')
+                    ->select(['procesos.*', 'unidads.nombre', 'cat_fiscals.name', 'cat_juzgados.juzgado','cat_juezs.juez']);
             /*return Datatables::of($procesos)
             ->addColumn('action', 'procesos.datatables_actions')
             ->make(true);*/
@@ -93,14 +94,14 @@ class ProcesoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'UIPJ' => ['name' => 'uipj', 'data' => 'uipj'],
+            'UIPJ' => ['name' => 'unidads.nombre', 'data' => 'nombre'],
             'Año Carpeta' => ['name' => 'anioCarpeta', 'data' => 'anioCarpeta'],
             'No. Carpeta' => ['name' => 'numeroCarpeta', 'data' => 'numeroCarpeta'],
             'Año Proceso' => ['name' => 'anioProceso', 'data' => 'anioProceso'],
             'No. Proceso' => ['name' => 'numeroProceso', 'data' => 'numeroProceso'],
-            'Fiscal' => ['name' => 'fiscal', 'data' => 'fiscal'],
-            'Juez' => ['name' => 'juez', 'data' => 'juez'],
-            'Juzgado' => ['name' => 'juzgado', 'data' => 'juzgado'],
+            'Fiscal' => ['name' => 'cat_fiscals.name', 'data' => 'name'],
+            'Juez' => ['name' => 'cat_juezs.juez', 'data' => 'juez'],
+            'Juzgado' => ['name' => 'cat_juzgados.juzgado', 'data' => 'juzgado'],
             'Fecha' => ['name' => 'fechaRadicacion', 'data' => 'fechaRadicacion'],
             'Observaciones' => ['name' => 'observaciones', 'data' => 'observaciones']
         ];

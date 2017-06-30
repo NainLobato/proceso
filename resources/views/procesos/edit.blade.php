@@ -26,6 +26,7 @@
         </div>
 
         @include('adminlte-templates::common.errors')
+
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
@@ -35,6 +36,7 @@
                  </div>
             </div>
         </div>
+           @include('flash::message')
             @include('victimas.fields2')
             @include('imputados.fields2')
             @include('procesos.imputaciones')

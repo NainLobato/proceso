@@ -70,9 +70,7 @@ class Proceso extends Model
         'numeroCarpeta' => 'required',
         'anioProceso' => 'required',
         'numeroProceso' => 'required',
-        'fechaRadicacion' => 'required',
-        'conDetenido' => 'required',
-        'obsequiaOrden' => 'required'
+        'fechaRadicacion' => 'required'
     ];
 
     public function fiscal(){
