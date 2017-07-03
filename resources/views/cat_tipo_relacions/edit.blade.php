@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Cat Tipo Relacion
+            Catalogo de Tipo Relación
         </h1>
    </section>
    <div class="content">
