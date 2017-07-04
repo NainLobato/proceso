@@ -55,7 +55,7 @@ class CatTipoRelacionController extends AppBaseController
 
         $catTipoRelacion = $this->catTipoRelacionRepository->create($input);
 
-        Flash::success('Cat Tipo Relacion guardado exitosamente.');
+        Flash::success('Relación guardada exitosamente.');
 
         return redirect(route('catTipoRelacions.index'));
     }

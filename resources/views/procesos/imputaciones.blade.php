@@ -10,33 +10,33 @@
     <div class="box box-default">
     <div class="box-body">
     <div class="row">
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-3 col-xs-10">
             <div class="form-group">
                 {!! Form::label('idVictimaImputacion', ' Victima:') !!}
                 {!! Form::select('idVictimaImputacion', $victimas, null, ['id'=>'idVictimaImputacion','placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'','data-error'=>'Error al colocar el año']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-3 col-xs-10">
             <div class="form-group">
                 {!! Form::label('idVictima', 'Delito Imputado:') !!}
                 {!! Form::select('idDelitoImputado', $delitos, null,  ['id'=>'idDelitoImputado','placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'','data-error'=>'Debe seleccionar un delito']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-3 col-xs-10">
             <div class="form-group">
                 {!! Form::label('idRelacionImputacion', 'Tipo De Relacion:') !!}
                 {!! Form::select('idRelacionImputacion', $tiposRelacion, null, ['id'=>'idRelacionImputacion','placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-3 col-xs-10">
             <div class="form-group">
                 {!! Form::label('idImputadoImputacion', 'Imputado:') !!}
                 {!! Form::select('idImputadoImputacion',  $imputados, null, ['id'=>'idImputadoImputacion','placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'','data-error'=>'Debe seleccionar un delito']) !!}
             </div>
         </div>
-        <div class="col-md-1 col-xs-1">
+        <div class="col-md-1 col-xs-3">
             <div class="form-group">
                 <button type="button" class="btn btn-primary add-proceso-imputacion">Agregar Delito Imputado</button>
             </div>

@@ -72,7 +72,7 @@ class CatTipoRelacionDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'tipoRelacion' => ['name' => 'tipoRelacion', 'data' => 'tipoRelacion']
+            'Relación' => ['name' => 'tipoRelacion', 'data' => 'tipoRelacion']
         ];
     }
 
