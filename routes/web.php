@@ -99,6 +99,7 @@ Route::post('procesos/saveImputado', ['middleware' => 'web','as'=>'procesos.save
 Route::post('procesos/saveImputacion', ['middleware' => 'web','as'=>'procesos.saveImputacion','uses'=>'ProcesoController@saveImputacion']);
 
 Route::post('procesos/getImplicados', ['middleware' => 'web','as'=>'procesos.getImplicados','uses'=>'ProcesoController@getImplicados']);
+Route::post('procesos/getImputaciones', ['middleware' => 'web','as'=>'procesos.getImputaciones','uses'=>'ProcesoController@getImputaciones']);
 
 Route::post('procesos/deleteVictima', ['middleware' => 'web','as'=>'procesos.deleteVictima','uses'=>'ProcesoController@deleteVictima']);
 

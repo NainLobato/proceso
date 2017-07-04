@@ -21,7 +21,9 @@
              <div class="form-group">
                 {!! Form::label('esDetenido', '¿Detenido?') !!}
                 <br>
+                 {!! Form::hidden('esDetenido', false) !!}
                 {!! Form::checkbox('esDetenido', '1', null) !!} 
+
             </div>
         </div>
 

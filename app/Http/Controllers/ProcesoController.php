@@ -139,7 +139,6 @@ class ProcesoController extends AppBaseController
                 if (empty($proceso)) {
                     return response()->json(['error' => 'No se encontró el proceso que desea actualizar']);
                 }
-
                 $proceso = $this->procesoRepository->update($input, $id);
                 if($proceso){
                     return response()->json($proceso);
@@ -176,6 +175,36 @@ class ProcesoController extends AppBaseController
 
                 if($victimas){
                     return response()->json(['victimas'=>$victimas,'imputados'=>$imputados]);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
+                }
+            }else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+            }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
+    public function getImputaciones()
+    {
+        try{
+            if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+            
+            $imputaciones= DB::table('victimaimputado')
+            ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
+            ->join('personas', 'personas.id', '=', 'victimas.idPersona')
+            ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
+            ->where('victimaimputado.idProceso','=',$input['idProceso'])
+            ->where('victimaimputado.deleted_at','=',NULL)
+            ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
+            if($proceso && $imputaciones){
+                    return response()->json(['imputaciones'=>$imputaciones]);
                 }
                 else{
                     return response()->json(['message' => 'Error al procesar la solicitud', 'proceso'=>json_encode($proceso)]);
@@ -305,9 +334,8 @@ class ProcesoController extends AppBaseController
                 if (empty($proceso)) {
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
-                if($proceso && VictimaImputado::find($input['idImputacion'])->forceDelete()){
-                    VictimaImputado::find($input['idImputacion'])->forceDelete() ;
-                    $proceso->save();
+                
+                if($proceso && VictimaImputado::find($input['idImputacion'])->delete()){
                     return response()->json(['id' => $input['idImputacion']]);
                 }
                 else{
@@ -397,32 +425,84 @@ class ProcesoController extends AppBaseController
      */
     public function show($id)
     {
-      //  $proceso = $this->procesoRepository->findWithoutFail($id);
-
-  $selectedVictimas= DB::table('personas')
+        $proceso = $this->procesoRepository->findWithoutFail($id);
+        $procesoJson=new stdClass();
+        $procesoJson->id=$proceso['id'];
+        $procesoJson->carpeta=new stdClass();
+        $procesoJson->carpeta->numero=$proceso['numeroCarpeta'];
+        $procesoJson->carpeta->fiscal=$proceso->fiscal()->get()['name'];
+        $procesoJson->carpeta->fecha=$proceso['fechaRadicacion'];
+        $procesoJson->carpeta->uipj=$proceso->unidad()->get()['nombre'];
+        $procesoJson->radicacion=new stdClass();
+        $procesoJson->radicacion->numero=$proceso['numeroProceso'];
+        $procesoJson->radicacion->juzgado=$proceso->juzgado()->get()['juzgado'];
+        $procesoJson->radicacion->juez=$proceso->juez()->get()['juez'];
+        $procesoJson->victimas=array();
+        $victimas= DB::table('personas')
             ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
             ->where('victimas.idProceso','=',$id)
             ->where('victimas.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
-        
+            ->select()->get();
+            $i=0;
+        foreach ($victimas as $victima) {
+                $victimaJson=new stdClass();
+                $victimaJson->id=$victima->id;
+                $victimaJson->tipo=$victima->esEmpresa?'FISICA':'MORAL';
+                $victimaJson->nombre=$victima->nombre. " " .$victima->paterno." " . $victima->materno;
+                $victimaJson->alias=$victima->alias;
+                $victimaJson->fechaNacimiento=$victima->fechaNacimiento;
+                $victimaJson->sexo=$victima->sexo;
+                $victimaJson->estadoCivil=$victima->estadoCivil()->get()['estadoCivil'];
+                $imputadoJson->etnia=$imputado->etnia()->get()['etnia']; 
+                $victimaJson->nombrePadre=$victima->nombrePadre . $victima->primerApellidoPadre .$victima->primerApellidoPadre; 
+                $victimaJson->nombreMadre=$victima->nombreMadre . $victima->primerApellidoMadre .$victima->primerApellidoMadre; 
+                $procesoJson->victimas[$i++]=$victimaJson;
+        }
+        $procesoJson->imputados=new array();
         $selectedImputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
+            ->select()->get();
+            foreach ($imputados as $imputado) {
+                $imputadoJson=new stdClass();
+                $imputadoJson->id==$imputado->id;
+                $imputadoJson->tipo=$imputado->esEmpresa?'FISICA':'MORAL';
+                $imputadoJson->nombre=$imputado->nombre. " " .$imputado->paterno." " . $imputado->materno;
+                $victimaJson->alias=$victima->alias;
+                $imputadoJson->fechaNacimiento=$imputado->fechaNacimiento;
+                $imputadoJson->sexo=$imputado->sexo;
+                $imputadoJson->estadoCivil=$imputado->estadoCivil()->get()['estadoCivil'];
+                $imputadoJson->etnia=$imputado->etnia()->get()['etnia']; 
+                $imputadoJson->nombrePadre=$imputado->nombrePadre . $imputado->primerApellidoPadre .$imputado->segundoApellidoPadre; 
+                $imputadoJson->nombreMadre=$imputado->nombreMadre . $imputado->primerApellidoMadre .$imputado->segundoApellidoMadre; 
+                $procesoJson->imputados[$i++]=$imputadoJson;
+        }
+               "tipo":"fisica",
+               "nombre":"Daniela Robles Hernández",
+               "alias":"la dani",
+               "fechaNacimiento":"20/01/1978",
+               "sexo":"femenino",
+               "estadoCivil":"casada",
+               "direccion":"calle 5 #146 Col. Mexico C.P 57900",
+               "nombrePadre":"Juan FLores",
+               "nombreMadre":"Daniela Hernández"
+        $procesoJson->imputaciones=new array();
+        $imputaciones= DB::table('victimaimputado')
+            ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
+            ->join('personas', 'personas.id', '=', 'victimas.idPersona')
+            ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
+            ->where('victimaimputado.idProceso','=',$input['idProceso'])
+            ->where('victimaimputado.deleted_at','=',NULL)
+            ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
+        each
+            "victima":"Carlos Pérez Hernández",
+            "delito":"Daños",
+            "imputado":"Mi Empresa S.A de C.V"
 
-        $imputaciones= DB::table('personas')
-            ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
-            ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
-            ->where('victimaimputado.idVictima','=','victimas.id')
-            ->where('victimaimputado.idImputado','=','imputados.id')
-            ->where('imputados.deleted_at','=',NULL)
-            ->where('victimas.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreVictima, imputados.id,CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreImputado, imputados.id')->get();
-
-
-
-
+/*
         $proceso=json_decode('{
       "id":1,
       "carpeta":{  
@@ -546,7 +626,7 @@ class ProcesoController extends AppBaseController
           }
          ]
       }
-   ');
+   ');*/
 
         if (empty($proceso)) {
             Flash::error('Proceso not found');
@@ -619,9 +699,9 @@ class ProcesoController extends AppBaseController
             ->join('personas', 'personas.id', '=', 'victimas.idPersona')
             ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
             ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
-            ->where('victimas.idProceso','=',$id)
-            ->where('imputados.idProceso','=',$id)
-            ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id,CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id')->get();
+            ->where('victimaimputado.idProceso','=',$id)
+            ->where('victimaimputado.deleted_at','=',NULL)
+            ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
 
         $proceso = $this->procesoRepository->findWithoutFail($id);
 

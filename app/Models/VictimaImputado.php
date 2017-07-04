@@ -24,7 +24,8 @@ class VictimaImputado extends Model
         'idVictima',
         'idImputado',
         'idDelito',
-        'idTipoRelacion'
+        'idTipoRelacion',
+        'idProceso'
     ];
 
     /**
@@ -36,7 +37,8 @@ class VictimaImputado extends Model
         'idVictima' => 'integer',
         'idImputado' => 'integer',
         'idDelito' => 'integer',
-        'idTipoRelacion' => 'integer'
+        'idTipoRelacion' => 'integer',
+        'idProceso'=> 'integer'
     ];
 
     /**
@@ -48,6 +50,7 @@ class VictimaImputado extends Model
         'idVictima' => 'required',
         'idImputado' => 'required',
         'idDelito' => 'required',
+        'idProceso' => 'required'
     ];
 
     
