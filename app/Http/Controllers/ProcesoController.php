@@ -454,6 +454,9 @@ class ProcesoController extends AppBaseController
                 $victimaJson=new \stdClass();
                 $victimaJson->id=$victima->id;
                 $victimaJson->tipo=$victima->esEmpresa?'FISICA':'MORAL';
+                $victimaJson->representanteLegal=$victima->representanteLegal?$victima->representanteLegal:'';
+                $victimaJson->direccion='';
+
                 $victimaJson->nombre=$victima->nombre. " " .$victima->paterno." " . $victima->materno;
                 $victimaJson->alias=$victima->alias;
                 $victimaJson->fechaNacimiento=$victima->fechaNacimiento;
@@ -462,7 +465,7 @@ class ProcesoController extends AppBaseController
                 $victimaJson->etnia=isset($victima->etnia()->get()[0])?$victima->etnia()->get()[0]['etnia']:''; 
                 $victimaJson->nombrePadre=$victima->nombrePadre . $victima->primerApellidoPadre .$victima->primerApellidoPadre; 
                 $victimaJson->nombreMadre=$victima->nombreMadre . $victima->primerApellidoMadre .$victima->primerApellidoMadre; 
-                $procesoJson->victimas[$i++]=["victima"=>$victimaJson];
+                $procesoJson->victimas[$i++]=$victimaJson;
         }
         $i=0;
         $procesoJson->imputados= array();
@@ -480,15 +483,17 @@ class ProcesoController extends AppBaseController
                 $imputadoJson=new \stdClass();
                 $imputadoJson->id=$imputado->id;
                 $imputadoJson->tipo=$imputado->esEmpresa?'FISICA':'MORAL';
+                $imputadoJson->representanteLegal=$imputado->representanteLegal?$imputado->representanteLegal:'';
+                $imputadoJson->direccion='';
                 $imputadoJson->nombre=$imputado->nombre. " " .$imputado->paterno." " . $imputado->materno;
-                $victimaJson->alias=$victima->alias;
+                $imputadoJson->alias=$imputado->alias;
                 $imputadoJson->fechaNacimiento=$imputado->fechaNacimiento;
                 $imputadoJson->sexo=$imputado->sexo;
                 $imputadoJson->estadoCivil=isset($imputado->estadoCivil()->get()[0])?$imputado->estadoCivil()->get()[0]['estadoCivil']:'';
                 $imputadoJson->etnia=isset($imputado->etnia()->get()[0])?$imputado->etnia()->get()[0]['etnia']:''; 
                 $imputadoJson->nombrePadre=$imputado->nombrePadre . $imputado->primerApellidoPadre .$imputado->segundoApellidoPadre; 
                 $imputadoJson->nombreMadre=$imputado->nombreMadre . $imputado->primerApellidoMadre .$imputado->segundoApellidoMadre; 
-                $procesoJson->imputados[$i++]=["imputado"=>$imputadoJson];
+                $procesoJson->imputados[$i++]=$imputadoJson;
         }
         $procesoJson->imputaciones= array();
         $i=0;
@@ -634,7 +639,7 @@ class ProcesoController extends AppBaseController
       }
    ');*/
 
-$proceso=json_decode('{"id":122,"carpeta":{"numero":"4548","fiscal":"LIC. dsaDS","fecha":"2017-07-21","uipj":"UIPJ Orizaba"},"radicacion":{"numero":"55","juzgado":"JUZGADO DE PROCESO Y PROCEDIMIENTO PENAL ORAL COATEPEC\r\n","juez":"LIC. ADRIANA BALCONI DELFIN"},"victimas":[{"victima":{"id":162,"tipo":"FISICA","direccion":"",nombre":"GRECIA DAYANA MORA SARABIA","alias":"NULL","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"victima":{"id":163,"tipo":"MORAL","nombre":"DEYANIRA AMAIRANY JIMENEZ TEXSON","alias":"NULL","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}}],"imputados":[{"imputado":{"id":101,"tipo":"MORAL","nombre":"JULIANA VELASCO LSDA","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"imputado":{"id":102,"tipo":"MORAL","nombre":"CATALINA GABRIELA AVILA CRUZ","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"imputado":{"id":103,"tipo":"MORAL","nombre":"ZEUS KOBE FABRE DOMINGUEZ","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}}],"imputaciones":[]}');
+    //    $proceso=json_decode('{"id":122,"carpeta":{"numero":"4548","fiscal":"LIC. dsaDS","fecha":"2017-07-21","uipj":"UIPJ Orizaba"},"radicacion":{"numero":"55","juzgado":"JUZGADO DE PROCESO Y PROCEDIMIENTO PENAL ORAL COATEPEC\r\n","juez":"LIC. ADRIANA BALCONI DELFIN"},"victimas":[{"victima":{"id":162,"tipo":"FISICA","direccion":"",nombre":"GRECIA DAYANA MORA SARABIA","alias":"NULL","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"victima":{"id":163,"tipo":"MORAL","nombre":"DEYANIRA AMAIRANY JIMENEZ TEXSON","alias":"NULL","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}}],"imputados":[{"imputado":{"id":101,"tipo":"MORAL","nombre":"JULIANA VELASCO LSDA","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"imputado":{"id":102,"tipo":"MORAL","nombre":"CATALINA GABRIELA AVILA CRUZ","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"imputado":{"id":103,"tipo":"MORAL","nombre":"ZEUS KOBE FABRE DOMINGUEZ","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}}],"imputaciones":[]}');
 
         if (empty($proceso)) {
             Flash::error('Proceso not found');
@@ -642,7 +647,7 @@ $proceso=json_decode('{"id":122,"carpeta":{"numero":"4548","fiscal":"LIC. dsaDS"
             return redirect(route('procesos.index'));
         }
 //        var_dump(json_encode($procesoJson));
-        return view('procesos.show')->with('proceso', $proceso);
+        return view('procesos.show')->with('proceso', $procesoJson);
     }
 
     /**

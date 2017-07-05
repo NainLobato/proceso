@@ -160,53 +160,53 @@
         </div>
         @foreach ($proceso->victimas as $victima) 
         <div class="row">
-        @if($victima->victima->tipo === "FISICA")
+        @if($victima->tipo === "FISICA")
             <div class="col-md-1 col-xs-1">
                 <!-- Tipo Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->tipo !!}</p> 
+                    <p>{!! $victima->tipo !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-2">
                 <!-- Nombre Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->nombre !!}</p> 
+                    <p>{!! $victima->nombre !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-2">
                 <!-- Fecha Nacimiento Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->fechaNacimiento !!}</p>  
+                    <p>{!! $victima->fechaNacimiento !!}</p>  
                 </div>
             </div>
 
             <div class="col-md-1 col-xs-1">
                 <!-- Sexo Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->sexo !!}</p>  
+                    <p>{!! $victima->sexo !!}</p>  
                 </div>
             </div>
 
             <div class="col-md-1 col-xs-1">
                 <!-- EstadoCivil Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->estadoCivil !!}</p>  
+                    <p>{!! $victima->estadoCivil !!}</p>  
                 </div>
             </div>
 
             <div class="col-md-3 col-xs-3">
                 <!-- Direccion Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->direccion !!}</p>  
+                    <p>{!! $victima->direccion !!}</p>  
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-2">
                 <!-- Etnia Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->etnia !!}</p>  
+                    <p>{!! $victima->etnia !!}</p>  
                 </div>
             </div>
         @endif
@@ -253,32 +253,32 @@
 
         @foreach ($proceso->victimas as $victima) 
         <div class="row">
-        @if ($victima->victima->tipo === "MORAL")
+        @if ($victima->tipo === "MORAL")
             <div class="col-md-3 col-xs-3">
                 <!-- Tipo Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->tipo !!}</p> 
+                    <p>{!! $victima->tipo !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-3 col-xs-3">
                 <!-- Nombre Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->nombre !!}</p> 
+                    <p>{!! $victima->nombre !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-3 col-xs-3">
                 <!-- RepresentanteLegal Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->representanteLegal !!}</p>  
+                    <p>{!! $victima->representanteLegal !!}</p>  
                 </div>
             </div>
 
             <div class="col-md-3 col-xs-3">
                 <!-- Direccion Field -->
                 <div class="form-group">
-                    <p>{!! $victima->victima->direccion !!}</p>  
+                    <p>{!! $victima->direccion !!}</p>  
                 </div>
             </div>
         @endif
@@ -376,28 +376,28 @@
 
         @foreach ($proceso->imputados as $imputado) 
         <div class="row">
-        @if ($imputado->imputado->tipo === "fisica")
+        @if ($imputado->tipo === "fisica")
             <div class="col-md-1 col-xs-1">
                 <!-- Tipo Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->tipo !!}</p> 
+                    <p>{!! $imputado->tipo !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-2">
                 <!-- Nombre Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->nombre !!}</p> 
+                    <p>{!! $imputado->nombre !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-1 col-xs-1">
                 <!-- Alias Field -->
                 <div class="form-group">
-                    @empty($imputado->imputado->alias)
+                    @empty($imputado->alias)
                         <p></p> 
                     @else
-                        <p>{!! $imputado->imputado->alias !!}</p> 
+                        <p>{!! $imputado->alias !!}</p> 
                     @endif
                 </div>
             </div>
@@ -405,42 +405,42 @@
             <div class="col-md-1 col-xs-1">
                 <!-- FechaNacimiento Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->fechaNacimiento !!}</p> 
+                    <p>{!! $imputado->fechaNacimiento !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-1 col-xs-1">
                 <!-- Sexo Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->sexo !!}</p> 
+                    <p>{!! $imputado->sexo !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-1 col-xs-1">
                 <!-- EstadoCivil Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->estadoCivil !!}</p> 
+                    <p>{!! $imputado->estadoCivil !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-2">
                 <!-- Direccion Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->direccion !!}</p> 
+                    <p>{!! $imputado->direccion !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-2 col-xs-2">
                 <!-- NombrePadre Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->nombrePadre !!}</p> 
+                    <p>{!! $imputado->nombrePadre !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-1 col-xs-1">
                 <!-- NombreMadre Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->nombreMadre !!}</p> 
+                    <p>{!! $imputado->nombreMadre !!}</p> 
                 </div>
             </div>
         @endif
@@ -480,25 +480,25 @@
 
         @foreach ($proceso->imputados as $imputado) 
         <div class="row">
-        @if ($imputado->imputado->tipo === "moral")
+        @if ($imputado->tipo === "moral")
             <div class="col-md-4 col-xs-4">
                 <!-- Tipo Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->tipo !!}</p> 
+                    <p>{!! $imputado->tipo !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-4 col-xs-4">
                 <!-- Nombre Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->nombre !!}</p> 
+                    <p>{!! $imputado->nombre !!}</p> 
                 </div>
             </div>
 
             <div class="col-md-4 col-xs-4">
                 <!-- RepresentanteLegal Field -->
                 <div class="form-group">
-                    <p>{!! $imputado->imputado->representanteLegal !!}</p> 
+                    <p>{!! $imputado->representanteLegal !!}</p> 
                 </div>
             </div>
         @endif

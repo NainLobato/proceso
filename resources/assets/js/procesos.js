@@ -253,12 +253,12 @@ $(document).on('blur', "input[type=text]", function () {
 
 
                 $imputado={"nombre":$imputadoSelect2.text(),"id":options[options.length-1].value};
-                $esDetenidoImputado = $('#esDetenido');
+                $esDetenidoImputado = $('#esDetenido').is(":checked")?1:0;
                 $fechaDetencionImputado = $('#fechaDetencionImputado');
                 $direccionImputado = $('#idDireccionImputado');
                 var dirImputado= $('#idDireccionImputado').val() != undefined ? $('#idDireccionImputado').val() : " ";
               
-                var dataJSON = JSON.stringify({idPersona:$imputado.id,idDireccion:$direccionImputado.val(),idProceso:$('#idProceso').val(),esDetenido:$esDetenidoImputado.val(),fechaDetencion:$fechaDetencionImputado.val()});
+                var dataJSON = JSON.stringify({idPersona:$imputado.id,idDireccion:$direccionImputado.val(),idProceso:$('#idProceso').val(),esDetenido:$esDetenidoImputado,fechaDetencion:$fechaDetencionImputado.val()});
                 $relationProcesoImputado = $('.relation-proceso-imputado');
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
@@ -272,7 +272,7 @@ $(document).on('blur', "input[type=text]", function () {
                             $relationProcesoImputado.append('<div class="row proceso-imputado" data-imputado-id="' + msg.id + '">'
                             + '<input type="hidden" name="imputados[]" value="' + $imputado.id + '">'
                             + '<input type="hidden" name="direccionesImputados[]" value="' + $direccionImputado.val() + '">'
-                            + '<input type="hidden" name="detenidosImputados[]" value="' + $esDetenidoImputado.val() + '">'
+                            + '<input type="hidden" name="detenidosImputados[]" value="' + $esDetenidoImputado + '">'
                             + '<div class="col-sm-10 col-xs-10" data-imputado="' + $imputado.nombre + '"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i> &nbsp;' + $imputado.nombre + '</div>'
                             + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputado"></i></div>'
                             + '</div>');
@@ -520,7 +520,7 @@ $(document).on('blur', "input[type=text]", function () {
 
  $(document).ready(function(){
 
-    $('#esDetenido').change(function(){
+/*    $('#esDetenido').change(function(){
         if ($(this).is(':checked') && $(this).val() == '0') {
                 $('#datosPersonasFisicas').show();
                 $('#datosPersonasMorales').hide();
@@ -530,7 +530,7 @@ $(document).on('blur', "input[type=text]", function () {
                 $('#datosPersonasMorales').show();
             }
         }
-    );
+    );*/
 
     $('input:radio[name="esEmpresa"]').change(
         function(){
