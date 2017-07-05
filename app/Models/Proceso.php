@@ -78,7 +78,7 @@ class Proceso extends Model
     }
 
     public function unidad(){
-        return $this->hasOne('App\Models\Unidad', "id","idUnidad");
+        return $this->hasOne('App\Models\Unidad', "id","idUIPJ");
     }
 
     public function juez(){

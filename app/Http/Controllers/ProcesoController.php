@@ -14,6 +14,7 @@ use App\Models\Unidad;
 use App\Models\CatFiscal;
 use App\Models\CatJuez;
 use App\Models\CatJuzgado;
+use App\Models\CatEdoCivil;
 use App\Models\Persona;
 use App\Models\Proceso;
 use App\Models\Direccion;
@@ -426,82 +427,87 @@ class ProcesoController extends AppBaseController
     public function show($id)
     {
         $proceso = $this->procesoRepository->findWithoutFail($id);
-        $procesoJson=new stdClass();
+        $procesoJson=new \stdClass();
         $procesoJson->id=$proceso['id'];
-        $procesoJson->carpeta=new stdClass();
+        $procesoJson->carpeta=new \stdClass();
         $procesoJson->carpeta->numero=$proceso['numeroCarpeta'];
-        $procesoJson->carpeta->fiscal=$proceso->fiscal()->get()['name'];
+        $procesoJson->carpeta->fiscal=isset($proceso->fiscal()->get()[0])?$proceso->fiscal()->get()[0]['name']:'';
         $procesoJson->carpeta->fecha=$proceso['fechaRadicacion'];
-        $procesoJson->carpeta->uipj=$proceso->unidad()->get()['nombre'];
-        $procesoJson->radicacion=new stdClass();
+        $procesoJson->carpeta->uipj=isset($proceso->unidad()->get()[0])?$proceso->unidad()->get()[0]['nombre']:'';
+        $procesoJson->radicacion=new \stdClass();
         $procesoJson->radicacion->numero=$proceso['numeroProceso'];
-        $procesoJson->radicacion->juzgado=$proceso->juzgado()->get()['juzgado'];
-        $procesoJson->radicacion->juez=$proceso->juez()->get()['juez'];
-        $procesoJson->victimas=array();
-        $victimas= DB::table('personas')
+        $procesoJson->radicacion->juzgado=isset($proceso->juzgado()->get()[0])?$proceso->juzgado()->get()[0]['juzgado']:'';
+        $procesoJson->radicacion->juez=isset($proceso->juez()->get()[0])?$proceso->juez()->get()[0]['juez']:'';
+        /*$victimas= DB::table('personas')
             ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
             ->where('victimas.idProceso','=',$id)
             ->where('victimas.deleted_at','=',NULL)
-            ->select()->get();
-            $i=0;
+            ->get();*/
+        $victimas= Persona::join('victimas', 'personas.id', '=', 'victimas.idPersona')
+            ->where('victimas.idProceso','=',$id)
+            ->where('victimas.deleted_at','=',NULL)
+            ->select()
+            ->get();            
+        $procesoJson->victimas=array();
+        $i=0;
         foreach ($victimas as $victima) {
-                $victimaJson=new stdClass();
+                $victimaJson=new \stdClass();
                 $victimaJson->id=$victima->id;
                 $victimaJson->tipo=$victima->esEmpresa?'FISICA':'MORAL';
                 $victimaJson->nombre=$victima->nombre. " " .$victima->paterno." " . $victima->materno;
                 $victimaJson->alias=$victima->alias;
                 $victimaJson->fechaNacimiento=$victima->fechaNacimiento;
                 $victimaJson->sexo=$victima->sexo;
-                $victimaJson->estadoCivil=$victima->estadoCivil()->get()['estadoCivil'];
-                $imputadoJson->etnia=$imputado->etnia()->get()['etnia']; 
+                $victimaJson->estadoCivil=isset($victima->estadoCivil()->get()[0])?$victima->estadoCivil()->get()[0]['estadoCivil']:'';
+                $victimaJson->etnia=isset($victima->etnia()->get()[0])?$victima->etnia()->get()[0]['etnia']:''; 
                 $victimaJson->nombrePadre=$victima->nombrePadre . $victima->primerApellidoPadre .$victima->primerApellidoPadre; 
                 $victimaJson->nombreMadre=$victima->nombreMadre . $victima->primerApellidoMadre .$victima->primerApellidoMadre; 
-                $procesoJson->victimas[$i++]=$victimaJson;
+                $procesoJson->victimas[$i++]=["victima"=>$victimaJson];
         }
-        $procesoJson->imputados=new array();
-        $selectedImputados= DB::table('personas')
+        $i=0;
+        $procesoJson->imputados= array();
+        /*$selectedImputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
-            ->select()->get();
+            ->select()->get();*/
+              $imputados= Persona::join('imputados', 'personas.id', '=', 'imputados.idPersona')
+            ->where('imputados.idProceso','=',$id)
+            ->where('imputados.deleted_at','=',NULL)
+            ->select()
+            ->get();            
             foreach ($imputados as $imputado) {
-                $imputadoJson=new stdClass();
-                $imputadoJson->id==$imputado->id;
+                $imputadoJson=new \stdClass();
+                $imputadoJson->id=$imputado->id;
                 $imputadoJson->tipo=$imputado->esEmpresa?'FISICA':'MORAL';
                 $imputadoJson->nombre=$imputado->nombre. " " .$imputado->paterno." " . $imputado->materno;
                 $victimaJson->alias=$victima->alias;
                 $imputadoJson->fechaNacimiento=$imputado->fechaNacimiento;
                 $imputadoJson->sexo=$imputado->sexo;
-                $imputadoJson->estadoCivil=$imputado->estadoCivil()->get()['estadoCivil'];
-                $imputadoJson->etnia=$imputado->etnia()->get()['etnia']; 
+                $imputadoJson->estadoCivil=isset($imputado->estadoCivil()->get()[0])?$imputado->estadoCivil()->get()[0]['estadoCivil']:'';
+                $imputadoJson->etnia=isset($imputado->etnia()->get()[0])?$imputado->etnia()->get()[0]['etnia']:''; 
                 $imputadoJson->nombrePadre=$imputado->nombrePadre . $imputado->primerApellidoPadre .$imputado->segundoApellidoPadre; 
                 $imputadoJson->nombreMadre=$imputado->nombreMadre . $imputado->primerApellidoMadre .$imputado->segundoApellidoMadre; 
-                $procesoJson->imputados[$i++]=$imputadoJson;
+                $procesoJson->imputados[$i++]=["imputado"=>$imputadoJson];
         }
-               "tipo":"fisica",
-               "nombre":"Daniela Robles Hernández",
-               "alias":"la dani",
-               "fechaNacimiento":"20/01/1978",
-               "sexo":"femenino",
-               "estadoCivil":"casada",
-               "direccion":"calle 5 #146 Col. Mexico C.P 57900",
-               "nombrePadre":"Juan FLores",
-               "nombreMadre":"Daniela Hernández"
-        $procesoJson->imputaciones=new array();
+        $procesoJson->imputaciones= array();
+        $i=0;
         $imputaciones= DB::table('victimaimputado')
             ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
             ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
             ->join('personas', 'personas.id', '=', 'victimas.idPersona')
             ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
             ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
-            ->where('victimaimputado.idProceso','=',$input['idProceso'])
+            ->where('victimaimputado.idProceso','=',$id)
             ->where('victimaimputado.deleted_at','=',NULL)
             ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
-        each
-            "victima":"Carlos Pérez Hernández",
-            "delito":"Daños",
-            "imputado":"Mi Empresa S.A de C.V"
-
+        foreach ($imputaciones as $imputacion) {
+                $imputacionJson=new \stdClass();
+                $imputacionJson->victima=$imputacion->nombreVictima;
+                $imputacionJson->delito=$imputacion->delito;
+                $imputacionJson->imputado=$imputacion->delito;
+                
+            }
 /*
         $proceso=json_decode('{
       "id":1,
@@ -628,12 +634,14 @@ class ProcesoController extends AppBaseController
       }
    ');*/
 
+$proceso=json_decode('{"id":122,"carpeta":{"numero":"4548","fiscal":"LIC. dsaDS","fecha":"2017-07-21","uipj":"UIPJ Orizaba"},"radicacion":{"numero":"55","juzgado":"JUZGADO DE PROCESO Y PROCEDIMIENTO PENAL ORAL COATEPEC\r\n","juez":"LIC. ADRIANA BALCONI DELFIN"},"victimas":[{"victima":{"id":162,"tipo":"FISICA","direccion":"",nombre":"GRECIA DAYANA MORA SARABIA","alias":"NULL","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"victima":{"id":163,"tipo":"MORAL","nombre":"DEYANIRA AMAIRANY JIMENEZ TEXSON","alias":"NULL","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}}],"imputados":[{"imputado":{"id":101,"tipo":"MORAL","nombre":"JULIANA VELASCO LSDA","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"imputado":{"id":102,"tipo":"MORAL","nombre":"CATALINA GABRIELA AVILA CRUZ","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}},{"imputado":{"id":103,"tipo":"MORAL","nombre":"ZEUS KOBE FABRE DOMINGUEZ","fechaNacimiento":null,"sexo":"NULL","estadoCivil":"","etnia":"","nombrePadre":"NULLNULLNULL","nombreMadre":"NULLNULLNULL"}}],"imputaciones":[]}');
+
         if (empty($proceso)) {
             Flash::error('Proceso not found');
 
             return redirect(route('procesos.index'));
         }
-
+//        var_dump(json_encode($procesoJson));
         return view('procesos.show')->with('proceso', $proceso);
     }
 

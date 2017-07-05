@@ -158,10 +158,9 @@
                 </div>
             </div>     
         </div>
-
         @foreach ($proceso->victimas as $victima) 
         <div class="row">
-        @if ($victima->victima->tipo === "fisica")
+        @if($victima->victima->tipo === "FISICA")
             <div class="col-md-1 col-xs-1">
                 <!-- Tipo Field -->
                 <div class="form-group">
@@ -254,7 +253,7 @@
 
         @foreach ($proceso->victimas as $victima) 
         <div class="row">
-        @if ($victima->victima->tipo === "moral")
+        @if ($victima->victima->tipo === "MORAL")
             <div class="col-md-3 col-xs-3">
                 <!-- Tipo Field -->
                 <div class="form-group">
