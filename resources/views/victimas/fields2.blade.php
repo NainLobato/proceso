@@ -45,16 +45,17 @@
                 @foreach($selectedVictimas as $victima)
                     <div class="row row-proceso-victima" data-victima-id="{!! $victima->id !!}">
                         <input type="hidden" name="victimas[]" value="{!! $victima->id !!}">
-                        <div class="col-sm-8 col-xs-8">
-                        <div class="form-group">
+                        
+                        <div class="col-sm-10 col-xs-10">
+                        <div class="form-group"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> 
                             {!! $victima->nombre !!}
+                        </div>
                         </div>
                         <div class="col-sm-2 col-xs-2 text-center">
                         <div class="form-group">
                             <i class="fa fa-times icon-red remove-proceso-victima"></i>
                         </div>
                         </div>
-                    </div>
                     </div>
                 @endforeach
             @endif

@@ -348,9 +348,9 @@ $(document).on('blur', "input[type=text]", function () {
                             + '<input type="hidden" name="victimasImputacion[]" value="' + $victima.val() + '">'
                             + '<input type="hidden" name="imputadosImputacion[]" value="' + $imputado.val() + '">'
                             + '<input type="hidden" name="delitosImputacion[]" value="' + $delito.val() + '">'
-                                                    + '<div class="col-sm-3 col-xs-3"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> &nbsp;' +  $('#idVictimaImputacion option:selected').text()+ '</div>'
-                        + '<div class="col-sm-4 col-xs-4"><i class="fa fa-gavel fa-2x" aria-hidden="true"></i> &nbsp;' + $('#idDelitoImputado option:selected').text()+ '</div>'
-                        + '<div class="col-sm-3 col-xs-3"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i> &nbsp;' + $('#idImputadoImputacion option:selected').text() + '</div>'
+                            + '<div class="col-sm-3 col-xs-3"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> &nbsp;' +  $('#idVictimaImputacion option:selected').text()+ '</div>'
+                            + '<div class="col-sm-4 col-xs-4"><i class="fa fa-gavel fa-2x" aria-hidden="true"></i> &nbsp;' + $('#idDelitoImputado option:selected').text()+ '</div>'
+                            + '<div class="col-sm-3 col-xs-3"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i> &nbsp;' + $('#idImputadoImputacion option:selected').text() + '</div>'
                             + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
                             + '</div>');
                         }else{

@@ -51,16 +51,26 @@
                         <input type="hidden" name="victimasImputacion[]" value="{!! $imputacion->idVictima !!}">
                         <input type="hidden" name="imputadosImputacion[]" value="{!! $imputacion->idImputado !!}">
                         <input type="hidden" name="delitosImputacion[]" value="{!! $imputacion->idDelito !!}">
-                        <div class="col-sm-8 col-xs-8">
-                        <div class="form-group">
-                            {!! $imputacion->nombreVictima !!}  {!! $imputacion->delito !!}  {!! $imputacion->nombreImputado !!}
+                        <div class="col-sm-3 col-xs-3">
+                        <div class="form-group"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+                            {!! $imputacion->nombreVictima !!}
+                        </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-4">
+                        <div class="form-group"><i class="fa fa-gavel fa-2x" aria-hidden="true"></i>
+                            {!! $imputacion->delito !!}
+                        </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-3">
+                        <div class="form-group"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i>
+                            {!! $imputacion->nombreImputado !!}
+                        </div>
                         </div>
                         <div class="col-sm-2 col-xs-2 text-center">
                         <div class="form-group">
                             <i class="fa fa-times icon-red remove-proceso-imputacion"></i>
                         </div>
                         </div>
-                    </div>
                     </div>
                 @endforeach
             @endif
