@@ -59,16 +59,16 @@
                 @foreach($selectedImputados as $imputado)
                     <div class="row row-proceso-imputado" data-imputado-id="{!! $imputado->id !!}">
                         <input type="hidden" name="imputados[]" value="{!! $imputado->id !!}">
-                        <div class="col-sm-8 col-xs-8">
-                        <div class="form-group">
+                        <div class="col-sm-10 col-xs-10">
+                        <div class="form-group"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i>
                             {!! $imputado->nombre !!}
+                        </div>
                         </div>
                         <div class="col-sm-2 col-xs-2 text-center">
                         <div class="form-group">
                             <i class="fa fa-times icon-red remove-proceso-imputado"></i>
                         </div>
                         </div>
-                    </div>
                     </div>
                 @endforeach
         @endif
