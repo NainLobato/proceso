@@ -11,13 +11,29 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/AdminLTE.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/skins/_all-skins.min.css">
+        
+        <!-- Ionicons -->
 
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/procesos/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/procesos/public/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="/procesos/public/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/procesos/public/css/_all-skins.min.css">
+
+    <link rel="stylesheet" href="/procesos/public/css/ionicons.min.css">
+    <link rel="stylesheet" href="/procesos/public/css/select2.min.css">
+    <link rel="stylesheet" href="/procesos/public/css/icon.css">
+
+
+    <link rel="stylesheet" href="/procesos/public/css/font-awesome2.min.css">
+    <link rel="stylesheet" href="/procesos/public/css/font-awesome3.min.css">
+
     <style>
         input {text-transform:uppercase;}
         /*  .panel-heading {
@@ -65,8 +81,8 @@
                                 <!-- The user image in the navbar-->
                                <!-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/>-->
-                                     <div style="text-align:right;display:inline;"><img src="/public/img/header.png" height="80px"/></div>
-                                    <div style="text-align:right;display:inline;"><img src="/public/img/logo.png" height="80px"/></div>
+                                     <div style="text-align:right;display:inline;"><img src="/procesos/public/img/header.png" height="80px"/></div>
+                                    <div style="text-align:right;display:inline;"><img src="/procesos/public/img/logo.png" height="80px"/></div>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <!--<span class="hidden-xs">{!! Auth::user()->name !!}</span>-->
                             </a>
@@ -110,7 +126,7 @@
         </div>
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-             <div align="right" style="display:block-inline;"><img src="/public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
+             <div align="right" style="display:block-inline;"><img src="/procesos/public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
              <strong>Desarrollado por <a href="#">Subdirección de Sistemas</a>.</strong>
         </footer>
 
@@ -170,6 +186,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
     <!-- AdminLTE App -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
@@ -182,7 +199,31 @@
     <script src="http://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="http://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('../resources/assets/js/procesos.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('../public/js/procesos.js') }}"></script>
+
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/procesos/public/js/jquery.min.js"></script>
+    <script src="/procesos/public/js/bootstrap.min.js"></script>
+    <script src="/procesos/public/js/select2.min.js"></script>
+    <script src="/procesos/public/js/icheck.min.js"></script>
+
+    <!-- AdminLTE App -->
+    
+    <script src="/procesos/public/js/app.min.js"></script>
+
+    <link href="/procesos/public/css/select2.min.css" rel="stylesheet" />
+    <script src="/procesos/public/js/select2.min.js"></script>
+
+
+      <link rel="stylesheet" href="/procesos/public/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/procesos/public/css/buttons.dataTables.min.css">
+    <script src="/procesos/public/js/jquery.dataTables.min.js"></script>
+    <script src="/procesos/public/js/dataTables.buttons.min.js"></script>
+    <script src="/procesos/public/js/buttons.colVis.js"></script>
+    <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('../public/js/procesos.js') }}"></script>
+
     @yield('scripts')
 </body>
 </html>

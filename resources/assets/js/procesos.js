@@ -12,6 +12,8 @@ $('.modal-persona').on('click', function(e){
   $('#modalPersona').modal('show').find('.modal-body').load($(this).attr('data-href'));
 });
 
+
+
 /*$('#procesoForm').on('submit', function (e) {
   if (e.isDefaultPrevented()) {
     // handle the invalid form...
@@ -66,13 +68,24 @@ function getImputaciones(){
                         $relationProcesoImputacion = $('.relation-proceso-imputacion');
                         $relationProcesoImputacion.html('');
                         $.each(msg.imputaciones, function(valor, texto) {
-                                $relationProcesoImputacion.append('<div class="row proceso-imputacion" data-imputacion-id="' + texto.id + '">'
+                               /* $relationProcesoImputacion.append('<div class="row proceso-imputacion" data-imputacion-id="' + texto.id + '">'
                                                             + '<input type="hidden" name="victimasImputacion[]" value="' + texto.idVictima + '">'
                                                             + '<input type="hidden" name="imputadosImputacion[]" value="' + texto.idImputado + '">'
                                                             + '<input type="hidden" name="delitosImputacion[]" value="' + texto.idDelito+ '">'
                                                             + '<div class="col-sm-10 col-xs-10">' +  texto.nombreVictima +  '&nbsp;' + texto.delit  +  '&nbsp;' + texto.nombreImputado + '</div>'
                                                             + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
+                                                            + '</div>');*/
+
+                                 $relationProcesoImputacion.append('<div class="row proceso-imputacion" data-imputacion-id="' + texto.id + '">'
+                                                            + '<input type="hidden" name="victimasImputacion[]" value="' + texto.idVictima + '">'
+                                                            + '<input type="hidden" name="imputadosImputacion[]" value="' + texto.idImputado + '">'
+                                                            + '<input type="hidden" name="delitosImputacion[]" value="' + texto.idDelito + '">'
+                                                            + '<div class="col-sm-3 col-xs-3"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> &nbsp;' +  texto.nombreVictima + '</div>'
+                                                            + '<div class="col-sm-4 col-xs-4"><i class="fa fa-gavel fa-2x" aria-hidden="true"></i> &nbsp;' + texto.delito + '</div>'
+                                                            + '<div class="col-sm-3 col-xs-3"><i class="fa fa-user-secret fa-2x" aria-hidden="true"></i> &nbsp;' + texto.nombreImputado + '</div>'
+                                                            + '<div class="col-sm-2 col-xs-2 text-center"><i class="fa fa-times icon-red remove-proceso-imputacion"></i></div>'
                                                             + '</div>');
+
                                 });
                     }
     });
@@ -546,7 +559,35 @@ $(document).on('blur', "input[type=text]", function () {
     );
 
 
+    $('#guardarPersona').on('click', function(e){
+        e.preventDefault();
 
-    //Add get Implicados
-     
+        if(!$("#personaForm")[0].checkValidity()){
+            alert('Existen campos invalidos');
+            return;
+        }
+        var personaObject=getFormData($('#personaForm'));
+            /*delete personaObject._method;
+            delete personaObject._token;*/
+        var dataJSON = JSON.stringify(personaObject);
+
+         $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+            type: "POST",
+            url: '/procesos/public/personas/storeModal',
+            data: dataJSON,
+            contentType : 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function( msg,data) {
+                if (msg.id){
+                    $("#idPersona").val(msg.id);
+                    $(".modal-body").html("<div>Persona Agregada Correctamente, de clic al botón CERRAR</div>");
+                }
+                else{   
+                    $(".modal-body").html("<div>Error al crear la Persona</div>");
+                }
+            }
+        }); 
+    });
+
 });

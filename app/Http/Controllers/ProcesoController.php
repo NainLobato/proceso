@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Models\Victima;
 use App\Models\Imputado;
-use App\Models\VictimaImputado;
+use App\Models\Imputacion;
 use App\Models\CatTipoRelacion;
 class ProcesoController extends AppBaseController
 {
@@ -167,12 +167,12 @@ class ProcesoController extends AppBaseController
                 ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
                 ->where('victimas.idProceso','=',$input['idProceso'])
                 ->where('victimas.deleted_at','=',NULL)
-                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, victimas.id')->get();
+                ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre, victimas.id')->get();
                 $imputados= DB::table('personas')
                 ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
                 ->where('imputados.idProceso','=',$input['idProceso'])
                 ->where('imputados.deleted_at','=',NULL)
-                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
+                ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre, imputados.id')->get();
 
                 if($victimas){
                     return response()->json(['victimas'=>$victimas,'imputados'=>$imputados]);
@@ -195,15 +195,15 @@ class ProcesoController extends AppBaseController
                 $input=Input::all();
                 $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
             
-            $imputaciones= DB::table('victimaimputado')
-            ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
-            ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
+            $imputaciones= DB::table('imputacion')
+            ->join('imputados', 'imputados.id', '=', 'imputacion.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'imputacion.idVictima')
             ->join('personas', 'personas.id', '=', 'victimas.idPersona')
             ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
-            ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
-            ->where('victimaimputado.idProceso','=',$input['idProceso'])
-            ->where('victimaimputado.deleted_at','=',NULL)
-            ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'imputacion.idDelito')
+            ->where('imputacion.idProceso','=',$input['idProceso'])
+            ->where('imputacion.deleted_at','=',NULL)
+            ->selectRaw('imputacion.id, CONCAT(COALESCE(personas.nombre,""), " ", COALESCE(personas.paterno,"")," ",COALESCE(personas.materno,"")) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(COALESCE(per.nombre,""), " ", COALESCE(per.paterno,"")," ",COALESCE(per.materno,"")) as nombreImputado, imputados.id as idImputado')->get();
             if($proceso && $imputaciones){
                     return response()->json(['imputaciones'=>$imputaciones]);
                 }
@@ -273,6 +273,8 @@ class ProcesoController extends AppBaseController
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
                 if($proceso && Victima::find($input['idVictima'])->delete()){
+                 Imputacion::where('idVictima',$input['idVictima'])->delete();
+
                     return response()->json(['id' => $input['idVictima']]);
                 }
                 else{
@@ -304,6 +306,7 @@ class ProcesoController extends AppBaseController
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
                 if($proceso && Imputado::find($input['idImputado'])->delete()){
+                    Imputacion::where('idImputado',$input['idImputado'])->delete();
                     return response()->json(['id' => $input['idImputado']]);
                 }
                 else{
@@ -336,7 +339,7 @@ class ProcesoController extends AppBaseController
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
                 
-                if($proceso && VictimaImputado::find($input['idImputacion'])->delete()){
+                if($proceso && Imputacion::find($input['idImputacion'])->delete()){
                     return response()->json(['id' => $input['idImputacion']]);
                 }
                 else{
@@ -400,7 +403,7 @@ class ProcesoController extends AppBaseController
                 if (empty($proceso)) {
                     return response()->json(['message' => 'Proceso no encontrado']);
                 }
-                $victimaImputado=new VictimaImputado($input);
+                $victimaImputado=new Imputacion($input);
                 if($victimaImputado){
                     $victimaImputado->save();    
                     return response()->json($victimaImputado);
@@ -497,15 +500,15 @@ class ProcesoController extends AppBaseController
         }
         $procesoJson->imputaciones= array();
         $i=0;
-        $imputaciones= DB::table('victimaimputado')
-            ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
-            ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
+        $imputaciones= DB::table('imputacion')
+            ->join('imputados', 'imputados.id', '=', 'imputacion.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'imputacion.idVictima')
             ->join('personas', 'personas.id', '=', 'victimas.idPersona')
             ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
-            ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
-            ->where('victimaimputado.idProceso','=',$id)
-            ->where('victimaimputado.deleted_at','=',NULL)
-            ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'imputacion.idDelito')
+            ->where('imputacion.idProceso','=',$id)
+            ->where('imputacion.deleted_at','=',NULL)
+            ->selectRaw('imputacion.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
         foreach ($imputaciones as $imputacion) {
                 $imputacionJson=new \stdClass();
                 $imputacionJson->victima=$imputacion->nombreVictima;
@@ -674,47 +677,47 @@ class ProcesoController extends AppBaseController
             ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
             ->where('victimas.idProceso','=',$id)
             ->where('victimas.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->pluck('nombre','id');
+            ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre,victimas.id')->pluck('nombre','id');
         
         $imputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->pluck('nombre','id');
+            ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre, imputados.id')->pluck('nombre','id');
 
         $selectedVictimas= DB::table('personas')
             ->join('victimas', 'personas.id', '=', 'victimas.idPersona')
             ->where('victimas.idProceso','=',$id)
             ->where('victimas.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre,victimas.id')->get();
+            ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre,victimas.id')->get();
         
         $selectedImputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
-            ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, imputados.id')->get();
+            ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre, imputados.id')->get();
 
           /*$imputaciones= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->join('victimas', 'victimas.idPersona', '=', 'per.id')
-            ->join('victimaimputado', 'victimaimputado.idVictima', '=', 'victimas.id')
+            ->join('imputacion', 'imputacion.idVictima', '=', 'victimas.id')
             
             ->join('personas per', 'per.id', '=', 'victimas.idPersona')
-            ->where('victimaimputado.idVictima','=','victimas.id')
-            ->where('victimaimputado.idImputado','=','imputados.id')
+            ->where('imputacion.idVictima','=','victimas.id')
+            ->where('imputacion.idImputado','=','imputados.id')
             ->where('imputados.deleted_at','=',NULL)
             ->where('victimas.deleted_at','=',NULL)
             ->selectRaw('CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreVictima, imputados.id,CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) nombreImputado, imputados.id')->get();
 */
-            $imputaciones= DB::table('victimaimputado')
-            ->join('imputados', 'imputados.id', '=', 'victimaimputado.idImputado')
-            ->join('victimas', 'victimas.id', '=', 'victimaimputado.idVictima')
+            $imputaciones= DB::table('imputacion')
+            ->join('imputados', 'imputados.id', '=', 'imputacion.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'imputacion.idVictima')
             ->join('personas', 'personas.id', '=', 'victimas.idPersona')
             ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
-            ->join('cat_delitos', 'cat_delitos.id', '=', 'victimaimputado.idDelito')
-            ->where('victimaimputado.idProceso','=',$id)
-            ->where('victimaimputado.deleted_at','=',NULL)
-            ->selectRaw('victimaimputado.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'imputacion.idDelito')
+            ->where('imputacion.idProceso','=',$id)
+            ->where('imputacion.deleted_at','=',NULL)
+            ->selectRaw('imputacion.id, CONCAT(COALESCE(personas.nombre,""), " ", COALESCE(personas.paterno,"")," ",COALESCE(personas.materno,"")) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(COALESCE(per.nombre,""), " ", COALESCE(per.paterno,"")," ",COALESCE(per.materno,"")) as nombreImputado, imputados.id as idImputado')->get();
 
         $proceso = $this->procesoRepository->findWithoutFail($id);
 

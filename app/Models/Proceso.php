@@ -34,7 +34,9 @@ class Proceso extends Model
         'conDetenido',
         'obsequiaOrden',
         'fechaOrden',
-        'observaciones'
+        'observaciones',
+        'numeroFiscal',
+        'numeroExtra'
     ];
 
     /**
@@ -45,7 +47,7 @@ class Proceso extends Model
     protected $casts = [
         'idUIPJ' => 'integer',
         'anioCarpeta' => 'integer',
-        'numeroCarpeta' => 'string',
+        'numeroCarpeta' => 'integer',
         'anioProceso' => 'integer',
         'numeroProceso' => 'string',
         'fechaInicioCarpeta' => 'date',
@@ -56,7 +58,9 @@ class Proceso extends Model
         'conDetenido' => 'boolean',
         'obsequiaOrden' => 'boolean',
         'fechaOrden' => 'date',
-        'observaciones' => 'string'
+        'observaciones' => 'string',
+        'numeroFiscal' => 'integer',
+        'numeroExtra' => 'string'
     ];
 
     /**
@@ -70,7 +74,8 @@ class Proceso extends Model
         'numeroCarpeta' => 'required',
         'anioProceso' => 'required',
         'numeroProceso' => 'required',
-        'fechaRadicacion' => 'required'
+        'fechaRadicacion' => 'required',
+        'numeroFiscal' => 'required'
     ];
 
     public function fiscal(){
@@ -100,8 +105,7 @@ class Proceso extends Model
     }
 
     public function imputaciones(){
-        return $this->hasMany("App\Models\VictimaImputado", "victimaimputado", "idVictima", "idImputado")
+        return $this->hasMany("App\Models\Imputacion", "imputacion", "idVictima", "idImputado")
             ->withPivot("idDelito","idTipoRelacion");
     }
-
 }

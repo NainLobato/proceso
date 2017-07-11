@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('catEscolaridads', 'catEscolaridadController');
 
 Route::get('personas/createModal', ['middleware' => 'web','as'=>'personas.createModal','uses'=>'PersonaController@createModal']);
+Route::post('personas/storeModal', ['middleware' => 'web','as'=>'personas.storeModal','uses'=>'PersonaController@storeModal']);
 Route::get('personas/getPersonas', ['middleware' => 'web','as'=>'personas.getPersonas','uses'=>'PersonaController@getPersonas']);
 
 Route::resource('personas', 'PersonaController');

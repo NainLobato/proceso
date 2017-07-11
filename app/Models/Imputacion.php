@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version May 12, 2017, 9:38 pm UTC
  */
-class VictimaImputado extends Model
+class Imputacion extends Model
 {
     use SoftDeletes;
 
-    public $table = 'victimaimputado';
+    public $table = 'imputacion';
     
 
     protected $dates = ['deleted_at'];

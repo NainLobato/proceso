@@ -100,6 +100,35 @@ class PersonaController extends AppBaseController
 
         return redirect(route('personas.index'));
     }
+   /**
+     * Store a newly created Persona in storage.
+     *
+     * @param CreatePersonaRequest $request
+     *
+     * @return Response
+     */
+    public function storeModal(CreatePersonaRequest $request)
+    {
+        try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $input['fechaNacimiento'] = $this->formatDate($input['fechaNacimiento']);
+                $persona = $this->personaRepository->create($input);
+                if($persona){
+                    return response()->json($persona);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud']);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
+
 
     /**
      * Display the specified Persona.
@@ -214,8 +243,8 @@ class PersonaController extends AppBaseController
                 $input=Input::all();
                 $nombre = $input['q'];
                 $personas= DB::table('personas')
-                ->where(DB::raw('CONCAT(nombre, " ", paterno," ",materno)'),'LIKE', '%'.$nombre.'%')
-                ->selectRaw('CONCAT(nombre, " ", paterno," ",materno) nombre, id')->get();
+                ->where(DB::raw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,""))'),'LIKE', '%'.$nombre.'%')
+                ->selectRaw('CONCAT(COALESCE(nombre,""), " ", COALESCE(paterno,"")," ",COALESCE(materno,"")) nombre, id')->get();
                 if($personas){
                     return response()->json(['personas'=>$personas,'total'=>sizeof($personas)]);
                 }
