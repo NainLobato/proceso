@@ -225,6 +225,7 @@ $(document).on('blur', "input[type=text]", function () {
                     success: function( msg,data ) {
                         if(msg.id){
                             getImplicados();
+                            getImputaciones();
                         }
                         else{
                             $relationProcesoVictima.append('<div class="row proceso-victima">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-victima"></i>');
