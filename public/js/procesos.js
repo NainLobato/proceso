@@ -223,6 +223,8 @@ $(document).on('blur', "input[type=text]", function () {
                     success: function( msg,data ) {
                         if(msg.id){
                             getImplicados();
+                            getImputaciones();
+
                         }
                         else{
                             $relationProcesoVictima.append('<div class="row proceso-victima">'+msg.message+'</div><i class="fa fa-times icon-red remove-proceso-victima"></i>');
@@ -558,6 +560,34 @@ $(document).on('blur', "input[type=text]", function () {
 
 
 
-    //Add get Implicados
-     
+ $('#guardarPersona').on('click', function(e){
+        e.preventDefault();
+
+        if(!$("#personaForm")[0].checkValidity()){
+            alert('Existen campos invalidos');
+            return;
+        }
+        var personaObject=getFormData($('#personaForm'));
+            /*delete personaObject._method;
+            delete personaObject._token;*/
+        var dataJSON = JSON.stringify(personaObject);
+
+         $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+            type: "POST",
+            url: '/procesos/public/personas/storeModal',
+            data: dataJSON,
+            contentType : 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function( msg,data) {
+                if (msg.id){
+                    $("#idPersona").val(msg.id);
+                    $(".modal-body").html("<div>Persona Agregada Correctamente, de clic al botón CERRAR</div>");
+                }
+                else{   
+                    $(".modal-body").html("<div>Error al crear la Persona</div>");
+                }
+            }
+        }); 
+    });     
 });
