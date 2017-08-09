@@ -26,6 +26,9 @@ use App\Models\Victima;
 use App\Models\Imputado;
 use App\Models\Imputacion;
 use App\Models\CatTipoRelacion;
+use App\Models\CatAudiencia;
+use App\Models\CatEtapa;
+
 class ProcesoController extends AppBaseController
 {
     /** @var  ProcesoRepository */
@@ -419,6 +422,38 @@ class ProcesoController extends AppBaseController
             return response()->json($e);
         }
     }
+/**
+     * Store a newly created Audiencia for Proceso in storage.
+     *
+     * @param CreateAudienciaRequest $request
+     *
+     * @return Response
+     */
+    public function saveAudiencia()
+    {
+         try{
+             if (\Request::ajax()){
+                $input=Input::all();
+                $proceso = $this->procesoRepository->findWithoutFail($input['idProceso']);
+                if (empty($proceso)) {
+                    return response()->json(['message' => 'Proceso no encontrado']);
+                }
+                $audiencia=new Audiencia($input);
+                if($audiencia){
+                    $audiencia->save();    
+                    return response()->json($audiencia);
+                }
+                else{
+                    return response()->json(['message' => 'Error al procesar la solicitud']);
+                }
+             }
+             else{
+                return response()->json(['message' => 'Formato de Petición Incorrecta']);
+             }
+        }catch(\Exception $e){
+            return response()->json($e);
+        }
+    }
 
     /**
      * Display the specified Proceso.
@@ -671,6 +706,12 @@ class ProcesoController extends AppBaseController
         $fiscales= CatFiscal::orderBy('name')->pluck('name','id');
         $jueces= CatJuez::orderBy('juez')->pluck('juez','id');
         $juzgados= CatJuzgado::orderBy('juzgado')->pluck('juzgado','id');
+        
+        $audiencias=CatAudiencia::orderBy('audiencia')->pluck('audiencia','id');
+        
+        $etapas=CatEtapa::orderBy('etapa')->pluck('etapa','id');
+     //   $imputaciones=Imputacion::orderBy('idProceso')->pluck('idProceso','id');
+
         $action="editar";
 
         $victimas= DB::table('personas')
@@ -718,8 +759,18 @@ class ProcesoController extends AppBaseController
             ->where('imputacion.idProceso','=',$id)
             ->where('imputacion.deleted_at','=',NULL)
             ->selectRaw('imputacion.id, CONCAT(COALESCE(personas.nombre,""), " ", COALESCE(personas.paterno,"")," ",COALESCE(personas.materno,"")) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(COALESCE(per.nombre,""), " ", COALESCE(per.paterno,"")," ",COALESCE(per.materno,"")) as nombreImputado, imputados.id as idImputado')->get();
+            
+            $imputaciones2= DB::table('imputacion')
+            ->join('imputados', 'imputados.id', '=', 'imputacion.idImputado')
+            ->join('victimas', 'victimas.id', '=', 'imputacion.idVictima')
+            ->join('personas', 'personas.id', '=', 'victimas.idPersona')
+            ->join('personas as per', 'per.id', '=', 'imputados.idPersona')
+            ->join('cat_delitos', 'cat_delitos.id', '=', 'imputacion.idDelito')
+            ->where('imputacion.idProceso','=',$id)
+            ->where('imputacion.deleted_at','=',NULL)
+            ->selectRaw('imputacion.id, CONCAT(COALESCE(personas.nombre,""), " ", COALESCE(personas.paterno,"")," ",COALESCE(personas.materno,""), " -> " ,cat_delitos.delito, "->" , CONCAT(COALESCE(per.nombre,""), " ", COALESCE(per.paterno,"")," ",COALESCE(per.materno,""))) as imputacion')->pluck('imputacion','imputacion.id');
 
-        $proceso = $this->procesoRepository->findWithoutFail($id);
+            $proceso = $this->procesoRepository->findWithoutFail($id);
 
 
      /*   $proceso['fechaInicioCarpeta']=$this->showDate(substr($proceso['fechaInicioCarpeta'],0,10));
@@ -735,7 +786,7 @@ class ProcesoController extends AppBaseController
             return redirect(route('procesos.index'));
         }
 
-        return view('procesos.edit',array('idProceso'=>$id,'action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'imputaciones'=>$imputaciones))->with('proceso', $proceso);
+        return view('procesos.edit',array('idProceso'=>$id,'action'=>$action,'tiposRelacion'=>$tiposRelacion,'personas'=>$personas,'victimas'=>$victimas,'imputados'=>$imputados,'selectedVictimas'=>$selectedVictimas,'selectedImputados'=>$selectedImputados,'direcciones'=>$direcciones,'delitos'=>$delitos,'unidades'=>$unidades,'fiscales'=>$fiscales, 'jueces'=>$jueces, 'juzgados'=>$juzgados,'imputaciones'=>$imputaciones,'audiencias'=>$audiencias,'etapas'=>$etapas,'imputaciones2'=>$imputaciones2))->with('proceso', $proceso);
     }
 
     /**
