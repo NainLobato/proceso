@@ -18,7 +18,7 @@
         <div class="col-md-3 col-xs-4">
             <div class="form-group">
                 {!! Form::label('anioCarpeta', 'AÑO:') !!}*
-                {!! Form::number('anioCarpeta', null, ['class' => 'form-control','required'=>'','data-error'=>'Error al colocar el año']) !!}
+                {!! Form::number('anioCarpeta', null, ['class' => 'form-control','min:2000|required'=>'','data-error'=>'Error al colocar el año']) !!}
             </div>
         </div>
         <div class="col-md-2 col-xs-4">

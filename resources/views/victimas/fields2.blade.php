@@ -10,14 +10,14 @@
     <div class="box-body">
     <div class="row">
         {!! Form::open(['id' => 'frmVictimas']) !!}
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-3 col-xs-12">
              <div class="form-group">
                 {!! Form::label('idVictima', 'Nombre Victima:') !!}<br>
                 {!! Form::select('idVictima', array(), null, ['class' => 'form-control']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('idDireccion', 'Direccion:') !!}<br>
                 {!! Form::select('idDireccionVictima', $direcciones, null, ['name'=>'idDireccionVictima','id'=>'idDireccionVictima','class' => 'form-control']) !!}

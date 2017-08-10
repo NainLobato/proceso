@@ -10,14 +10,14 @@
     <div class="box-body">
     <div class="row">
         {!! Form::open(['id' => 'frmImputados']) !!}
-        <div class="col-md-4 col-xs-10">
+        <div class="col-md-4 col-xs-12">
              <div class="form-group">
                 {!! Form::label('idImputado', 'Nombre Imputado:') !!}<br>
                 {!! Form::select('idImputado', array(), null, ['class' => 'form-control']) !!}
              </div>
         </div>
 
-        <div class="col-md-2 col-xs-3">
+        <div class="col-md-2 col-xs-12">
              <div class="form-group">
                 {!! Form::label('esDetenido', '¿Detenido?') !!}
                 <br>
@@ -26,13 +26,13 @@
             </div>
         </div>
 
-       <div class="col-md-3 col-xs-10">
+       <div class="col-md-3 col-xs-12">
              <div class="form-group">
                 {!! Form::label('FechaDetencion', 'Fecha Detención') !!}<br>
                 {!! Form::date('fechaDetencionImputado', null, ['id'=>'fechaDetencionImputado','class' => 'form-control']) !!}
             </div>
         </div>
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-3 col-xs-12">
             <div class="form-group">
                 {!! Form::label('idDireccion', 'Direccion:') !!}<br>
                 {!! Form::select('idDireccionImputado', $direcciones, null, ['class' => 'form-control']) !!}

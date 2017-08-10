@@ -11,21 +11,21 @@
     <div class="row">
 
                {!! Form::open(['id' => 'frmAudiencias']) !!}
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-4 col-xs-12">
              <div class="form-group">
                 {!! Form::label('idTipoAudiencia', 'TIpo de Audiencia:') !!}<br>
                 {!! Form::select('idTipoAudiencia',  $audiencias, null,  ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-4 col-xs-12">
              <div class="form-group">
                 {!! Form::label('idJuez', 'Juez de Audiencia:') !!}<br>
                 {!! Form::select('idJuez',  $jueces, null,  ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
         
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-4 col-xs-12">
              <div class="form-group">
                 {!! Form::label('idFiscal', 'Fiscal de Audiencia:') !!}<br>
                 {!! Form::select('idFiscal',  $fiscales, null,  ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
@@ -33,21 +33,21 @@
         </div>
 </div>
  <div class="row">
-         <div class="col-md-3 col-xs-10">
+         <div class="col-md-4 col-xs-12">
              <div class="form-group">
                 {!! Form::label('resolucion', 'Resolucion:') !!}<br>
-                {!! Form::textarea('resolucion', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('resolucion', null, ['rows'=>'2', 'class' => 'form-control']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-4 col-xs-12">
              <div class="form-group">
                 {!! Form::label('idEtapa', 'Etapa:') !!}<br>
                 {!! Form::select('idEtapa',  $etapas, null,  ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}
             </div>
         </div>
 <!-- Observaciones Field -->
- <div class="col-md-5 col-xs-10">
+ <div class="col-md-4 col-xs-12">
              <div class="form-group">
     {!! Form::label('idImputacion', 'Imputacion:') !!}
     {!! Form::select('idImputacion', $imputaciones2, null,  ['placeholder' => 'Seleccionar...','class' => 'form-control']) !!}

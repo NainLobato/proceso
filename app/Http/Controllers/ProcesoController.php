@@ -527,8 +527,8 @@ class ProcesoController extends AppBaseController
                 $imputadoJson->alias=$imputado->alias;
                 $imputadoJson->fechaNacimiento=$imputado->fechaNacimiento;
                 $imputadoJson->sexo=$imputado->sexo;
-                $imputadoJson->estadoCivil=isset($imputado->estadoCivil()->get()[0]) && $imputado->estadoCivil()->get()[0] !=NULL?$imputado->estadoCivil()->get()[0]['estadoCivil']:'';
-                $imputadoJson->etnia=isset($imputado->etnia()->get()[0]) && $imputado->etnia()->get()[0]!=NULL?$imputado->etnia()->get()[0]['etnia']:''; 
+                $imputadoJson->estadoCivil=$imputado->estadoCivil()->get()[0]!=NULL?$imputado->estadoCivil()->get()[0]['estadoCivil']:'';
+                $imputadoJson->etnia=$imputado->etnia()->get()[0]!=NULL?$imputado->etnia()->get()[0]['etnia']:''; 
                 $imputadoJson->nombrePadre=$imputado->nombrePadre . $imputado->primerApellidoPadre .$imputado->segundoApellidoPadre; 
                 $imputadoJson->nombreMadre=$imputado->nombreMadre . $imputado->primerApellidoMadre .$imputado->segundoApellidoMadre; 
                 $procesoJson->imputados[$i++]=$imputadoJson;
