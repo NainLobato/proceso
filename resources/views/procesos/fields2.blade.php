@@ -15,39 +15,40 @@
     <div class="box box-default">
     <div class="box-body">
     <div class="row">
-        <div class="col-md-1 col-xs-4">
+        <div class="col-md-3 col-xs-4">
             <div class="form-group">
                 {!! Form::label('anioCarpeta', 'AÑO:') !!}*
                 {!! Form::number('anioCarpeta', null, ['class' => 'form-control','required'=>'','data-error'=>'Error al colocar el año']) !!}
             </div>
         </div>
-        <div class="col-md-1 col-xs-4">
+        <div class="col-md-2 col-xs-4">
             <div class="form-group">
                 {!! Form::label('numeroCarpeta', 'NUMERO:') !!}*
                 {!! Form::text('numeroCarpeta', null, ['class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
            </div>
         </div>
-        <div class="col-md-1 col-xs-1">
+        <div class="col-md-2 col-xs-4">
             <div class="form-group">
                 {!! Form::label('numeroExtra', 'No. Extra:') !!}
                 {!! Form::text('numeroExtra', null, ['class' => 'form-control']) !!}  
             </div>
         </div>
-        <div class="col-md-3 col-xs-11">
+        <div class="col-md-5 col-xs-12">
             <div class="form-group">
                 {!! Form::label('idUIPJ', 'UIPJ:') !!}*
                 {!! Form::select('idUIPJ', $unidades, null, ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
            </div>
         </div>
-
-        <div class="col-md-3 col-xs-11">
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
              {!! Form::label('idFiscal', 'FISCAL') !!}*
              {!! Form::select('idFiscal', $fiscales, null, ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
 
-         <div class="col-md-1 col-xs-2">
+         <div class="col-md-4 col-xs-6">
             <div class="form-group">
                 {!! Form::label('numeroFiscal', 'No.FISCAL:') !!}*
                  {!! Form::select('numeroFiscal', array(1=>"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"), null, ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'']) !!}
@@ -55,7 +56,7 @@
         </div>
 
 
-        <div class="col-md-2 col-xs-8">
+        <div class="col-md-4 col-xs-6">
             <div class="form-group">
                 {!! Form::label('fechaInicioCarpeta', 'FECHA INICIO:') !!}*
                 @if($action=='crear')
@@ -94,22 +95,24 @@
                 {!! Form::text('numeroProceso', null, ['class' => 'form-control','required'=>'']) !!}  
             </div>
         </div>
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
                 {!! Form::label('Juzgado', 'JUZGADO:') !!}*
                 {!! Form::select('idJuzgado', $juzgados, null, ['placeholder' => 'Seleccionar...','id'=>'idJuzgado','class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-10">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
             {!! Form::label('idJuez', 'JUEZ:') !!}*
             {!! Form::select('idJuez', $jueces, null, ['placeholder' => 'Seleccionar...','id'=>'idJuez','class' => 'form-control','required'=>'']) !!}
             </div>
         </div>
 
+    </div>
 
-        <div class="col-md-2 col-xs-8">
+<div class="row">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
             {!! Form::label('fechaRadicacion', 'FECHA RADICACION:') !!}*
             @if($action=='crear')
@@ -119,30 +122,28 @@
             @endif
              </div>
         </div>
-    </div>
-<div class="row">
 
-       <div class="col-md-5 col-xs-12">
+       <div class="col-md-8 col-xs-12">
             <div class="form-group">
             {!! Form::label('observaciones', 'OBSERVACIONES:') !!}
-            {!! Form::textarea('observaciones', null, ['rows'=>'4','class' => 'form-control']) !!}
+            {!! Form::textarea('observaciones', null, ['rows'=>'2','class' => 'form-control']) !!}
              </div>
         </div>
-        <div class="col-md-2 col-xs-5">
+        <div class="col-md-4 col-xs-5">
             <div class="form-group">
                   {!! Form::label('conDetenido', '¿CON DETENIDO?:') !!}<br>
                 {!! Form::hidden('conDetenido', false) !!}
                 {!! Form::checkbox('conDetenido', '1', null) !!} 
             </div>
         </div>
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="form-group">
                   {!! Form::label('obsequiaOrden', '¿ORDEN OBSEQUIADA?:') !!}<br>
                 {!! Form::hidden('obsequiaOrden', false) !!}
                 {!! Form::checkbox('obsequiaOrden', '1', null) !!} 
           </div>
         </div>
-        <div class="col-md-2 col-xs-8">
+        <div class="col-md-4 col-xs-12">
             <div class="form-group">
               {!! Form::label('fechaOrden', 'FECHA ORDEN:') !!}
             @if($action=='crear')
