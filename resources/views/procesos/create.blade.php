@@ -24,11 +24,9 @@
         @include('adminlte-templates::common.errors')
         <div class="box box-primary">
             <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'procesos.store','data-toggle'=>'validator', 'role'=>'form','id'=>'procesoForm']) !!}
-                        @include('procesos.fields2')
-                    {!! Form::close() !!}
-                 </div>
+                {!! Form::open(['route' => 'procesos.store','data-toggle'=>'validator', 'role'=>'form','id'=>'procesoForm']) !!}
+                    @include('procesos.fields2')
+                {!! Form::close() !!}
             </div>
         </div>
 

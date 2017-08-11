@@ -29,18 +29,16 @@
 
         <div class="box box-primary">
             <div class="box-body">
-                <div class="row">
-                   {!! Form::model($proceso, ['route' => ['procesos.update', $proceso->id], 'data-toggle'=>'validator', 'role'=>'form','id'=>'procesoForm','method' => 'patch']) !!}
+                {!! Form::model($proceso, ['route' => ['procesos.update', $proceso->id], 'data-toggle'=>'validator', 'role'=>'form','id'=>'procesoForm','method' => 'patch']) !!}
                    @include('procesos.fields2')
-                   {!! Form::close() !!}
-                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
-           @include('flash::message')
-            @include('victimas.fields2')
-            @include('imputados.fields2')
-            @include('procesos.imputaciones')
-            @include('audiencias.fields2')
+        @include('flash::message')
+        @include('victimas.fields2')
+        @include('imputados.fields2')
+        @include('procesos.imputaciones')
+        @include('audiencias.fields2')
 @endsection
 
 @section('scripts')
