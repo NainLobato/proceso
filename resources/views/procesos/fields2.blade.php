@@ -18,7 +18,12 @@
         <div class="col-md-3 col-xs-4">
             <div class="form-group">
                 {!! Form::label('anioCarpeta', 'AÑO:') !!}*
-                {!! Form::number('anioCarpeta', null, ['class' => 'form-control','min:2000|required'=>'','data-error'=>'Error al colocar el año']) !!}
+                <div class='input-group date calendarioAnio'>
+                    {!! Form::text('anioCarpeta', null, ['class' => 'form-control','required'=>'', 'data-error'=>'Error al colocar el año', 'placeholder' => 'AAAA']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="col-md-2 col-xs-4">
@@ -60,9 +65,19 @@
             <div class="form-group">
                 {!! Form::label('fechaInicioCarpeta', 'FECHA INICIO:') !!}*
                 @if($action=='crear')
-                    {!! Form::date('fechaInicioCarpeta', null, ['class' => 'form-control','required'=>'']) !!}
+                    <div class='input-group date calendarioCompleto'>
+                        {!! Form::text('fechaInicioCarpeta', null, ['class' => 'form-control','required'=>'', 'placeholder' => 'DD/MM/AAAA']) !!}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 @else 
-                    {!! Form::date('fechaInicioCarpeta', $proceso->fechaInicioCarpeta->format('Y-m-d'), ['class' => 'form-control','required'=>'']) !!}
+                    <div class='input-group date calendarioCompleto'>
+                        {!! Form::text('fechaInicioCarpeta', $proceso->fechaInicioCarpeta->format('d/m/Y'), ['class' => 'form-control','required'=>'']) !!}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 @endif
             </div>
         </div>
@@ -85,7 +100,12 @@
         <div class="col-md-2 col-xs-6">
             <div class="form-group">
                 {!! Form::label('anioProceso', 'AÑO:') !!}*
-                {!! Form::number('anioProceso', null, ['class' => 'form-control','required'=>'']) !!}
+                <div class='input-group date calendarioAnio'>
+                    {!! Form::text('anioProceso', null, ['class' => 'form-control','required'=>'', 'placeholder' => 'AAAA']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
         
@@ -116,9 +136,19 @@
             <div class="form-group">
             {!! Form::label('fechaRadicacion', 'FECHA RADICACION:') !!}*
             @if($action=='crear')
-                    {!! Form::date('fechaRadicacion', null, ['class' => 'form-control','required'=>'']) !!}
+                <div class='input-group date calendarioCompleto'>
+                    {!! Form::text('fechaRadicacion', null, ['class' => 'form-control','required'=>'', 'placeholder' => 'DD/MM/AAAA']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             @else 
-                    {!! Form::date('fechaRadicacion', $proceso->fechaRadicacion->format('Y-m-d'), ['class' => 'form-control','required'=>'']) !!}
+                <div class='input-group date calendarioCompleto'>
+                    {!! Form::text('fechaRadicacion', $proceso->fechaRadicacion->format('d/m/Y'), ['class' => 'form-control','required'=>'']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             @endif
              </div>
         </div>
@@ -147,11 +177,26 @@
             <div class="form-group">
               {!! Form::label('fechaOrden', 'FECHA ORDEN:') !!}
             @if($action=='crear')
-                    {!! Form::date('fechaOrden', null, ['class' => 'form-control']) !!}
-            @elseif($proceso->fechaOrden!=null)                    
-                {!! Form::date('fechaOrden', $proceso->fechaOrden->format('Y-m-d'), ['class' => 'form-control']) !!}                    
-            @else 
-                {!! Form::date('fechaOrden', null, ['class' => 'form-control']) !!}                                        
+                <div class='input-group date calendarioCompleto'>
+                    {!! Form::text('fechaOrden', null, ['class' => 'form-control','required'=>'', 'placeholder' => 'DD/MM/AAAA']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            @elseif($proceso->fechaOrden!=null)
+                <div class='input-group date calendarioCompleto'>
+                    {!! Form::text('fechaOrden', $proceso->fechaOrden->format('d/m/Y'), ['class' => 'form-control','required'=>'']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            @else
+                <div class='input-group date calendarioCompleto'>
+                    {!! Form::text('fechaOrden', null, ['class' => 'form-control','required'=>'', 'placeholder' => 'DD/MM/AAAA']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             @endif
             </div>
         </div>
@@ -182,10 +227,4 @@
     <div id="ajaxResponse">
     </div>
         <!-- Submit Field -->
-<script>
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-
-</script>

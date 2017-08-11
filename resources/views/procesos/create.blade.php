@@ -36,3 +36,42 @@
        
 
 @endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        
+            $(function (){
+                $('.calendarioCompleto').datepicker({
+                        format: "dd/mm/yyyy",
+                        weekStart: 0,
+                        //endDate: "today",
+                        todayBtn: "linked",
+                        language: "es",
+                        orientation: "bottom auto",
+                        multidate: false,
+                        todayHighlight: true,
+                        autoclose: true,
+                });
+            });
+
+            $(function (){
+                $('.calendarioAnio').datepicker({
+                        format: "yyyy",
+                        startDate: "2000",
+                        weekStart: 0,
+                        //endDate: "today",
+                        language: "es",
+                        orientation: "bottom auto",
+                        multidate: false,
+                        autoclose: true,
+                        startView: 2,
+                        minViewMode: 2,
+                });
+            });
+
+        });
+
+    </script>
+@endsection

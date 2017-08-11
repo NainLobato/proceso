@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.standalone.min.css">
+
     <!--<link rel="stylesheet" href="/procesos/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/procesos/public/css/font-awesome.min.css">
     <link rel="stylesheet" href="/procesos/public/css/AdminLTE.min.css">
@@ -186,6 +189,11 @@
     <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../public/js/procesos.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.es.min.js"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    
 
     <!-- locales -->
     <!--

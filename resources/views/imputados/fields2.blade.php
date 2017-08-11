@@ -29,7 +29,12 @@
        <div class="col-md-3 col-xs-12">
              <div class="form-group">
                 {!! Form::label('FechaDetencion', 'Fecha Detención') !!}<br>
-                {!! Form::date('fechaDetencionImputado', null, ['id'=>'fechaDetencionImputado','class' => 'form-control']) !!}
+                <div class='input-group date calendarioCompleto'>
+                    {!! Form::text('fechaDetencionImputado', null, ['id'=>'fechaDetencionImputado', 'class' => 'form-control','required'=>'', 'placeholder' => 'DD/MM/AAAA']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="col-md-3 col-xs-12">
