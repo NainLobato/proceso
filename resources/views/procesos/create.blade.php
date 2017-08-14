@@ -29,10 +29,6 @@
                 {!! Form::close() !!}
             </div>
         </div>
-
-
-       
-
 @endsection
 
 @section('scripts')
@@ -70,6 +66,5 @@
             });
 
         });
-
     </script>
 @endsection

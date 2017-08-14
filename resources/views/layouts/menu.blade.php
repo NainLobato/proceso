@@ -2,11 +2,10 @@
 <!-- Optionally, you can add icons to the links -->
 <li class="single-item" id="sidebarDashboard"><a href="{{ URL::to('home') }}"><i class="fa fa-dashboard"></i> <span>Inicio</span></a></li>
 
-
 <li class="treeview" id="sidebarCatalog">
 	<a href="#">
     	<i class="fa fa-users"></i>
-        	<span>Catalogos</span>
+        	<span>Catálogos</span>
         <i class="fa fa-angle-left pull-right"></i>
     </a>
 	<ul class="treeview-menu">
@@ -75,15 +74,15 @@
         </li>		
         
 		<li class="{{ Request::is('catReligions*') ? 'active' : '' }}">
-		    <a href="{!! route('catReligions.index') !!}"><i class="fa fa-edit"></i><span>Religion</span></a>
+		    <a href="{!! route('catReligions.index') !!}"><i class="fa fa-edit"></i><span>Religión</span></a>
         </li>            
 
         <li class="{{ Request::is('catResolucionInvestigacions*') ? 'active' : '' }}">
-            <a href="{!! route('catResolucionInvestigacions.index') !!}"><i class="fa fa-edit"></i><span>Resolucion Investigacion</span></a>
+            <a href="{!! route('catResolucionInvestigacions.index') !!}"><i class="fa fa-edit"></i><span>Resolucion Investigación</span></a>
         </li>
 
         <li class="{{ Request::is('catResolucionAmparos*') ? 'active' : '' }}">
-            <a href="{!! route('catResolucionAmparos.index') !!}"><i class="fa fa-edit"></i><span>Resolucion Amparo</span></a>
+            <a href="{!! route('catResolucionAmparos.index') !!}"><i class="fa fa-edit"></i><span>Resolución Amparo</span></a>
         </li>
 
         <li class="{{ Request::is('catSentencias*') ? 'active' : '' }}">
@@ -109,11 +108,6 @@
         <li class="{{ Request::is('unidads*') ? 'active' : '' }}">
             <a href="{!! route('unidads.index') !!}"><i class="fa fa-edit"></i><span>Unidades Integrales (UIPJ)</span></a>
         </li>
-
-       
-
-
-
      </ul>
 </li>
   

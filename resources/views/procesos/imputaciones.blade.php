@@ -5,7 +5,7 @@
         </h3>
     </div>
 
- <div id="divImputaciones" class="panel-collapse collapse in">
+    <div id="divImputaciones" class="panel-collapse collapse in">
     <div class="box box-default">
     <div class="box-body">
     {!! Form::open(['route' => 'procesos.saveImputacion','data-toggle'=>'validator', 'role'=>'form','id'=>'imputacionForm']) !!}
@@ -79,4 +79,4 @@
     </div>
     </div>
     </div>
-    </div>
+</div>

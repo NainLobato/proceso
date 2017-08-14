@@ -218,8 +218,9 @@
     </div>
     </div>
     </div>
-    </div>
-    <div id="ajaxResponse">
-    </div>
-        <!-- Submit Field -->
+</div>
+
+<div id="ajaxResponse">
+</div>
+<!-- Submit Field -->
 
