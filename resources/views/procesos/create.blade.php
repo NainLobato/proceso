@@ -65,6 +65,39 @@
                 });
             });
 
+            $(function (){
+                $('.anioCarp').datepicker({
+                        format: "yyyy",
+                        startDate: "2000",
+                        weekStart: 0,
+                        //endDate: "today",
+                        language: "es",
+                        orientation: "bottom auto",
+                        multidate: false,
+                        autoclose: true,
+                        startView: 2,
+                        minViewMode: 2,
+                }).on('hide', function(e) {
+                    var anio1 = $('.anioCarp').datepicker('getDate');
+                    $('.anioProc').datepicker('setStartDate', anio1);
+                    $('.anioProc').datepicker('setDate', anio1);
+                });
+            });
+
+            $(function (){
+                $('.anioProc').datepicker({
+                        format: "yyyy",
+                        startDate: "2000",
+                        weekStart: 0,
+                        //endDate: "today",
+                        language: "es",
+                        orientation: "bottom auto",
+                        multidate: false,
+                        autoclose: true,
+                        startView: 2,
+                        minViewMode: 2,
+                });
+            }); 
         });
     </script>
 @endsection

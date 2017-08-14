@@ -18,7 +18,7 @@
         <div class="col-xs-12 col-md-4 col-lg-3">
             <div class="form-group">
                 {!! Form::label('anioCarpeta', 'AÑO:') !!}*
-                <div class='input-group date calendarioAnio'>
+                <div class='input-group date anioCarp'>
                     {!! Form::text('anioCarpeta', null, ['class' => 'form-control','required'=>'', 'data-error'=>'Error al colocar el año', 'placeholder' => 'AAAA']) !!}
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -41,7 +41,7 @@
         <div class="col-xs-12 col-md-6 col-lg-5">
             <div class="form-group">
                 {!! Form::label('idUIPJ', 'UIPJ:') !!}*
-                {!! Form::select('idUIPJ', $unidades, null, ['placeholder' => 'Seleccionar...','class' => 'form-control input-lg','required'=>'','data-error'=>'Error en UIPJ']) !!}
+                {!! Form::select('idUIPJ', $unidades, null, ['placeholder' => 'Seleccionar...','class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
            </div>
         </div>
         <div class="clearfix visible-lg"></div>
@@ -98,7 +98,7 @@
         <div class="col-xs-6 col-md-4 col-lg-2">
             <div class="form-group">
                 {!! Form::label('anioProceso', 'AÑO:') !!}*
-                <div class='input-group date calendarioAnio'>
+                <div class='input-group date anioProc'>
                     {!! Form::text('anioProceso', null, ['class' => 'form-control','required'=>'', 'placeholder' => 'AAAA']) !!}
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
