@@ -11,7 +11,7 @@
         <div class="panel-body"> 
             <!--<div class="box box-primary">-->
                 <div class="box-body">
-                    <div class="row" style="padding-left: 20px">
+                    <div class="row" style="padding-left: 0px">
                         @include('procesos.show_fields')
                         <a href="{!! route('procesos.index') !!}" class="btn btn-primary">Regresar</a>
                     </div>

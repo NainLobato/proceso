@@ -491,16 +491,16 @@ class ProcesoController extends AppBaseController
         foreach ($victimas as $victima) {
                 $victimaJson=new \stdClass();
                 $victimaJson->id=$victima->id;
-                $victimaJson->tipo=$victima->esEmpresa?'FISICA':'MORAL';
-                $victimaJson->representanteLegal=$victima->representanteLegal?$victima->representanteLegal:'';
+                $victimaJson->tipo=$victima->esEmpresa?'MORAL':'FISICA';
+                $victimaJson->representanteLegal=$victima->representante?$victima->representante:'';
                 $victimaJson->direccion='';
 
                 $victimaJson->nombre=$victima->nombre. " " .$victima->paterno." " . $victima->materno;
                 $victimaJson->alias=$victima->alias;
                 $victimaJson->fechaNacimiento=$victima->fechaNacimiento;
                 $victimaJson->sexo=$victima->sexo;
-                $victimaJson->estadoCivil=$victima->estadoCivil()->get()[0]!=NULL?$victima->estadoCivil()->get()[0]['estadoCivil']:'';
-                $victimaJson->etnia=$victima->etnia()->get()[0]!=NULL?$victima->etnia()->get()[0]['etnia']:''; 
+                $victimaJson->estadoCivil=$victima->estadoCivil=NULL?$victima->estadoCivil->estadocivil:'';
+                $victimaJson->etnia=$victima->etnia=NULL?$victima->etnia->etnia:'';
                 $victimaJson->nombrePadre=$victima->nombrePadre . $victima->primerApellidoPadre .$victima->primerApellidoPadre; 
                 $victimaJson->nombreMadre=$victima->nombreMadre . $victima->primerApellidoMadre .$victima->primerApellidoMadre; 
                 $procesoJson->victimas[$i++]=$victimaJson;
@@ -521,15 +521,15 @@ class ProcesoController extends AppBaseController
             foreach ($imputados as $imputado) {
                 $imputadoJson=new \stdClass();
                 $imputadoJson->id=$imputado->id;
-                $imputadoJson->tipo=$imputado->esEmpresa?'FISICA':'MORAL';
-                $imputadoJson->representanteLegal=$imputado->representanteLegal?$imputado->representanteLegal:'';
+                $imputadoJson->tipo=$imputado->esEmpresa?'MORAL':'FISICA';
+                $imputadoJson->representanteLegal=$imputado->representante?$imputado->representante:'';
                 $imputadoJson->direccion='';
                 $imputadoJson->nombre=$imputado->nombre. " " .$imputado->paterno." " . $imputado->materno;
                 $imputadoJson->alias=$imputado->alias;
                 $imputadoJson->fechaNacimiento=$imputado->fechaNacimiento;
                 $imputadoJson->sexo=$imputado->sexo;
-                $imputadoJson->estadoCivil=$imputado->estadoCivil()->get()[0]!=NULL?$imputado->estadoCivil()->get()[0]['estadoCivil']:'';
-                $imputadoJson->etnia=$imputado->etnia()->get()[0]!=NULL?$imputado->etnia()->get()[0]['etnia']:''; 
+                $imputadoJson->estadoCivil=$imputado->estadoCivil=NULL?$imputado->estadoCivil->estadocivil:'';
+                $imputadoJson->etnia=$imputado->etnia=NULL?$imputado->etnia->etnia:'';
                 $imputadoJson->nombrePadre=$imputado->nombrePadre . $imputado->primerApellidoPadre .$imputado->segundoApellidoPadre; 
                 $imputadoJson->nombreMadre=$imputado->nombreMadre . $imputado->primerApellidoMadre .$imputado->segundoApellidoMadre; 
                 $procesoJson->imputados[$i++]=$imputadoJson;

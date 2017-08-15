@@ -38,11 +38,11 @@ class Persona extends Model
         'curp',
         'idEstadoCivil',
         'esEmpresa',
+        'representante',
         'primerApellidoPadre',
         'segundoApellidoPadre',
         'primerApellidoMadre',
         'segundoApellidoMadre',
-        'representante'
     ];
 
     /**

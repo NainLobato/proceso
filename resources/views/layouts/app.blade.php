@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.standalone.min.css">
@@ -42,10 +42,8 @@
         .panel-title a{
             color: #000000;
         }*/
-        
     </style>
     @yield('css')
-
 </head>
 <body class="skin-blue sidebar-mini">
 @if (!Auth::guest())
@@ -56,10 +54,7 @@
         </div>-->
         <!-- Main Header -->
         <header class="main-header">
-
             <!-- Logo -->
-           
-
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation"  style="background-color:white; display:block;">
                 <!-- Sidebar toggle button-->
@@ -76,8 +71,8 @@
                                 <!-- The user image in the navbar-->
                                <!-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/>-->
-                                     <div style="text-align:right;display:inline;"><img src="/procesos/public/img/header.png" height="80px"/></div>
-                                    <div style="text-align:right;display:inline;"><img src="/procesos/public/img/logo.png" height="80px"/></div>
+                                    <div style="text-align:right;display:inline;"><img src="{{ asset('img/header.png') }}" height="80px"/></div>
+                                    <div style="text-align:right;display:inline;"><img src="{{ asset('img/logo.png') }}" height="80px"/></div>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <!--<span class="hidden-xs">{!! Auth::user()->name !!}</span>-->
                             </a>
@@ -120,17 +115,16 @@
             @yield('content')
         </div>
         <!-- Main Footer -->
-        <footer class="main-footer" style="max-height: 100px;text-align: center">
-             <div align="right" style="display:block-inline;"><img src="/procesos/public/img/logo_sistemas.png" height="65px" style="text-align:right;"/></div>
+        <footer class="main-footer" style="max-height: 100px; text-align: center;">
+             <div align="right" style="display:block-inline;"><img src="{{ asset('img/logo_sistemas.png') }}" height="65px" style="text-align:right;"/></div>
              <strong>Desarrollado por <a href="#">Subdirección de Sistemas</a>.</strong>
         </footer>
-
     </div>
+
 @else
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#app-navbar-collapse">
@@ -139,7 +133,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{!! url('/') !!}">
                     Sistema de Control de Procesos
@@ -151,7 +144,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{!! url('/home') !!}">Inicio</a></li>
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -171,8 +163,7 @@
             </div>
         </div>
     </div>
-    @endif
-
+@endif
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -194,7 +185,6 @@
     <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     
-
     <!-- locales -->
     <!--
     <script src="/procesos/public/js/jquery.min.js"></script>
@@ -211,7 +201,7 @@
     <script src="/procesos/public/js/buttons.colVis.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../public/js/procesos.js') }}"></script>
--->
+    -->
     @yield('scripts')
 </body>
 </html>
