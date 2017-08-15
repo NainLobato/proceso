@@ -499,8 +499,8 @@ class ProcesoController extends AppBaseController
                 $victimaJson->alias=$victima->alias;
                 $victimaJson->fechaNacimiento=$victima->fechaNacimiento;
                 $victimaJson->sexo=$victima->sexo;
-                $victimaJson->estadoCivil=$victima->estadoCivil()->get()[0]!=NULL?$victima->estadoCivil()->get()[0]['estadoCivil']:'';
-                $victimaJson->etnia=$victima->etnia()->get()[0]!=NULL?$victima->etnia()->get()[0]['etnia']:''; 
+                $victimaJson->estadoCivil=$victima->estadoCivil=NULL?$victima->estadoCivil->estadocivil:'';
+                $victimaJson->etnia=$victima->etnia=NULL?$victima->etnia->etnia:'';
                 $victimaJson->nombrePadre=$victima->nombrePadre . $victima->primerApellidoPadre .$victima->primerApellidoPadre; 
                 $victimaJson->nombreMadre=$victima->nombreMadre . $victima->primerApellidoMadre .$victima->primerApellidoMadre; 
                 $procesoJson->victimas[$i++]=$victimaJson;
@@ -527,8 +527,8 @@ class ProcesoController extends AppBaseController
                 $imputadoJson->alias=$imputado->alias;
                 $imputadoJson->fechaNacimiento=$imputado->fechaNacimiento;
                 $imputadoJson->sexo=$imputado->sexo;
-                $imputadoJson->estadoCivil=$imputado->estadoCivil()->get()[0]!=NULL?$imputado->estadoCivil()->get()[0]['estadoCivil']:'';
-                $imputadoJson->etnia=$imputado->etnia()->get()[0]!=NULL?$imputado->etnia()->get()[0]['etnia']:''; 
+                $imputadoJson->estadoCivil=$imputado->estadoCivil=NULL?$imputado->estadoCivil->estadocivil:'';
+                $imputadoJson->etnia=$imputado->etnia=NULL?$imputado->etnia->etnia:'';
                 $imputadoJson->nombrePadre=$imputado->nombrePadre . $imputado->primerApellidoPadre .$imputado->segundoApellidoPadre; 
                 $imputadoJson->nombreMadre=$imputado->nombreMadre . $imputado->primerApellidoMadre .$imputado->segundoApellidoMadre; 
                 $procesoJson->imputados[$i++]=$imputadoJson;
