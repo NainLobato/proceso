@@ -488,13 +488,13 @@ class ProcesoController extends AppBaseController
             ->get();            
         $procesoJson->victimas=array();
         $i=0;
+        //dd($victimas);
         foreach ($victimas as $victima) {
                 $victimaJson=new \stdClass();
                 $victimaJson->id=$victima->id;
-                $victimaJson->tipo=$victima->esEmpresa?'FISICA':'MORAL';
-                $victimaJson->representanteLegal=$victima->representanteLegal?$victima->representanteLegal:'';
+                $victimaJson->tipo=$victima->esEmpresa?'MORAL':'FISICA';
+                $victimaJson->representanteLegal=$victima->representante?$victima->representante:'';
                 $victimaJson->direccion='';
-
                 $victimaJson->nombre=$victima->nombre. " " .$victima->paterno." " . $victima->materno;
                 $victimaJson->alias=$victima->alias;
                 $victimaJson->fechaNacimiento=$victima->fechaNacimiento;
@@ -517,11 +517,11 @@ class ProcesoController extends AppBaseController
             ->where('imputados.deleted_at','=',NULL)
             ->select()
             ->get();            
-            foreach ($imputados as $imputado) {
+        foreach ($imputados as $imputado) {
                 $imputadoJson=new \stdClass();
                 $imputadoJson->id=$imputado->id;
-                $imputadoJson->tipo=$imputado->esEmpresa?'FISICA':'MORAL';
-                $imputadoJson->representanteLegal=$imputado->representanteLegal?$imputado->representanteLegal:'';
+                $imputadoJson->tipo=$imputado->esEmpresa?'MORAL':'FISICA';
+                $imputadoJson->representanteLegal=$imputado->representante?$imputado->representante:'';
                 $imputadoJson->direccion='';
                 $imputadoJson->nombre=$imputado->nombre. " " .$imputado->paterno." " . $imputado->materno;
                 $imputadoJson->alias=$imputado->alias;
