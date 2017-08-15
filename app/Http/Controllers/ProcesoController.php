@@ -544,7 +544,7 @@ class ProcesoController extends AppBaseController
             ->join('cat_delitos', 'cat_delitos.id', '=', 'imputacion.idDelito')
             ->where('imputacion.idProceso','=',$id)
             ->where('imputacion.deleted_at','=',NULL)
-            ->selectRaw('imputacion.id, CONCAT(personas.nombre, " ", personas.paterno," ",personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
+            ->selectRaw('imputacion.id, CONCAT_WS(" ", personas.nombre, personas.paterno, personas.materno) as nombreVictima, victimas.id as idVictima,cat_delitos.id as idDelito,cat_delitos.delito, CONCAT(per.nombre, " ", per.paterno," ",per.materno) as nombreImputado, imputados.id as idImputado')->get();
         foreach ($imputaciones as $imputacion) {
                 $imputacionJson=new \stdClass();
                 $imputacionJson->victima=$imputacion->nombreVictima;
