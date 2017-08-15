@@ -506,17 +506,18 @@ class ProcesoController extends AppBaseController
                 $procesoJson->victimas[$i++]=$victimaJson;
         }
         $i=0;
+        $imputados= Persona::join('imputados', 'personas.id', '=', 'imputados.idPersona')
+        ->where('imputados.idProceso','=',$id)
+        ->where('imputados.deleted_at','=',NULL)
+        ->select()
+        ->get();    
         $procesoJson->imputados= array();
         /*$selectedImputados= DB::table('personas')
             ->join('imputados', 'personas.id', '=', 'imputados.idPersona')
             ->where('imputados.idProceso','=',$id)
             ->where('imputados.deleted_at','=',NULL)
             ->select()->get();*/
-              $imputados= Persona::join('imputados', 'personas.id', '=', 'imputados.idPersona')
-            ->where('imputados.idProceso','=',$id)
-            ->where('imputados.deleted_at','=',NULL)
-            ->select()
-            ->get();            
+        
             foreach ($imputados as $imputado) {
                 $imputadoJson=new \stdClass();
                 $imputadoJson->id=$imputado->id;
@@ -548,7 +549,8 @@ class ProcesoController extends AppBaseController
                 $imputacionJson=new \stdClass();
                 $imputacionJson->victima=$imputacion->nombreVictima;
                 $imputacionJson->delito=$imputacion->delito;
-                $imputacionJson->imputado=$imputacion->delito;
+                $imputacionJson->imputado=$imputacion->nombreImputado;
+                $procesoJson->imputaciones[$i++]=$imputacionJson;
                 
             }
 /*
@@ -684,7 +686,7 @@ class ProcesoController extends AppBaseController
 
             return redirect(route('procesos.index'));
         }
-//        var_dump(json_encode($procesoJson));
+        //var_dump(json_encode($procesoJson));
         return view('procesos.show')->with('proceso', $procesoJson);
     }
 

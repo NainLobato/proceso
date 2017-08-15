@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <img class="img-responsive" src="{{ asset('img/logo.png') }}">
-    </section>
+
     <div class="content">
     
         <div class="panel panel-primary"> 

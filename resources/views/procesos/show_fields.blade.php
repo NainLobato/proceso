@@ -14,14 +14,14 @@
     <div class="box box-default">
     <div class="box-body">
     <div class="row">
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-6">
             <!-- Uipj Field -->
             <div class="form-group">
                 <h4>{!! Form::label('uipj', 'UIPJ:') !!}</h4>
                 <p>{!! $proceso->carpeta->uipj !!}</p> 
             </div>
         </div>
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-6">
             <!-- Numerocarpeta Field -->
             <div class="form-group">
                 <h4>{!! Form::label('numero', 'Número de carpeta:') !!}</h4>
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-6">
             <!-- Fiscal Field -->
             <div class="form-group">
                 <h4>{!! Form::label('fiscal', 'Fiscal:') !!}</h4>
@@ -37,11 +37,11 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-3">
+        <div class="col-md-3 col-xs-6">
             <!-- Fecha Field -->
             <div class="form-group">
                 <h4>{!! Form::label('fecha', 'Fecha de carpeta:') !!}</h4>
-                <p>{!! $proceso->carpeta->fecha !!}</p> 
+                <p>{!! $proceso->carpeta->fecha->format('d-m-Y') !!}</p> 
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="box box-default">
     <div class="box-body">
     <div class="row">
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-6">
             <!-- NumeroRadicacion Field -->
             <div class="form-group">
                 <h4>{!! Form::label('numero', 'Número de radicación:') !!}</h4>
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-6">
             <!-- Juzgado Field -->
             <div class="form-group">
                 <h4>{!! Form::label('juzgado', 'Juzgado:') !!}</h4>
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-6">
             <!-- Juez Field -->
             <div class="form-group">
                 <h4>{!! Form::label('juez', 'Juez:') !!}</h4>
@@ -376,7 +376,7 @@
 
         @foreach ($proceso->imputados as $imputado) 
         <div class="row">
-        @if ($imputado->tipo === "fisica")
+        @if ($imputado->tipo === "FISICA")
             <div class="col-md-1 col-xs-1">
                 <!-- Tipo Field -->
                 <div class="form-group">
@@ -480,7 +480,7 @@
 
         @foreach ($proceso->imputados as $imputado) 
         <div class="row">
-        @if ($imputado->tipo === "moral")
+        @if ($imputado->tipo === "MORAL")
             <div class="col-md-4 col-xs-4">
                 <!-- Tipo Field -->
                 <div class="form-group">
@@ -548,21 +548,21 @@
         <div class="col-md-4 col-xs-4">
             <!-- Victima Field -->
             <div class="form-group">
-                <p>{!! $imputacion->imputacion->victima !!}</p> 
+                <p>{!! $imputacion->victima !!}</p> 
             </div>
         </div>
 
         <div class="col-md-4 col-xs-4">
             <!-- Delito Field -->
             <div class="form-group">
-                <p>{!! $imputacion->imputacion->delito !!}</p> 
+                <p>{!! $imputacion->delito !!}</p> 
             </div>
         </div>
 
         <div class="col-md-4 col-xs-4">
             <!-- Imputado Field -->
             <div class="form-group">
-                <p>{!! $imputacion->imputacion->imputado !!}</p> 
+                <p>{!! $imputacion->imputado !!}</p> 
             </div>
         </div>
     </div>
