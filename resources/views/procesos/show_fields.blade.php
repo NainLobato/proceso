@@ -93,83 +93,101 @@
         <h3 class="panel-title" align="center">
             <a data-toggle="collapse" href="#collapse3">Víctimas</a>
         </h3> 
-    </div> 
+    </div>
     <div id="collapse3" class="panel-collapse collapse in">
         <div class="box box-default">
             <div class="box-body">
-                <div class="panel panel-default" > 
-                    <div class="panel-heading panel-heading-custom">
-                        <h3 class="panel-title" align="center">
-                            Víctimas Físicas
-                        </h3> 
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo</th>
-                                        <th>Nombre</th>
-                                        <th>Fecha nacimiento</th>
-                                        <th>Sexo</th>
-                                        <th>Estado civil</th>
-                                        <th>Dirección</th>
-                                        <th>Etnia</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($proceso->victimas as $victima)
-                                        @if($victima->tipo === "FISICA")
-                                            <tr>
-                                                <td>{!! $victima->tipo !!}</td>
-                                                <td>{!! $victima->nombre !!}</td>
-                                                <td>{!! $victima->fechaNacimiento !!}</td>
-                                                <td>{!! $victima->sexo !!}</td>
-                                                <td>{!! $victima->estadoCivil !!}</td>
-                                                <td>{!! $victima->direccion !!}</td>
-                                                <td>{!! $victima->etnia !!}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+            @empty($proceso->victimas)
+                <h3 class="text-center">No hay víctimas registradas.</h3>
+            @else
+                <?php $vicmor = 0; $vicfis = 0; ?>
+                @foreach($proceso->victimas as $victima)
+                    @if($victima->tipo === "FISICA")
+                        <?php $vicfis = 1; ?>
+                    @endif
+                    @if($victima->tipo === "MORAL")
+                        <?php $vicmor = 1; ?>
+                    @endif
+                    <td>{!! $victima->tipo !!}</td>
+                @endforeach
+                @if($vicfis == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Víctimas Físicas
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Fecha nacimiento</th>
+                                            <th>Sexo</th>
+                                            <th>Estado civil</th>
+                                            <th>Dirección</th>
+                                            <th>Etnia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->victimas as $victima)
+                                            @if($victima->tipo === "FISICA")
+                                                <tr>
+                                                    <td>{!! $victima->tipo !!}</td>
+                                                    <td>{!! $victima->nombre !!}</td>
+                                                    <td>{!! $victima->fechaNacimiento !!}</td>
+                                                    <td>{!! $victima->sexo !!}</td>
+                                                    <td>{!! $victima->estadoCivil !!}</td>
+                                                    <td>{!! $victima->direccion !!}</td>
+                                                    <td>{!! $victima->etnia !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 
-                <div class="panel panel-default" > 
-                    <div class="panel-heading panel-heading-custom">
-                        <h3 class="panel-title" align="center">
-                            Víctimas Morales
-                        </h3> 
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo</th>
-                                        <th>Nombre</th>
-                                        <th>Representante legal</th>
-                                        <th>Dirección</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($proceso->victimas as $victima)
-                                        @if($victima->tipo === "MORAL")
-                                            <tr>
-                                                <td>{!! $victima->tipo !!}</td>
-                                                <td>{!! $victima->nombre !!}</td>
-                                                <td>{!! $victima->representanteLegal !!}</td>
-                                                <td>{!! $victima->direccion !!}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+                @if($vicmor == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Víctimas Morales
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Representante legal</th>
+                                            <th>Dirección</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->victimas as $victima)
+                                            @if($victima->tipo === "MORAL")
+                                                <tr>
+                                                    <td>{!! $victima->tipo !!}</td>
+                                                    <td>{!! $victima->nombre !!}</td>
+                                                    <td>{!! $victima->representanteLegal !!}</td>
+                                                    <td>{!! $victima->direccion !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+            @endif
             </div>
         </div>
     </div>
@@ -185,80 +203,96 @@
     <div id="collapse4" class="panel-collapse collapse in">
         <div class="box box-default">
             <div class="box-body">
-                <div class="panel panel-default" > 
-                    <div class="panel-heading panel-heading-custom">
-                        <h3 class="panel-title" align="center">
-                            Imputados Físicos
-                        </h3> 
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo</th>
-                                        <th>Nombre</th>
-                                        <th>Alias</th>
-                                        <th>Fecha nacimiento</th>
-                                        <th>Sexo</th>
-                                        <th>Estado civil</th>
-                                        <th>Nombre padre</th>
-                                        <th>Nombre madre</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($proceso->imputados as $imputado)
-                                        @if($imputado->tipo === "FISICA")
-                                            <tr>
-                                                <td>{!! $imputado->tipo !!}</td>
-                                                <td>{!! $imputado->nombre !!}</td>
-                                                <td>{!! $imputado->alias !!}</td>
-                                                <td>{!! $imputado->fechaNacimiento !!}</td>
-                                                <td>{!! $imputado->sexo !!}</td>
-                                                <td>{!! $imputado->estadoCivil !!}</td>
-                                                <td>{!! $imputado->direccion !!}</td>
-                                                <td>{!! $imputado->nombrePadre !!}</td>
-                                                <td>{!! $imputado->nombreMadre !!}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+            @empty($proceso->imputados)
+                <h3 class="text-center">No hay imputados registrados.</h3>
+            @else
+                <?php $impmor = 0; $impfis = 0; ?>
+                @foreach($proceso->imputados as $imputado)
+                    @if($imputado->tipo === "FISICA")
+                        <?php $impfis = 1; ?>
+                    @endif
+                    @if($imputado->tipo === "MORAL")
+                        <?php $impmor = 1; ?>
+                    @endif
+                @endforeach
+                @if($impfis == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Imputados Físicos
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Alias</th>
+                                            <th>Fecha nacimiento</th>
+                                            <th>Sexo</th>
+                                            <th>Estado civil</th>
+                                            <th>Nombre padre</th>
+                                            <th>Nombre madre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->imputados as $imputado)
+                                            @if($imputado->tipo === "FISICA")
+                                                <tr>
+                                                    <td>{!! $imputado->tipo !!}</td>
+                                                    <td>{!! $imputado->nombre !!}</td>
+                                                    <td>{!! $imputado->alias !!}</td>
+                                                    <td>{!! $imputado->fechaNacimiento !!}</td>
+                                                    <td>{!! $imputado->sexo !!}</td>
+                                                    <td>{!! $imputado->estadoCivil !!}</td>
+                                                    <td>{!! $imputado->nombrePadre !!}</td>
+                                                    <td>{!! $imputado->nombreMadre !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
-                <div class="panel panel-default" > 
-                    <div class="panel-heading panel-heading-custom">
-                        <h3 class="panel-title" align="center">
-                            Imputados Morales
-                        </h3> 
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo</th>
-                                        <th>Nombre</th>
-                                        <th>Representante legal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($proceso->imputados as $imputado)
-                                        @if($imputado->tipo === "MORAL")
-                                            <tr>
-                                                <td>{!! $imputado->tipo !!}</td>
-                                                <td>{!! $imputado->nombre !!}</td>
-                                                <td>{!! $imputado->representanteLegal !!}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
+                @if($impmor == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Imputados Morales
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Representante legal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->imputados as $imputado)
+                                            @if($imputado->tipo === "MORAL")
+                                                <tr>
+                                                    <td>{!! $imputado->tipo !!}</td>
+                                                    <td>{!! $imputado->nombre !!}</td>
+                                                    <td>{!! $imputado->representanteLegal !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+            @endif
             </div>
         </div>
     </div>
