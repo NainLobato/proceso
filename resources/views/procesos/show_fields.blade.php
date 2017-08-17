@@ -11,42 +11,41 @@
         </h3> 
     </div> 
     <div id="collapse1" class="panel-collapse collapse in">
-    <div class="box box-default">
-    <div class="box-body">
-    <div class="row">
-        <div class="col-md-3 col-xs-6">
-            <!-- Uipj Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('uipj', 'UIPJ:') !!}</h4>
-                <p>{!! $proceso->carpeta->uipj !!}</p> 
+        <div class="box box-default">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3 ">
+                        <!-- Uipj Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('uipj', 'UIPJ:') !!}</h4>
+                            <p>{!! $proceso->carpeta->uipj !!}</p> 
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 ">
+                        <!-- Numerocarpeta Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('numero', 'Número de carpeta:') !!}</h4>
+                            <p>{!! $proceso->carpeta->numero !!}</p> 
+                        </div>
+                    </div>
+                    <div class="clearfix visible-xs visible-sm"></div>
+                    <div class="col-xs-6 col-md-3 ">
+                        <!-- Fiscal Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('fiscal', 'Fiscal:') !!}</h4>
+                            <p>{!! $proceso->carpeta->fiscal !!}</p> 
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 ">
+                        <!-- Fecha Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('fecha', 'Fecha de carpeta:') !!}</h4>
+                            <p>{!! $proceso->carpeta->fecha->format('d-m-Y') !!}</p> 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-3 col-xs-6">
-            <!-- Numerocarpeta Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('numero', 'Número de carpeta:') !!}</h4>
-                <p>{!! $proceso->carpeta->numero !!}</p> 
-            </div>
-        </div>
-
-        <div class="col-md-3 col-xs-6">
-            <!-- Fiscal Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('fiscal', 'Fiscal:') !!}</h4>
-                <p>{!! $proceso->carpeta->fiscal !!}</p> 
-            </div>
-        </div>
-
-        <div class="col-md-3 col-xs-6">
-            <!-- Fecha Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('fecha', 'Fecha de carpeta:') !!}</h4>
-                <p>{!! $proceso->carpeta->fecha->format('d-m-Y') !!}</p> 
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
     </div>
 </div>
 
@@ -58,36 +57,33 @@
         </h3> 
     </div> 
     <div id="collapse2" class="panel-collapse collapse in">
-    <div class="box box-default">
-    <div class="box-body">
-    <div class="row">
-        <div class="col-md-4 col-xs-6">
-            <!-- NumeroRadicacion Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('numero', 'Número de radicación:') !!}</h4>
-                <p>{!! $proceso->radicacion->numero !!}</p> 
+        <div class="box box-default">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        <!-- NumeroRadicacion Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('numero', 'Número de radicación:') !!}</h4>
+                            <p>{!! $proceso->radicacion->numero !!}</p> 
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        <!-- Juzgado Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('juzgado', 'Juzgado:') !!}</h4>
+                            <p>{!! $proceso->radicacion->juzgado !!}</p> 
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4 ">
+                        <!-- Juez Field -->
+                        <div class="form-group">
+                            <h4>{!! Form::label('juez', 'Juez:') !!}</h4>
+                            <p>{!! $proceso->radicacion->juez !!}</p> 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-4 col-xs-6">
-            <!-- Juzgado Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('juzgado', 'Juzgado:') !!}</h4>
-                <p>{!! $proceso->radicacion->juzgado !!}</p> 
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xs-6">
-            <!-- Juez Field -->
-            <div class="form-group">
-                <h4>{!! Form::label('juez', 'Juez:') !!}</h4>
-                <p>{!! $proceso->radicacion->juez !!}</p> 
-            </div>
-        </div>
-    </div>
-
-    </div>
-    </div>
     </div>
 </div>
 
@@ -97,197 +93,103 @@
         <h3 class="panel-title" align="center">
             <a data-toggle="collapse" href="#collapse3">Víctimas</a>
         </h3> 
-    </div> 
+    </div>
     <div id="collapse3" class="panel-collapse collapse in">
-    <div class="box box-default">
-    <div class="box-body">
-
-        <div class="panel panel-default" > 
-        <div class="panel-heading panel-heading-custom">
-            <h3 class="panel-title" align="center">
-                Víctimas Físicas
-            </h3> 
-        </div> 
-        <div class="row">
-            <div class="col-md-1 col-xs-1">
-                <!-- Tipo Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Tipo:') !!}</h5>
-                </div>
+        <div class="box box-default">
+            <div class="box-body">
+            @empty($proceso->victimas)
+                <h3 class="text-center">No hay víctimas registradas.</h3>
+            @else
+                <?php $vicmor = 0; $vicfis = 0; ?>
+                @foreach($proceso->victimas as $victima)
+                    @if($victima->tipo === "FISICA")
+                        <?php $vicfis = 1; ?>
+                    @endif
+                    @if($victima->tipo === "MORAL")
+                        <?php $vicmor = 1; ?>
+                    @endif
+                    <td>{!! $victima->tipo !!}</td>
+                @endforeach
+                @if($vicfis == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Víctimas Físicas
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Fecha nacimiento</th>
+                                            <th>Sexo</th>
+                                            <th>Estado civil</th>
+                                            <th>Dirección</th>
+                                            <th>Etnia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->victimas as $victima)
+                                            @if($victima->tipo === "FISICA")
+                                                <tr>
+                                                    <td>{!! $victima->tipo !!}</td>
+                                                    <td>{!! $victima->nombre !!}</td>
+                                                    <td>{!! $victima->fechaNacimiento !!}</td>
+                                                    <td>{!! $victima->sexo !!}</td>
+                                                    <td>{!! $victima->estadoCivil !!}</td>
+                                                    <td>{!! $victima->direccion !!}</td>
+                                                    <td>{!! $victima->etnia !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                
+                @if($vicmor == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Víctimas Morales
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Representante legal</th>
+                                            <th>Dirección</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->victimas as $victima)
+                                            @if($victima->tipo === "MORAL")
+                                                <tr>
+                                                    <td>{!! $victima->tipo !!}</td>
+                                                    <td>{!! $victima->nombre !!}</td>
+                                                    <td>{!! $victima->representanteLegal !!}</td>
+                                                    <td>{!! $victima->direccion !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
             </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Nombre Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Nombre Víctima:') !!}</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Fecha Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Fecha Nacimiento:') !!}</h5>
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- Sexo Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Sexo:') !!}</h5>
-                </div>
-            </div>  
-
-            <div class="col-md-1 col-xs-1">
-                <!-- EstadoCivil Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Estado Civil:') !!}</h5>
-                </div>
-            </div>      
-
-            <div class="col-md-3 col-xs-3">
-                <!-- Direccion Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Dirección:') !!}</h5>
-                </div>
-            </div>   
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Etnia Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Etnia:') !!}</h5>
-                </div>
-            </div>     
         </div>
-        @foreach ($proceso->victimas as $victima) 
-        <div class="row">
-        @if($victima->tipo === "FISICA")
-            <div class="col-md-1 col-xs-1">
-                <!-- Tipo Field -->
-                <div class="form-group">
-                    <p>{!! $victima->tipo !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Nombre Field -->
-                <div class="form-group">
-                    <p>{!! $victima->nombre !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Fecha Nacimiento Field -->
-                <div class="form-group">
-                    <p>{!! $victima->fechaNacimiento !!}</p>  
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- Sexo Field -->
-                <div class="form-group">
-                    <p>{!! $victima->sexo !!}</p>  
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- EstadoCivil Field -->
-                <div class="form-group">
-                    <p>{!! $victima->estadoCivil !!}</p>  
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- Direccion Field -->
-                <div class="form-group">
-                    <p>{!! $victima->direccion !!}</p>  
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Etnia Field -->
-                <div class="form-group">
-                    <p>{!! $victima->etnia !!}</p>  
-                </div>
-            </div>
-        @endif
-        </div>
-        @endforeach
-        </div>
-
-
-        <div class="panel panel-default" > 
-        <div class="panel-heading panel-heading-custom">
-            <h3 class="panel-title" align="center">
-                Víctimas Morales
-            </h3> 
-        </div> 
-        <div class="row">
-            <div class="col-md-3 col-xs-3">
-                <!-- Tipo Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Tipo:') !!}</h5>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- Nombre Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Nombre Víctima:') !!}</h5>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- RepresentanteLegal Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Representante Legal:') !!}</h5>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- Direccion Label -->
-                <div class="form-group">
-                    <h5>{!! Form::label('Dirección:') !!}</h5>
-                </div>
-            </div>   
-        </div>
-
-        @foreach ($proceso->victimas as $victima) 
-        <div class="row">
-        @if ($victima->tipo === "MORAL")
-            <div class="col-md-3 col-xs-3">
-                <!-- Tipo Field -->
-                <div class="form-group">
-                    <p>{!! $victima->tipo !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- Nombre Field -->
-                <div class="form-group">
-                    <p>{!! $victima->nombre !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- RepresentanteLegal Field -->
-                <div class="form-group">
-                    <p>{!! $victima->representanteLegal !!}</p>  
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-3">
-                <!-- Direccion Field -->
-                <div class="form-group">
-                    <p>{!! $victima->direccion !!}</p>  
-                </div>
-            </div>
-        @endif
-        </div>
-        @endforeach
-        </div>
-
-    </div>
-    </div>
     </div>
 </div>
 
@@ -299,217 +201,103 @@
         </h3> 
     </div> 
     <div id="collapse4" class="panel-collapse collapse in">
-    <div class="box box-default">
-    <div class="box-body">
-    
-
-        <div class="panel panel-default" > 
-        <div class="panel-heading panel-heading-custom">
-            <h3 class="panel-title" align="center">
-                Imputados Físicos
-            </h3> 
-        </div> 
-        <div class="row">
-            <div class="col-md-1 col-xs-1">
-                <!-- Tipo Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Tipo:') !!}</h6>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Nombre Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Nombre Imputado:') !!}</h6>
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- Alias Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Alias:') !!}</h6>
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- FechaNacimiento Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Fecha Nacimiento:') !!}</h6>
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- Sexo Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('sexo', 'Sexo:') !!}</h6>
-                </div>
-            </div>  
-
-            <div class="col-md-1 col-xs-1">
-                <!-- EstadoCivil Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Estado Civil:') !!}</h6>
-                </div>
-            </div>      
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Dirección Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Dirección:') !!}</h6>
-                </div>
-            </div>   
-
-            <div class="col-md-2 col-xs-2">
-                <!-- NombrePadre Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Nombre Padre:') !!}</h6>
-                </div>
-            </div>    
-
-            <div class="col-md-1 col-xs-1">
-                <!-- NombreMadre Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Nombre Madre:') !!}</h6>
-                </div>
-            </div>    
-        </div>
-
-        @foreach ($proceso->imputados as $imputado) 
-        <div class="row">
-        @if ($imputado->tipo === "FISICA")
-            <div class="col-md-1 col-xs-1">
-                <!-- Tipo Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->tipo !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Nombre Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->nombre !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- Alias Field -->
-                <div class="form-group">
-                    @empty($imputado->alias)
-                        <p></p> 
-                    @else
-                        <p>{!! $imputado->alias !!}</p> 
+        <div class="box box-default">
+            <div class="box-body">
+            @empty($proceso->imputados)
+                <h3 class="text-center">No hay imputados registrados.</h3>
+            @else
+                <?php $impmor = 0; $impfis = 0; ?>
+                @foreach($proceso->imputados as $imputado)
+                    @if($imputado->tipo === "FISICA")
+                        <?php $impfis = 1; ?>
                     @endif
-                </div>
-            </div>
+                    @if($imputado->tipo === "MORAL")
+                        <?php $impmor = 1; ?>
+                    @endif
+                @endforeach
+                @if($impfis == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Imputados Físicos
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Alias</th>
+                                            <th>Fecha nacimiento</th>
+                                            <th>Sexo</th>
+                                            <th>Estado civil</th>
+                                            <th>Nombre padre</th>
+                                            <th>Nombre madre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->imputados as $imputado)
+                                            @if($imputado->tipo === "FISICA")
+                                                <tr>
+                                                    <td>{!! $imputado->tipo !!}</td>
+                                                    <td>{!! $imputado->nombre !!}</td>
+                                                    <td>{!! $imputado->alias !!}</td>
+                                                    <td>{!! $imputado->fechaNacimiento !!}</td>
+                                                    <td>{!! $imputado->sexo !!}</td>
+                                                    <td>{!! $imputado->estadoCivil !!}</td>
+                                                    <td>{!! $imputado->nombrePadre !!}</td>
+                                                    <td>{!! $imputado->nombreMadre !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
-            <div class="col-md-1 col-xs-1">
-                <!-- FechaNacimiento Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->fechaNacimiento !!}</p> 
-                </div>
+                @if($impmor == 1)
+                    <div class="panel panel-default" > 
+                        <div class="panel-heading panel-heading-custom">
+                            <h3 class="panel-title" align="center">
+                                Imputados Morales
+                            </h3> 
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nombre</th>
+                                            <th>Representante legal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($proceso->imputados as $imputado)
+                                            @if($imputado->tipo === "MORAL")
+                                                <tr>
+                                                    <td>{!! $imputado->tipo !!}</td>
+                                                    <td>{!! $imputado->nombre !!}</td>
+                                                    <td>{!! $imputado->representanteLegal !!}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
             </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- Sexo Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->sexo !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- EstadoCivil Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->estadoCivil !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- Direccion Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->direccion !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-2">
-                <!-- NombrePadre Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->nombrePadre !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-1 col-xs-1">
-                <!-- NombreMadre Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->nombreMadre !!}</p> 
-                </div>
-            </div>
-        @endif
         </div>
-        @endforeach
-        </div>
-
-
-        <div class="panel panel-default" > 
-        <div class="panel-heading panel-heading-custom">
-            <h3 class="panel-title" align="center">
-                Imputados Morales
-            </h3> 
-        </div> 
-        <div class="row">
-            <div class="col-md-4 col-xs-4">
-                <!-- Tipo Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Tipo:') !!}</h6>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-xs-4">
-                <!-- Nombre Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Nombre Imputado:') !!}</h6>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-xs-4">
-                <!-- RepresentanteLegal Label -->
-                <div class="form-group">
-                    <h6>{!! Form::label('Representante Legal:') !!}</h6>
-                </div>
-            </div>   
-        </div>
-
-        @foreach ($proceso->imputados as $imputado) 
-        <div class="row">
-        @if ($imputado->tipo === "MORAL")
-            <div class="col-md-4 col-xs-4">
-                <!-- Tipo Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->tipo !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-4 col-xs-4">
-                <!-- Nombre Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->nombre !!}</p> 
-                </div>
-            </div>
-
-            <div class="col-md-4 col-xs-4">
-                <!-- RepresentanteLegal Field -->
-                <div class="form-group">
-                    <p>{!! $imputado->representanteLegal !!}</p> 
-                </div>
-            </div>
-        @endif
-        </div>
-        @endforeach
-        </div>
-
-    </div>
-    </div>
     </div>
 </div>
+
 
 <div class="panel panel-default" > 
     <div class="panel-heading panel-heading-custom">
@@ -518,64 +306,37 @@
         </h3> 
     </div> 
     <div id="collapse5" class="panel-collapse collapse in">
-    <div class="box box-default">
-    <div class="box-body">
-    <div class="row">
-        <div class="col-md-4 col-xs-4">
-            <!-- Victima Label -->
-            <div class="form-group">
-                <h4>{!! Form::label('Víctima:') !!}</h4>
+        <div class="box box-default">
+            <div class="box-body">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Víctima</th>
+                                    <th>Delito</th>
+                                    <th>Imputado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($proceso->imputaciones as $imputacion)
+                                    <tr>
+                                        <td>{!! $imputacion->victima !!}</td>
+                                        <td>{!! $imputacion->delito !!}</td>
+                                        <td>{!! $imputacion->imputado !!}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-4 col-xs-4">
-            <!-- Delito Label -->
-            <div class="form-group">
-                <h4>{!! Form::label('Delito:') !!}</h4>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xs-4">
-            <!-- Imputado Label -->
-            <div class="form-group">
-                <h4>{!! Form::label('Imputado:') !!}</h4>
-            </div>
-        </div>
-    </div>
-
-    @foreach ($proceso->imputaciones as $imputacion) 
-    <div class="row">
-        <div class="col-md-4 col-xs-4">
-            <!-- Victima Field -->
-            <div class="form-group">
-                <p>{!! $imputacion->victima !!}</p> 
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xs-4">
-            <!-- Delito Field -->
-            <div class="form-group">
-                <p>{!! $imputacion->delito !!}</p> 
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xs-4">
-            <!-- Imputado Field -->
-            <div class="form-group">
-                <p>{!! $imputacion->imputado !!}</p> 
-            </div>
-        </div>
-    </div>
-    @endforeach
-    </div>
-    </div>
     </div>
 </div>
 
 <script>
-
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
 </script>
