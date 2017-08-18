@@ -108,7 +108,6 @@
                     @if($victima->tipo === "MORAL")
                         <?php $vicmor = 1; ?>
                     @endif
-                    <td>{!! $victima->tipo !!}</td>
                 @endforeach
                 @if($vicfis == 1)
                     <div class="panel panel-default" > 
@@ -309,26 +308,30 @@
         <div class="box box-default">
             <div class="box-body">
                 <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Víctima</th>
-                                    <th>Delito</th>
-                                    <th>Imputado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($proceso->imputaciones as $imputacion)
+                    @empty($proceso->imputaciones)
+                        <h3 class="text-center">No hay imputaciones registradas.</h3>
+                    @else
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{!! $imputacion->victima !!}</td>
-                                        <td>{!! $imputacion->delito !!}</td>
-                                        <td>{!! $imputacion->imputado !!}</td>
+                                        <th>Víctima</th>
+                                        <th>Delito</th>
+                                        <th>Imputado</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    @foreach ($proceso->imputaciones as $imputacion)
+                                        <tr>
+                                            <td>{!! $imputacion->victima !!}</td>
+                                            <td>{!! $imputacion->delito !!}</td>
+                                            <td>{!! $imputacion->imputado !!}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
