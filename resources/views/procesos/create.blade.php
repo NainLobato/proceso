@@ -40,6 +40,7 @@
                 $('.calendarioCompleto').datepicker({
                         format: "dd/mm/yyyy",
                         weekStart: 0,
+                        startDate: "01/01/2013",
                         //endDate: "today",
                         todayBtn: "linked",
                         language: "es",
@@ -53,7 +54,7 @@
             $(function (){
                 $('.calendarioAnio').datepicker({
                         format: "yyyy",
-                        startDate: "2000",
+                        startDate: "2013",
                         weekStart: 0,
                         //endDate: "today",
                         language: "es",
@@ -68,7 +69,7 @@
             $(function (){
                 $('.anioCarp').datepicker({
                         format: "yyyy",
-                        startDate: "2000",
+                        startDate: "2013",
                         weekStart: 0,
                         //endDate: "today",
                         language: "es",
@@ -87,7 +88,7 @@
             $(function (){
                 $('.anioProc').datepicker({
                         format: "yyyy",
-                        startDate: "2000",
+                        startDate: "2013",
                         weekStart: 0,
                         //endDate: "today",
                         language: "es",

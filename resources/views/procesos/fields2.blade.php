@@ -29,7 +29,7 @@
         <div class="col-xs-6 col-md-4 col-lg-2">
             <div class="form-group">
                 {!! Form::label('numeroCarpeta', 'NUMERO:') !!}*
-                {!! Form::text('numeroCarpeta', null, ['class' => 'form-control','required'=>'','data-error'=>'Error en UIPJ']) !!}
+                {!! Form::number('numeroCarpeta', null, ['class' => 'form-control','required'=>'', 'min'=> 1,'data-error'=>'Error en UIPJ']) !!}
            </div>
         </div>
         <div class="col-xs-6 col-md-4 col-lg-2">
@@ -109,7 +109,7 @@
         <div class="col-xs-6 col-md-2 col-lg-2">
             <div class="form-group">
                 {!! Form::label('numeroProceso', 'NUMERO:') !!}*
-                {!! Form::text('numeroProceso', null, ['class' => 'form-control','required'=>'']) !!}  
+                {!! Form::number('numeroProceso', null, ['class' => 'form-control', 'min'=> 1, 'required'=>'']) !!}  
             </div>
         </div>
         <div class="col-xs-12 col-md-6 col-lg-4">
