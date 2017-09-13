@@ -67,7 +67,8 @@ class ProcesoDataTable extends DataTable
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
-                'scrollX' => false,
+                'scrollX' => true,
+                'scrollY' => "500px",
                 'buttons' => [
                     'print',
                     'reset',
